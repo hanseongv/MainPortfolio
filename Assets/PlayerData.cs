@@ -63,6 +63,8 @@ public class PlayerData : MonoBehaviour
         equipWeaponRate = rate;
     }
 
+    public MonsterNormal monsterNormal;
+
     private void Test()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -71,8 +73,7 @@ public class PlayerData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            playerStr++;
-            playerInt++;
+            monsterNormal.GetHit();
         }
     }
 

@@ -430,6 +430,7 @@ MonoBehaviour:
   equipWeaponRate: 0
   camList: []
   curentCam: {fileID: 0}
+  monsterNormal: {fileID: 985330676580698083}
 --- !u!4 &1562162129
 Transform:
   m_ObjectHideFlags: 0
@@ -444,6 +445,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &985330676580698083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5015126298627130563, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+  m_PrefabInstance: {fileID: 5011856911133516153}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb2e23dfe14c4d4f8c1c6a48e0fe5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3410075990305732819
 PrefabInstance:
   m_ObjectHideFlags: 0

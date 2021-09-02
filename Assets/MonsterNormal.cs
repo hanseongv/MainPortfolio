@@ -79,11 +79,11 @@ public class MonsterNormal : MonoBehaviour
                 anim.SetBool("isHissing", false);
                 isHissing = false;
             }
-            else if (dis < hissingRange && !isHissing) // 시야 안에 들어와서 하악질함.
+            else if (dis <= hissingRange && !isHissing) // 시야 안에 들어와서 하악질함. 한 번 실행
             {
                 anim.SetBool("isIdle2", false);
                 anim.SetBool("isIdle3", false);
-                anim.SetTrigger("doHissing");
+                //anim.SetTrigger("doHissing");
                 anim.SetBool("isHissing", true);
                 isHissing = true;
             }
@@ -93,14 +93,21 @@ public class MonsterNormal : MonoBehaviour
 
                 anim.SetBool("isBattle", false);
             }
-            else if (dis < attackShortArea)// 공격 범위 안에 들어옴 배틀 시작
+            else if (dis <= attackShortArea)// 공격 범위 안에 들어옴 배틀 시작
             {
+                anim.SetBool("isHissing", false);
+                isHissing = false;
                 isChase = true;
                 isBattle = true;
 
                 anim.SetBool("isBattle", true);
             }
         }
+    }
+
+    public void GetHit()
+    {
+        anim.Play("GetHit");
     }
 
     private void Distance()
