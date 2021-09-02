@@ -10,18 +10,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigid;
     private Vector3 moveVec;
 
-    public int fireCount;
-    public int jumpCount;
+    public float fireDelay;
+
+    private int fireCount;
+    private int jumpCount;
     private float hAxis;
     private float vAxis;
-    public float fireDelay;
-    private float jumpDelay;
 
     private bool fDown;
     private bool wDown;
     private bool jDown;
-    public bool isFireReady;
-    public bool isFireReady2;
+    private bool isFireReady;
+    private bool isFireReady2;
 
     //bool isBorder;
     private void Start()

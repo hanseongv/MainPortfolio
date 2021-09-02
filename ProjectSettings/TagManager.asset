@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - New tag
+  - Monster
+  - Bullet
   layers:
   - Default
   - TransparentFX
