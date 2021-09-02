@@ -512,22 +512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 966995873222055258, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
-      propertyPath: m_Speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 985330676580698083, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 5015126298627130563, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
-      propertyPath: hissingRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5015126298627130563, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
-      propertyPath: attackShortArea
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178648, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_Name
       value: MonsterSlimeGreen
@@ -576,6 +560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6466652458663330685, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
 --- !u!1001 &8929904665837550071
@@ -586,8 +574,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8929904666885699264, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
-      propertyPath: m_Constraints
-      value: 112
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8929904666885699266, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
       propertyPath: m_Name

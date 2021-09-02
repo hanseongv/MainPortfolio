@@ -57,6 +57,12 @@ public class PlayerController : MonoBehaviour
 
     private bool isJump;
 
+    public void GetHit(int hitDamage)
+    {
+        playerData.curentHp -= hitDamage;
+        Debug.Log("데미지 입음" + hitDamage);
+    }
+
     private void Jump()
     {
         if (jDown && jumpCount < 2)

@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class MonsterNormal : MonoBehaviour
 {
+    //몬스터 스테이트
     public enum MonsterType { Slime }
 
     public MonsterType monsterType;
@@ -15,18 +16,23 @@ public class MonsterNormal : MonoBehaviour
 
     public MonsterAttackType monsterAttackType;
 
+    public int monsterHp = 10;
+    public int monsterDamage = 1;
+    public int monsterExp = 2;
+    public float monsterSpeed = 1;
+    public float hissingRange = 10;
+    public float attackShortArea = 6f;
+    public float attackShortRange = 1.7f; // 기본값 8로
+    //
+
     private NavMeshAgent nav;
     public GameObject target;
     public Rigidbody rigid;
     public new Collider collider;
     private Animator anim;
+    public BoxCollider bullet;
+    public Vector3 homeVec;
 
-    public float attackShortRange = 1.7f; // 기본값 8로
-    public float attackShortArea = 6f;
-    public float hissingRange = 10;
-
-    //public bool attackRange;
-    //public bool attackRangeDis;
     public bool isChase;
 
     public bool isBattle;
@@ -35,9 +41,6 @@ public class MonsterNormal : MonoBehaviour
     public float fireDelay;
     public float fireRate = 1.5f;
     public float dis;
-
-    public BoxCollider bullet;
-    public Vector3 homeVec;
 
     private void Awake()
     {
@@ -74,7 +77,6 @@ public class MonsterNormal : MonoBehaviour
                 anim.SetBool(Random.Range(0, 2) == 0 ? "isIdle2" : "isIdle3", false);
                 anim.SetBool("isHissing", false);
                 isHissing = false;
-                Debug.Log("시야 밖에 있음.");
             }
             else if (dis < hissingRange && !isHissing) // 시야 안에 들어와서 하악질함.
             {
@@ -83,19 +85,18 @@ public class MonsterNormal : MonoBehaviour
                 anim.SetTrigger("doHissing");
                 anim.SetBool("isHissing", true);
                 isHissing = true;
-                Debug.Log("시야 안에 들어와서 하악질함.");
             }
             else if (dis > attackShortArea && dis < hissingRange)//dis > 7 전투시작전 하악질 상태
             {
                 transform.LookAt(target.transform);
-                Debug.Log("전투시작전 하악질 상태");
+
                 anim.SetBool("isBattle", false);
             }
             else if (dis < attackShortArea)// 공격 범위 안에 들어옴 배틀 시작
             {
                 isChase = true;
                 isBattle = true;
-                Debug.Log("배틀");
+
                 anim.SetBool("isBattle", true);
             }
         }
@@ -141,15 +142,24 @@ public class MonsterNormal : MonoBehaviour
         }
     }
 
+    public float i = 1;
+    public int attackCount;
+
     private IEnumerator Attack()
     {
+        attackCount++;
         isChase = false;
         fireDelay = 0;
         anim.Play(Random.Range(0, 2) == 0 ? "Attack1" : "Attack2");
         transform.LookAt(target.transform);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(i);
         //콜라이더 온
+        bullet.enabled = true;
+        Debug.Log("켜짐");
         yield return null;
+        yield return null;
+        bullet.enabled = false;
+        Debug.Log("꺼짐 공격 횟수" + attackCount);
         //콜라이더 오프
     }
 }

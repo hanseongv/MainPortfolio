@@ -50,7 +50,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!135 &985330676580698082
 SphereCollider:
@@ -75,7 +75,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -101,13 +101,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 0
   monsterAttackType: 0
+  monsterHp: 10
+  monsterDamage: 1
+  monsterExp: 2
+  monsterSpeed: 1
+  hissingRange: 10
+  attackShortArea: 7
+  attackShortRange: 1.7
   target: {fileID: 0}
   rigid: {fileID: 0}
   collider: {fileID: 0}
-  attackRange: 0
-  attackRangeDis: 0
-  dis: 0
   bullet: {fileID: 0}
+  homeVec: {x: 0, y: 0, z: 0}
+  isChase: 0
+  isBattle: 0
+  isHissing: 0
+  isFireReady: 0
+  fireDelay: 0
+  fireRate: 1.5
+  dis: 0
+  i: 0.15
 --- !u!1 &5472592067420684508
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +133,7 @@ GameObject:
   - component: {fileID: 5826448687152063249}
   - component: {fileID: 6466652458663330685}
   - component: {fileID: 3566774893909041675}
+  - component: {fileID: 660974287}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -156,7 +170,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5472592067420684508}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -203,6 +217,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &660974287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5472592067420684508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2624fe0a0303148aa9fe18c10d19ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  monsterNormal: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!1001 &5197479739939851978
 PrefabInstance:
   m_ObjectHideFlags: 0
