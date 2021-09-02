@@ -512,6 +512,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 660974287, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: force
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178648, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_Name
       value: MonsterSlimeGreen

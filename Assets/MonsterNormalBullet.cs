@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class MonsterNormalBullet : MonoBehaviour
 {
-    public int damage;
     public MonsterNormal monsterNormal;
     public PlayerController playerController;
 
     private void Start()
     {
         monsterNormal = GetComponentInParent<MonsterNormal>();
-        damage = monsterNormal.monsterDamage;
     }
 
-    // Update is called once per frame
     private void Update()
     {
     }
+
+    public float force = 100;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,9 +24,12 @@ public class MonsterNormalBullet : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerController = other.GetComponent<PlayerController>();
-            playerController.GetHit(damage);
+            playerController.GetHit(monsterNormal.monsterDamage);
             Debug.Log("플레이어한테 온트리거엔터 발생");
-            //playerController = null;
+
+            Rigidbody rigid = other.GetComponent<Rigidbody>();
+
+            rigid.AddForce((transform.forward + Vector3.up) * monsterNormal.knockBackForce, ForceMode.Impulse);
         }
     }
 }

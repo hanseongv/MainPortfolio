@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         playerData.curentHp -= hitDamage;
         Debug.Log("데미지 입음" + hitDamage);
+        anim.Play("GetHit");
     }
 
     private void Jump()

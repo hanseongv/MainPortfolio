@@ -18,6 +18,7 @@ public class MonsterNormal : MonoBehaviour
 
     public int monsterHp = 10;
     public int monsterDamage = 1;
+    public float knockBackForce = 2;
     public int monsterExp = 2;
     public float monsterSpeed = 1;
     public float hissingRange = 10;
