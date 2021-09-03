@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public PlayerData playerData;
     private Animator anim;
     private Rigidbody rigid;
+    public Transform skill1Pos;
+    public GameObject skill1Sword8Effect;
     private Vector3 moveVec;
 
     public float fireDelay;
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool isFireReady;
     private bool isFireReady2;
     private bool isJump;
+    private bool isSkill1;
     public TrailRenderer trailRenderer;
     public GameObject hitEffect;
     private Vector3 camPos;
@@ -31,25 +34,157 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [Range(0.1f, 1f)] private float duration = 0.5f;
     private Camera cam;
 
+    public GameObject sword8;
+
+    public Renderer sword8Mat;
+
     //bool isBorder;
+    public float timed;
+
     private void Start()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
+        skill1Pos = transform.GetChild(0).GetComponent<Transform>();
 
         //trailRenderer.emitting = true;
+        //임시
+        sword8Mat = sword8.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        //timed += Time.deltaTime;
+        if (isSkill1)
+            return;
         GetInput();
         Move();
         Attack();
         Turn();
         Jump();
         Swap();
+        //Skill();
+        Test();
+    }
+
+    private void Test()
+    {
+        if (/*playerData.equipWeapon == sword8 &&*/ Input.GetKeyDown(KeyCode.R) && !isSkill1)
+        {
+            StartCoroutine(tes());
+        }
+    }
+
+    public float i = 0.4f;
+
+    //private IEnumerator tes()
+    //{
+    //    isSkill1 = true;
+    //    anim.Play("Skill01"); //0프레임
+    //    Debug.Log(Time.time);
+    //    yield return new WaitForSeconds(i);//트레일 시작
+    //    Debug.Log(Time.time);
+    //    playerData.equipWeaponTrail.emitting = true;
+    //    yield return new WaitForSeconds(0.2f);
+    //    playerData.equipWeaponTrail.emitting = false;
+    //    yield return new WaitForSeconds(0.183f);
+    //    //기모으기 켜기
+    //    Debug.Log("기모으기 킴");
+    //    yield return new WaitForSeconds(0.2f);
+    //    sword8Mat.material.color = Color.yellow;
+    //    yield return new WaitForSeconds(0.517f);
+    //    //기모으기 끄기
+    //    Debug.Log("기모으기 끔");
+    //    yield return new WaitForSeconds(0.18f);
+    //    //화면 흔들기 약하게 켜기
+    //    Debug.Log("화면 흔들기 킴");
+    //    yield return new WaitForSeconds(0.12f);
+    //    //화면 흔들기 약하게 끄기
+    //    Debug.Log("화면 흔들기 끔");
+    //    playerData.equipWeaponTrail.emitting = true;
+    //    yield return new WaitForSeconds(0.13f);
+    //    //참격 오브젝트 생성
+    //    Debug.Log("참격 날림");
+    //    yield return new WaitForSeconds(0.13f);
+    //    playerData.equipWeaponTrail.emitting = false;
+    //    sword8Mat.material.color = Color.white;
+    //    isSkill1 = false;
+    //}
+    public GameObject flyingSlash;
+
+    private IEnumerator tes()
+    {
+        isSkill1 = true;
+        anim.Play("Skill01");
+        Debug.Log("애니메이션 시작" + Time.time);
+        yield return new WaitForSeconds(0.45f);
+        Debug.Log("트레일 시작" + Time.time);
+        playerData.equipWeaponTrail.emitting = true;
+        yield return new WaitForSeconds(0.233f);
+        Debug.Log("트레일 끝" + Time.time);
+        playerData.equipWeaponTrail.emitting = false;
+        yield return new WaitForSeconds(0.5f);
+
+        ////
+        ////기모으기 파티클 켜기
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(SwordEffectCo());
+
+        sword8Mat.material.color = Color.yellow;
+        //색 변환 시 두근! 하는 효과 주기 예) 카메라 흔들기, 무기 커지면서 사라지기
+        yield return new WaitForSeconds(0.8f);
+
+        //화면 흔들기 약하게 켜기
+        Debug.Log("화면 흔들기 킴");
+        yield return new WaitForSeconds(0.3f);
+        ////화면 흔들기 약하게 끄기
+        Debug.Log("화면 흔들기 끔");
+        playerData.equipWeaponTrail.emitting = true;
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
+        //  Instantiate(hitEffect, hitPos.position, transform.rotation);
+        Debug.Log("참격 날림");
+        yield return new WaitForSeconds(0.15f);
+        playerData.equipWeaponTrail.emitting = false;
+        sword8Mat.material.color = Color.white;
+
+        isSkill1 = false;
+    }
+
+    public int tenum = 30;
+
+    private IEnumerator SwordEffectCo()
+    {
+        Renderer renderer = playerData.equipWeaponEffect.GetComponent<Renderer>();
+
+        playerData.equipWeaponEffect.SetActive(true);
+        int i = 10;
+        Color c = renderer.material.color;
+        while (i > 0)
+        {
+            i -= 1;
+            float f = i / 10.0f;
+
+            c.a = f;
+            renderer.material.color = c;
+            playerData.equipWeaponEffect.transform.localScale += new Vector3(0.4f, 0.4f, 0.4f);
+            yield return new WaitForSeconds(0.015f);
+        }
+
+        c.a = 1;
+        playerData.equipWeaponEffect.transform.localScale = new Vector3(1, 1, 1);
+        playerData.equipWeaponEffect.SetActive(false);
+        //for (int i = tenum; 0 > i; i--) //i=30 0>30
+        //{
+        //    playerData.equipWeaponEffect.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f); // 커지게
+        //    c.a = 0;
+        //    renderer.material.color = c;
+        //    //c.a = i * (100 / tenum);
+        //    //renderer.material.color = c;
+        //    yield return null;
+        //}
     }
 
     //private void Swap()
@@ -134,6 +269,10 @@ public class PlayerController : MonoBehaviour
             {
                 anim.Play("Swap");
                 playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+                playerData.equipWeaponEffect = playerData.equipWeapon.transform.GetChild(0).gameObject;
+                //equipWeaponEffect = equipWeapon.transform.GetChild(0).gameObject;
+                playerData.equipWeaponEffect.SetActive(false);
+
                 StopCoroutine(swapAnimCoroutine);
                 StartCoroutine(swapAnimCoroutine);
             }
@@ -191,9 +330,13 @@ public class PlayerController : MonoBehaviour
     {
         Shake();
         playerData.curentHp -= hitDamage;
-        Instantiate(hitEffect, hitPos.position, transform.rotation);
+
         Debug.Log("데미지 입음" + hitDamage);
-        anim.Play("GetHit");
+        if (!isSkill1)
+        {
+            anim.Play("GetHit");
+            Instantiate(hitEffect, hitPos.position, transform.rotation);
+        }
     }
 
     private void Jump()

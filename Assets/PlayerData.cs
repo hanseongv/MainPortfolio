@@ -33,6 +33,7 @@ public class PlayerData : MonoBehaviour
     public List<GameObject> testHaveWeapon;
     public List<GameObject> testHaveWeapon2;
     public GameObject equipWeapon;
+    public GameObject equipWeaponEffect;
     public TrailRenderer equipWeaponTrail;
     public float equipWeaponRate;
     public List<GameObject> camList;
@@ -58,6 +59,10 @@ public class PlayerData : MonoBehaviour
     private void EquipWeapon()
     {
         equipWeapon.SetActive(true);
+        //if (equipWeapon != hasWeapon[0])
+        //    //    equipWeaponEffect = equipWeapon.GetComponent<GameObject>();
+        //    //GameObject.Find("Panel").transform.GetChild(0).gameObject;
+        //    equipWeaponEffect = equipWeapon.transform.GetChild(0).gameObject;
     }
 
     private void PlayerStata()

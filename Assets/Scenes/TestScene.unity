@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 8929904665837550072}
   - {fileID: 660308455}
   equipWeapon: {fileID: 0}
+  equipWeaponEffect: {fileID: 0}
   equipWeaponTrail: {fileID: 0}
   equipWeaponRate: 0
   camList: []
@@ -497,6 +498,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdb2e23dfe14c4d4f8c1c6a48e0fe5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2318300802796269440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6611608295452251767, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
+  m_PrefabInstance: {fileID: 8929904665837550071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2318300802796269441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318300802796269440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c790501aa009a42aae3d831f4746b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3410075990305732819
@@ -627,6 +645,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5201237385760559184, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -8.3211405e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201237385760559184, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -2.3972098e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201264752917129942, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -4.3368066e-19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201281580723458662, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -5.3776424e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201281580723458662, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1.6653347e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201495934097061156, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.35904664
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201495934097061156, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6091679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201495934097061156, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.35904664
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201495934097061156, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.6091679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201615016621652130, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5527135e-16
+      objectReference: {fileID: 0}
     - target: {fileID: 6466652458663330685, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -640,13 +698,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8514934475352783310, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
-      propertyPath: trailOnTime
-      value: 0.5
+    - target: {fileID: 2976215146700629413, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8514934475352783310, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
-      propertyPath: trailOffTime
-      value: 0.3
+      propertyPath: tenum
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8929904666885699266, guid: a151f331014168f4ba6812e9bee33df0, type: 3}
       propertyPath: m_Name
