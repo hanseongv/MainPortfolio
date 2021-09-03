@@ -29,8 +29,11 @@ public class PlayerData : MonoBehaviour
     public int playerGold = 0;
     public List<int> playerPortion;
 
-    public List<GameObject> haveWeapon;
+    public List<GameObject> hasWeapon;
+    public List<GameObject> testHaveWeapon;
+    public List<GameObject> testHaveWeapon2;
     public GameObject equipWeapon;
+    public TrailRenderer equipWeaponTrail;
     public float equipWeaponRate;
     public List<GameObject> camList;
     public GameObject curentCam;
@@ -39,6 +42,8 @@ public class PlayerData : MonoBehaviour
     {
         player = GameObject.Find("Player");
         maxExp = new int[] { 15, 50, 100, 500, 1000 };
+
+        equipWeapon = hasWeapon[0];
     }
 
     // Update is called once per frame
@@ -47,6 +52,12 @@ public class PlayerData : MonoBehaviour
         LevelUp();
         Test();
         PlayerStata();
+        EquipWeapon();
+    }
+
+    private void EquipWeapon()
+    {
+        equipWeapon.SetActive(true);
     }
 
     private void PlayerStata()
@@ -64,14 +75,23 @@ public class PlayerData : MonoBehaviour
     }
 
     public MonsterNormal monsterNormal;
+    public int i;
+    public int b;
 
     private void Test()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            equipWeapon.SetActive(true);
+            i++;
+            hasWeapon[i] = testHaveWeapon[i - 1];
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            b++;
+            hasWeapon[b] = testHaveWeapon2[b - 1];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             monsterNormal.GetHit();
         }

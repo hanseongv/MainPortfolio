@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool jDown;
     private bool isFireReady;
     private bool isFireReady2;
+    public TrailRenderer trailRenderer;
 
     //bool isBorder;
     private void Start()
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
+
+        //trailRenderer.emitting = true;
     }
 
     // Update is called once per frame
@@ -39,6 +42,103 @@ public class PlayerController : MonoBehaviour
         Attack();
         Turn();
         Jump();
+        Swap();
+    }
+
+    //private void Swap()
+    //{
+    //    int weaponNum = 0;
+    //    //if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha4))
+    //    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        anim.Play("Swap");
+    //        weaponNum = 1;
+    //        playerData.equipWeapon.SetActive(false);
+    //        playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
+    //        if (playerData.equipWeapon != playerData.hasWeapon[0])
+    //        {
+    //            playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+    //            StopCoroutine(swapAnimCoroutine);
+    //            StartCoroutine(swapAnimCoroutine);
+    //        }
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        anim.Play("Swap");
+    //        weaponNum = 2;
+    //        playerData.equipWeapon.SetActive(false);
+    //        playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
+    //        if (playerData.equipWeapon != playerData.hasWeapon[0])
+    //        {
+    //            playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+    //            StopCoroutine(swapAnimCoroutine);
+    //            StartCoroutine(swapAnimCoroutine);
+    //        }
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        anim.Play("Swap");
+    //        weaponNum = 3;
+    //        playerData.equipWeapon.SetActive(false);
+    //        playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
+    //        if (playerData.equipWeapon != playerData.hasWeapon[0])
+    //        {
+    //            playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+    //            StopCoroutine(swapAnimCoroutine);
+    //            StartCoroutine(swapAnimCoroutine);
+    //        }
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        anim.Play("Swap");
+    //        weaponNum = 4;
+    //        playerData.equipWeapon.SetActive(false);
+    //        playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
+    //        if (playerData.equipWeapon != playerData.hasWeapon[0])
+    //        {
+    //            playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+    //            StopCoroutine(swapAnimCoroutine);
+    //            StartCoroutine(swapAnimCoroutine);
+    //        }
+    //    }
+    //}
+    private void Swap()
+    {
+        int weaponNum = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) weaponNum = 1;
+
+        if (Input.GetKeyDown(KeyCode.Alpha2)) weaponNum = 2;
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) weaponNum = 3;
+
+        if (Input.GetKeyDown(KeyCode.Alpha4)) weaponNum = 4;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (playerData.hasWeapon[weaponNum] == null)
+                return;
+            IEnumerator swapAnimCoroutine;
+            swapAnimCoroutine = SwapTrail();
+            playerData.equipWeapon.SetActive(false);
+
+            playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
+            if (playerData.equipWeapon != playerData.hasWeapon[0]) // 현재 착용 무기가 널무기가 아닐 때
+            {
+                anim.Play("Swap");
+                playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+                StopCoroutine(swapAnimCoroutine);
+                StartCoroutine(swapAnimCoroutine);
+            }
+            else anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
+        }
+    }
+
+    private IEnumerator SwapTrail()
+    {
+        playerData.equipWeaponTrail.emitting = true;
+        yield return new WaitForSeconds(0.3f);
+        playerData.equipWeaponTrail.emitting = false;
     }
 
     private void GetInput()
@@ -85,11 +185,12 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isRun", moveVec != Vector3.zero);
     }
 
+    private void Trail()
+    {
+    }
+
     private void Attack()
     {
-        if (playerData.equipWeapon == null)
-            return;
-
         if (fireDelay < 10)
             fireDelay += Time.deltaTime;
 
@@ -99,13 +200,15 @@ public class PlayerController : MonoBehaviour
 
         if (fDown)
         {
-            if (isFireReady2 && fireDelay > 0.5f)
+            if (playerData.equipWeapon = playerData.hasWeapon[0]) return;
+
+            if (isFireReady2 && fireDelay > 0.5f) //공격 2
             {
                 anim.SetBool("isSwing2", true);
                 isFireReady2 = false;
                 fireDelay = -playerData.equipWeaponRate;
             }
-            else if (isFireReady)
+            else if (isFireReady) //공격 1
             {
                 anim.SetTrigger("doSwing1");
                 anim.SetBool("isSwing2", false);
@@ -113,6 +216,12 @@ public class PlayerController : MonoBehaviour
                 isFireReady2 = true;
             }
         }
+    }
+
+    private float trailOnTime = 0.1f;
+
+    private void TrailOn()
+    {
     }
 
     private void Turn()
