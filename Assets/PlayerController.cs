@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject sword8;
 
-    public Renderer sword8Mat;
+    public Renderer skill1SwordRendert;
 
     //bool isBorder;
     public float timed;
@@ -50,13 +50,12 @@ public class PlayerController : MonoBehaviour
 
         //trailRenderer.emitting = true;
         //임시
-        sword8Mat = sword8.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //timed += Time.deltaTime;
+        timed += Time.deltaTime;
         if (isSkill1)
             return;
         GetInput();
@@ -116,14 +115,16 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator tes()
     {
+        Debug.Log("시작" + Time.time);
         isSkill1 = true;
+        Color originC = skill1SwordRendert.material.color;
         anim.Play("Skill01");
-        Debug.Log("애니메이션 시작" + Time.time);
+
         yield return new WaitForSeconds(0.45f);
-        Debug.Log("트레일 시작" + Time.time);
+
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(0.233f);
-        Debug.Log("트레일 끝" + Time.time);
+
         playerData.equipWeaponTrail.emitting = false;
         yield return new WaitForSeconds(0.5f);
 
@@ -132,7 +133,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(SwordEffectCo());
 
-        sword8Mat.material.color = Color.yellow;
+        skill1SwordRendert.material.color = Color.yellow;
         //색 변환 시 두근! 하는 효과 주기 예) 카메라 흔들기, 무기 커지면서 사라지기
         yield return new WaitForSeconds(0.8f);
 
@@ -148,9 +149,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("참격 날림");
         yield return new WaitForSeconds(0.15f);
         playerData.equipWeaponTrail.emitting = false;
-        sword8Mat.material.color = Color.white;
-
+        skill1SwordRendert.material.color = originC;
+        yield return new WaitForSeconds(0.6f);
         isSkill1 = false;
+        Debug.Log("Rmx" + Time.time);
     }
 
     public int tenum = 30;
@@ -270,6 +272,7 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Swap");
                 playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
                 playerData.equipWeaponEffect = playerData.equipWeapon.transform.GetChild(0).gameObject;
+                skill1SwordRendert = playerData.equipWeapon.GetComponent<Renderer>();
                 //equipWeaponEffect = equipWeapon.transform.GetChild(0).gameObject;
                 playerData.equipWeaponEffect.SetActive(false);
 
