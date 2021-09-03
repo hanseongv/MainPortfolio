@@ -113,6 +113,40 @@ public class PlayerController : MonoBehaviour
     //}
     public GameObject flyingSlash;
 
+    public void Skill1Shake()
+    {
+        cam = playerData.curentCam.GetComponent<Camera>();
+
+        camPos = cam.transform.position;
+        InvokeRepeating("StartShake", 0f, 0.02f); //바로 스타트쉐이크를 시작하며 0.005f마다 실행
+        Invoke("StopShake", 0.3f);
+    }
+
+    public void Skill1Shake2()//테스트
+    {
+        cam = playerData.curentCam.GetComponent<Camera>();
+
+        camPos = cam.transform.position;
+        InvokeRepeating("Skill1StartShake", 0f, 0.001f); //바로 스타트쉐이크를 시작하며 0.005f마다 실행
+        Invoke("Skill1StopShake", 0.15f);
+    }
+
+    private void Skill1StartShake()
+    {
+        float camPosX = Random.value * shakeRange * 2.5f - shakeRange;
+        float camPosY = Random.value * shakeRange * 2.5f - shakeRange;
+        camPos = cam.transform.position;
+        camPos.x += camPosX;
+        camPos.y += camPosY;
+        cam.transform.position = camPos;
+    }
+
+    private void Skill1StopShake()
+    {
+        CancelInvoke("Skill1StartShake");
+        //cam.transform.position = camPos;
+    }
+
     private IEnumerator tes()
     {
         Debug.Log("시작" + Time.time);
@@ -136,7 +170,7 @@ public class PlayerController : MonoBehaviour
         skill1SwordRendert.material.color = Color.yellow;
         //색 변환 시 두근! 하는 효과 주기 예) 카메라 흔들기, 무기 커지면서 사라지기
         yield return new WaitForSeconds(0.8f);
-
+        Skill1Shake();
         //화면 흔들기 약하게 켜기
         Debug.Log("화면 흔들기 킴");
         yield return new WaitForSeconds(0.3f);
@@ -144,6 +178,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("화면 흔들기 끔");
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(0.2f);
+        Skill1Shake2();
         Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
         //  Instantiate(hitEffect, hitPos.position, transform.rotation);
         Debug.Log("참격 날림");

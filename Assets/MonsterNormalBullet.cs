@@ -34,9 +34,9 @@ public class MonsterNormalBullet : MonoBehaviour
             rigid.AddForce((transform.forward + Vector3.up) * monsterNormal.knockBackForce, ForceMode.Impulse);
             boxCollider.enabled = false;
         }
-        else
-        {
-            boxCollider.enabled = false;
-        }
+        //else
+        //{
+        //    boxCollider.enabled = false;
+        //}
     }
 }

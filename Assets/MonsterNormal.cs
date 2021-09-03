@@ -160,6 +160,8 @@ public class MonsterNormal : MonoBehaviour
         fireDelay = 0;
         anim.Play(Random.Range(0, 2) == 0 ? "Attack1" : "Attack2");
         transform.LookAt(target.transform);
+        //Vector3 dir = target.transform.position - transform.position;
+        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 50);
         yield return new WaitForSeconds(onCollTime);
         //콜라이더 온
         bullet.enabled = true;
