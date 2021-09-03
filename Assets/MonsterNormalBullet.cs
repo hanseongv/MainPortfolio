@@ -6,10 +6,12 @@ public class MonsterNormalBullet : MonoBehaviour
 {
     public MonsterNormal monsterNormal;
     public PlayerController playerController;
+    private BoxCollider boxCollider;
 
     private void Start()
     {
         monsterNormal = GetComponentInParent<MonsterNormal>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -24,12 +26,17 @@ public class MonsterNormalBullet : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerController = other.GetComponent<PlayerController>();
-            playerController.GetHit(monsterNormal.monsterDamage);
+            playerController.GetHit(monsterNormal.monsterDamage, gameObject.transform);
             Debug.Log("플레이어한테 온트리거엔터 발생");
 
             Rigidbody rigid = other.GetComponent<Rigidbody>();
 
             rigid.AddForce((transform.forward + Vector3.up) * monsterNormal.knockBackForce, ForceMode.Impulse);
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            boxCollider.enabled = false;
         }
     }
 }

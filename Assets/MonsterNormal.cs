@@ -150,7 +150,7 @@ public class MonsterNormal : MonoBehaviour
         }
     }
 
-    public float i = 1;
+    public float onCollTime = 1;
     public int attackCount;
 
     private IEnumerator Attack()
@@ -160,12 +160,12 @@ public class MonsterNormal : MonoBehaviour
         fireDelay = 0;
         anim.Play(Random.Range(0, 2) == 0 ? "Attack1" : "Attack2");
         transform.LookAt(target.transform);
-        yield return new WaitForSeconds(i);
+        yield return new WaitForSeconds(onCollTime);
         //콜라이더 온
         bullet.enabled = true;
         Debug.Log("켜짐");
-        yield return null;
-        yield return null;
+        //yield return null;
+        yield return new WaitForSeconds(0.1f);
         bullet.enabled = false;
         Debug.Log("꺼짐 공격 횟수" + attackCount);
         //콜라이더 오프
