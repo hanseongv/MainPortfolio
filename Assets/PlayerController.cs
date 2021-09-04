@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject shorkWaveEffect;
     public GameObject flyingSlash;
+
     public GameObject fireYellowEffect;
     private Vector3 camPos;
     /*    [SerializeField] [Range(0.01f, 0.1f)] */
@@ -121,6 +122,8 @@ public class PlayerController : MonoBehaviour
         //cam.transform.position = camPos;
     }
 
+    public GameObject OnEffect;
+
     private IEnumerator Skill1Co()
     {
         isSkill1 = true;
@@ -140,6 +143,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(SwordEffectCo());
         Instantiate(shorkWaveEffect, transform.position, transform.rotation);
+
         skill1SwordRenderer.material.color = Color.yellow;
 
         yield return new WaitForSeconds(0.8f);
@@ -150,8 +154,9 @@ public class PlayerController : MonoBehaviour
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(0.2f);
         Skill1Shake2();
+        //Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
+        Instantiate(OnEffect, transform.position, transform.rotation);
         Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
-
         yield return new WaitForSeconds(0.15f);
         playerData.equipWeaponTrail.emitting = false;
         skill1SwordRenderer.material.color = originC;

@@ -986,7 +986,7 @@ AnimatorStateMachine:
     m_Position: {x: 570, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102631126811147160}
-    m_Position: {x: -20, y: 740, z: 0}
+    m_Position: {x: -280, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102157227056867942}
     m_Position: {x: 580, y: 520, z: 0}
@@ -995,13 +995,13 @@ AnimatorStateMachine:
     m_Position: {x: 570, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2131729365012355921}
-    m_Position: {x: -20, y: 670, z: 0}
+    m_Position: {x: -280, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6502717540868796467}
-    m_Position: {x: -40, y: 810, z: 0}
+    m_Position: {x: -300, y: 560, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4722323060179418641}
-    m_Position: {x: -20, y: 900, z: 0}
+    m_Position: {x: -280, y: 650, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3495641073214765524}
     m_Position: {x: 580, y: 370, z: 0}
@@ -1207,8 +1207,7 @@ AnimatorState:
   m_Name: KnockDownRe
   m_Speed: -1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 2784559013046472205}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
