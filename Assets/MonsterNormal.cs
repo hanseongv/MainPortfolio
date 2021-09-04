@@ -34,7 +34,7 @@ public class MonsterNormal : MonoBehaviour
     private Animator anim;
     public BoxCollider bullet;
     public Vector3 homeVec;
-
+    public GameObject ExclamationMarkImage;
     public GameObject hitEffect;
 
     public float hitEndTime = 0.4f;
@@ -44,6 +44,7 @@ public class MonsterNormal : MonoBehaviour
     public bool isHissing;
     public bool isFireReady;
     public bool isHit;
+    public bool isDie;
     public float fireDelay;
     public float fireRate = 1.5f;
     public float dis;
@@ -56,16 +57,21 @@ public class MonsterNormal : MonoBehaviour
         bullet = transform.GetChild(0).GetComponent<BoxCollider>();
         bullet.enabled = false;
         homeVec = transform.position;
+        renderers = GetComponentsInChildren<Renderer>();
+        //ExclamationMarkImage = GameObject.Find("Canvas/ExclamationMarkImage");
     }
 
     private void Update()
     {
-        //if (isHit)
-        //    return;
+        if (isDie)
+            return;
         NavMove();
         Distance();
         Anim();
         FireDelay();//임시
+        Dying();
+
+        //ExclamationMarkImage.transform.position = Camera.main.WorldToScreenPoint(transform.position + f);
     }
 
     private void FireDelay()
@@ -91,8 +97,10 @@ public class MonsterNormal : MonoBehaviour
                 anim.SetBool("isIdle2", false);
                 anim.SetBool("isIdle3", false);
                 //anim.SetTrigger("doHissing");
+
                 anim.SetBool("isHissing", true);
                 isHissing = true;
+                Instantiate(ExclamationMark, transform.position, ExclamationMark.transform.rotation);
             }
             else if (dis > attackShortArea && dis < hissingRange)//dis > 7 전투시작전 하악질 상태
             {
@@ -137,6 +145,8 @@ public class MonsterNormal : MonoBehaviour
     {
         dis = Vector3.Distance(target.transform.position, transform.position);
     }
+
+    public GameObject ExclamationMark;
 
     private void NavMove()
     {
@@ -194,5 +204,27 @@ public class MonsterNormal : MonoBehaviour
         bullet.enabled = false;
         Debug.Log("꺼짐 공격 횟수" + attackCount);
         //콜라이더 오프
+    }
+
+    public Renderer[] renderers;
+
+    private void Dying()
+    {
+        if (monsterHp <= 0)
+        {
+            isDie = true;
+            nav.enabled = false;
+            anim.Play("Die");
+
+            Invoke("Die", 1.5f);
+        }
+    }
+
+    private void Die()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+            renderers[i].material.color = Color.black;
+        gameObject.layer = 31;
+        Destroy(gameObject, 1f);
     }
 }

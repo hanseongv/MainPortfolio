@@ -15,6 +15,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Monster
+  - Ground
+  - Player
   - 
   - 
   - 
@@ -37,10 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Die
   m_SortingLayers:
   - name: Default
     uniqueID: 0
