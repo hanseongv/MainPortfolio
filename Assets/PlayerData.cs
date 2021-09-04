@@ -29,6 +29,7 @@ public class PlayerData : MonoBehaviour
     public int playerGold = 0;
     public List<int> playerPortion;
 
+    public int skill1Level = 1;//테스트때만1
     public List<GameObject> hasWeapon;
     public List<GameObject> testHaveWeapon;
     public List<GameObject> testHaveWeapon2;
@@ -38,6 +39,7 @@ public class PlayerData : MonoBehaviour
     public float equipWeaponRate;
     public List<GameObject> camList;
     public GameObject curentCam;
+    public BoxCollider equipWeaponBoxColl;
 
     private void Awake()
     {
@@ -59,6 +61,7 @@ public class PlayerData : MonoBehaviour
     private void EquipWeapon()
     {
         equipWeapon.SetActive(true);
+        equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
         //if (equipWeapon != hasWeapon[0])
         //    //    equipWeaponEffect = equipWeapon.GetComponent<GameObject>();
         //    //GameObject.Find("Panel").transform.GetChild(0).gameObject;
@@ -94,11 +97,6 @@ public class PlayerData : MonoBehaviour
         {
             b++;
             hasWeapon[b] = testHaveWeapon2[b - 1];
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            monsterNormal.GetHit();
         }
     }
 

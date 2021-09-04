@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
     private float hAxis;
     private float vAxis;
-    private float trailOnTime = 0.2f;
-    private float trailOffTime = 0.5f;
+    public float trailOnTime = 0.5f;
+    public float trailOffTime = 0.2f;
 
     //public float i = 0.4f;
     private bool fDown;
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(0.2f);
         Skill1Shake2();
-        //Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
+
         Instantiate(OnEffect, transform.position, transform.rotation);
         Instantiate(flyingSlash, skill1Pos.position, transform.rotation);
         yield return new WaitForSeconds(0.15f);
@@ -340,17 +340,23 @@ public class PlayerController : MonoBehaviour
     private IEnumerator TrailOn()
     {
         yield return new WaitForSeconds(trailOnTime);
+        playerData.equipWeaponBoxColl.enabled = true;
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(trailOffTime);
         playerData.equipWeaponTrail.emitting = false;
+        playerData.equipWeaponBoxColl.enabled = false;
     }
 
     private IEnumerator TrailOn2()
     {
         yield return new WaitForSeconds(trailOnTime + 0.4f);
+        playerData.equipWeaponBoxColl.enabled = true;
+
         playerData.equipWeaponTrail.emitting = true;
         yield return new WaitForSeconds(trailOffTime);
         playerData.equipWeaponTrail.emitting = false;
+
+        playerData.equipWeaponBoxColl.enabled = false;
     }
 
     private void Turn()

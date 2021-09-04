@@ -17,6 +17,7 @@ public class MonsterNormal : MonoBehaviour
     public MonsterAttackType monsterAttackType;
 
     public int monsterHp = 10;
+    public int monsterMaxHp = 10;
     public int monsterDamage = 1;
     public float knockBackForce = 2;
     public int monsterExp = 2;
@@ -34,11 +35,15 @@ public class MonsterNormal : MonoBehaviour
     public BoxCollider bullet;
     public Vector3 homeVec;
 
+    public GameObject hitEffect;
+
+    public float hitEndTime = 0.4f;
     public bool isChase;
 
     public bool isBattle;
     public bool isHissing;
     public bool isFireReady;
+    public bool isHit;
     public float fireDelay;
     public float fireRate = 1.5f;
     public float dis;
@@ -55,6 +60,8 @@ public class MonsterNormal : MonoBehaviour
 
     private void Update()
     {
+        //if (isHit)
+        //    return;
         NavMove();
         Distance();
         Anim();
@@ -105,9 +112,25 @@ public class MonsterNormal : MonoBehaviour
         }
     }
 
-    public void GetHit()
+    public void GetHit(int hitDamage, Transform hitPos)
     {
+        //Shake();
+        isChase = false;
+        isHit = true;
+
+        Invoke("HitEnd", hitEndTime);
+        monsterHp -= hitDamage;
+
+        Debug.Log("데미지 입음" + hitDamage);
+
         anim.Play("GetHit");
+        Instantiate(hitEffect, hitPos.position, transform.rotation);
+    }
+
+    private void HitEnd()
+    {
+        isHit = false;
+        isChase = true;
     }
 
     private void Distance()
@@ -120,7 +143,7 @@ public class MonsterNormal : MonoBehaviour
         nav.isStopped = !isChase;//펄스면 스탑
         nav.SetDestination(target.transform.position); //좀비 위치 이동 후 랜덤 시간 넣기 yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 
-        if (isBattle)
+        if (isBattle && !isHit)
         {
             if (monsterAttackType == MonsterAttackType.ShortDistace) // 근거리 공격 몬스터일 경우
             {
