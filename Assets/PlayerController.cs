@@ -82,8 +82,10 @@ public class PlayerController : MonoBehaviour
 
     private void Skill1()
     {
-        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1)
+        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1 && playerData.curentMp >= 20)//20으로 일단 설정
         {
+            playerData.curentMp -= 20;
+
             StartCoroutine(Skill1Co());
         }
     }
@@ -108,8 +110,8 @@ public class PlayerController : MonoBehaviour
 
     private void Skill1StartShake()
     {
-        float camPosX = Random.value * shakeRange * 2.5f - shakeRange;
-        float camPosY = Random.value * shakeRange * 2.5f - shakeRange;
+        float camPosX = Random.value * shakeRange * 3 - shakeRange;
+        float camPosY = Random.value * shakeRange * 3 - shakeRange;
         camPos = cam.transform.position;
         camPos.x += camPosX;
         camPos.y += camPosY;

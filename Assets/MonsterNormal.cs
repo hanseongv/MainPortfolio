@@ -36,7 +36,7 @@ public class MonsterNormal : MonoBehaviour
     public Vector3 homeVec;
     public GameObject ExclamationMarkImage;
     public GameObject hitEffect;
-
+    private PlayerData playerData;
     public float hitEndTime = 0.4f;
     public bool isChase;
 
@@ -49,6 +49,8 @@ public class MonsterNormal : MonoBehaviour
     public float fireRate = 1.5f;
     public float dis;
 
+    private IEnumerator attackCo;
+
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
@@ -59,6 +61,8 @@ public class MonsterNormal : MonoBehaviour
         homeVec = transform.position;
         renderers = GetComponentsInChildren<Renderer>();
         //ExclamationMarkImage = GameObject.Find("Canvas/ExclamationMarkImage");
+        playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
+        attackCo = Attack();
     }
 
     private void Update()
@@ -122,6 +126,8 @@ public class MonsterNormal : MonoBehaviour
 
     public void GetHit(int hitDamage, Transform hitPos)
     {
+        if (isDie)
+            return;
         //Shake();
         isChase = false;
         isHit = true;
@@ -129,7 +135,7 @@ public class MonsterNormal : MonoBehaviour
         Invoke("HitEnd", hitEndTime);
         monsterHp -= hitDamage;
 
-        Debug.Log("데미지 입음" + hitDamage);
+        //Debug.Log("데미지 입음" + hitDamage);
 
         anim.Play("GetHit");
         Instantiate(hitEffect, hitPos.position, transform.rotation);
@@ -167,7 +173,7 @@ public class MonsterNormal : MonoBehaviour
                     anim.SetBool("isBattleIdle", true);
                     if (fireRate < fireDelay)//공격속도<공격딜레이
                     {
-                        StartCoroutine("Attack");
+                        StartCoroutine(attackCo);
                     }
                 }
                 else//공격 범위 밖 : 움직임
@@ -198,11 +204,11 @@ public class MonsterNormal : MonoBehaviour
         yield return new WaitForSeconds(onCollTime);
         //콜라이더 온
         bullet.enabled = true;
-        Debug.Log("켜짐");
+        //Debug.Log("켜짐");
         //yield return null;
         yield return new WaitForSeconds(0.1f);
         bullet.enabled = false;
-        Debug.Log("꺼짐 공격 횟수" + attackCount);
+        //Debug.Log("꺼짐 공격 횟수" + attackCount);
         //콜라이더 오프
     }
 
@@ -213,9 +219,10 @@ public class MonsterNormal : MonoBehaviour
         if (monsterHp <= 0)
         {
             isDie = true;
+
             nav.enabled = false;
             anim.Play("Die");
-
+            StopCoroutine(attackCo);
             Invoke("Die", 1.5f);
         }
     }
@@ -225,6 +232,7 @@ public class MonsterNormal : MonoBehaviour
         for (int i = 0; i < renderers.Length; i++)
             renderers[i].material.color = Color.black;
         gameObject.layer = 31;
+        playerData.curentExp += monsterExp;
         Destroy(gameObject, 1f);
     }
 }

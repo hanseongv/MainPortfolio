@@ -115,6 +115,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   bullet: {fileID: 0}
   homeVec: {x: 0, y: 0, z: 0}
+  ExclamationMarkImage: {fileID: 0}
   hitEffect: {fileID: 7046384996748781703, guid: 442263401ff86754385cb2b050fa849c, type: 3}
   hitEndTime: 0.5
   isChase: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   fireDelay: 0
   fireRate: 1.5
   dis: 0
+  ExclamationMark: {fileID: 8133124533319342219, guid: 4e159107b12f852488e9b7bee98791f6, type: 3}
   onCollTime: 0.3
   attackCount: 0
   renderers: []
