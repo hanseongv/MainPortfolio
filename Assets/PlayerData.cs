@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public GameObject player;
+    public MonsterNormal monsterNormal;
     public string playerName;
     public int level = 1;
     public int playerStr = 0;
@@ -82,7 +83,6 @@ public class PlayerData : MonoBehaviour
         equipWeaponRate = rate;
     }
 
-    public MonsterNormal monsterNormal;
     public int i;
     public int b;
 

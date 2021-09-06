@@ -8,10 +8,11 @@ public class UiScript : MonoBehaviour
     private PlayerData playerData;
     private Text expText;
     private Text levelText;
+    private Text nameText;
     private int oldLevel = -1;
     private float oldExp = -1;
     private float oldHp = -1;
-
+    private string oldName = "용사한성";
     private float oldMp = -1;
     public Image expBar;
     public Image hpBar;
@@ -25,10 +26,18 @@ public class UiScript : MonoBehaviour
         hpBar = GameObject.Find("UI/CharacterStatus/Bar/HpBar").GetComponent<Image>();
         mpBar = GameObject.Find("UI/CharacterStatus/Bar/MpBar").GetComponent<Image>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
+        nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
     }
 
     private void Update()
     {
+        //이름
+        if (oldName != playerData.playerName)
+        {
+            //Debug.Log("에치피변동ㅇ요");
+            oldName = playerData.playerName;
+            nameText.text = $"{playerData.playerName}";
+        }
         //레벨
         if (oldLevel != playerData.level)
         {

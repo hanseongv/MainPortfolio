@@ -173,7 +173,9 @@ public class MonsterNormal : MonoBehaviour
                     anim.SetBool("isBattleIdle", true);
                     if (fireRate < fireDelay)//공격속도<공격딜레이
                     {
-                        StartCoroutine(attackCo);
+                        //StartCoroutine(attackCo);
+                        StartCoroutine(Attack());
+                        Debug.Log("z");
                     }
                 }
                 else//공격 범위 밖 : 움직임
