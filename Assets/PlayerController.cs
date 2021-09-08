@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool isFireReady2;
     private bool isJump;
     private bool isSkill1;
+    private bool inventoryUIB;
 
     //public TrailRenderer trailRenderer;
     public GameObject hitEffect;
@@ -55,14 +56,15 @@ public class PlayerController : MonoBehaviour
     //public float timed;
 
     public List<GameObject> testListObj;
+    public GameObject inventoryUI;
 
-    private void Start()
+    private void Awake()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
         skill1Pos = transform.GetChild(0).GetComponent<Transform>();
-
+        inventoryUI = GameObject.Find("UI/InventoryUI");
         //trailRenderer.emitting = true;
         //임시
     }
@@ -249,6 +251,11 @@ public class PlayerController : MonoBehaviour
         //wDown = Input.GetButton("Walk");
         jDown = Input.GetButtonDown("Jump");
         fDown = Input.GetButton("Fire1");
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryUIB = !inventoryUIB;
+            inventoryUI.SetActive(inventoryUIB);
+        }
         //dDown = Input.GetButton("Dodge");
         //iDown = Input.GetButton("Interation");
     }

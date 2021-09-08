@@ -42,11 +42,12 @@ public class PlayerData : MonoBehaviour
     public GameObject curentCam;
     public BoxCollider equipWeaponBoxColl;
 
+    //public List<int> itemIndex;
     //public List<int> hasEquipItem;
     public List<int> itemId;
 
-    //public List<int> itemIndex;
     public List<Sprite> ItemSprite;
+    public int itemCount;
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class PlayerData : MonoBehaviour
     {
         itemId.Add(id);
         ItemSprite.Add(sprite);
+        itemCount++;
     }
 
     private int i;
