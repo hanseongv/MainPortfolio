@@ -42,6 +42,12 @@ public class PlayerData : MonoBehaviour
     public GameObject curentCam;
     public BoxCollider equipWeaponBoxColl;
 
+    //public List<int> hasEquipItem;
+    public List<int> itemId;
+
+    //public List<int> itemIndex;
+    public List<Sprite> ItemSprite;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -83,8 +89,14 @@ public class PlayerData : MonoBehaviour
         equipWeaponRate = rate;
     }
 
-    public int i;
-    public int b;
+    public void GetItem(int id, Sprite sprite)
+    {
+        itemId.Add(id);
+        ItemSprite.Add(sprite);
+    }
+
+    private int i;
+    private int b;
 
     private void Test()
     {

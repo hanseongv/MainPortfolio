@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     //bool isBorder;
     //public float timed;
 
+    public List<GameObject> testListObj;
+
     private void Start()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
@@ -78,6 +80,11 @@ public class PlayerController : MonoBehaviour
         Swap();
 
         Skill1();
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Instantiate(testListObj[0], transform.position, transform.rotation);
+        }
     }
 
     private void Skill1()
@@ -373,6 +380,20 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJump", false);
             //isJump = false;
             jumpCount = 0;
+        }
+    }
+
+    private Item item;
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            item = other.GetComponent<Item>();
+            playerData.GetItem(item.id, item.sprite);
+            //playerData.ItemSprite.Add(item.sprite);
+            //playerData.itemId.Add(item.id);
+            //playerData.itemIndex.Add();
         }
     }
 
