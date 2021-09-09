@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - Bullet
   - Pos
+  - Item
   layers:
   - Default
   - TransparentFX

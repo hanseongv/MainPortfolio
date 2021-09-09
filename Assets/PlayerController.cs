@@ -394,13 +394,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Item"))
+        if (other.CompareTag("Item") && Input.GetKeyDown(KeyCode.Alpha5))
         {
             item = other.GetComponent<Item>();
             playerData.GetItem(item.id, item.sprite);
             //playerData.ItemSprite.Add(item.sprite);
             //playerData.itemId.Add(item.id);
             //playerData.itemIndex.Add();
+        }
+        else
+        {
+            return;
         }
     }
 

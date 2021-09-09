@@ -63,6 +63,7 @@ public class MonsterNormal : MonoBehaviour
         //ExclamationMarkImage = GameObject.Find("Canvas/ExclamationMarkImage");
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         attackCo = Attack();
+        rigid = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -124,10 +125,40 @@ public class MonsterNormal : MonoBehaviour
         }
     }
 
+    private Camera cam;
+    private Vector3 camPos;
+    private float shakeRange = 0.05f;
+
+    public void ShakeHit()
+    {
+        cam = playerData.curentCam.GetComponent<Camera>();
+        //cam = playerData.curentCam;
+        camPos = cam.transform.position;
+        InvokeRepeating("StartShakeHit", 0f, 0.01f); //바로 스타트쉐이크를 시작하며 0.005f마다 실행
+        Invoke("StopShakeHit", 0.1f);
+    }
+
+    private void StartShakeHit()
+    {
+        float camPosX = Random.value * shakeRange * 0.5f - shakeRange;
+        float camPosY = Random.value * shakeRange * 0.5f - shakeRange;
+        camPos = cam.transform.position;
+        camPos.x += camPosX;
+        camPos.y += camPosY;
+        cam.transform.position = camPos;
+    }
+
+    private void StopShakeHit()
+    {
+        CancelInvoke("StartShakeHit");
+        //cam.transform.position = camPos;
+    }
+
     public void GetHit(int hitDamage, Transform hitPos)
     {
         if (isDie)
             return;
+        ShakeHit();
         //Shake();
         isChase = false;
         isHit = true;
@@ -233,6 +264,7 @@ public class MonsterNormal : MonoBehaviour
     {
         for (int i = 0; i < renderers.Length; i++)
             renderers[i].material.color = Color.black;
+        rigid.constraints = RigidbodyConstraints.None;
         gameObject.layer = 31;
         playerData.curentExp += monsterExp;
         Destroy(gameObject, 1f);
