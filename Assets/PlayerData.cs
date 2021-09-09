@@ -46,8 +46,11 @@ public class PlayerData : MonoBehaviour
     //public List<int> hasEquipItem;
     public List<int> itemId;
 
-    public List<Sprite> ItemSprite;
-    public int itemCount;
+    public List<Sprite> itemSprite;
+    public int itemECount;
+    public int itemCCount;
+
+    public int itemOCount;
 
     private void Awake()
     {
@@ -90,11 +93,25 @@ public class PlayerData : MonoBehaviour
         equipWeaponRate = rate;
     }
 
-    public void GetItem(int id, Sprite sprite)
+    public void GetItem(int id, ItemData.Type type, Sprite sprite)
     {
+        switch (type)
+        {
+            case ItemData.Type.Equipment:
+                itemECount++;
+                break;
+
+            case ItemData.Type.Consumable:
+                itemCCount++;
+                break;
+
+            case ItemData.Type.Other:
+                itemOCount++;
+                break;
+        }
+
         itemId.Add(id);
-        ItemSprite.Add(sprite);
-        itemCount++;
+        itemSprite.Add(sprite);
     }
 
     private int i;
@@ -102,7 +119,7 @@ public class PlayerData : MonoBehaviour
 
     private void Test()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             i++;
             hasWeapon[i] = testHaveWeapon[i - 1];

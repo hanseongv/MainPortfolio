@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemData : MonoBehaviour
 {
-    public enum Type { Equipment, Consumable };
+    public enum Type { Equipment, Consumable, Other };
 
+    public Type type;
     public string name;
     public int id;
-    public Type type;
 
     private void Start()
     {

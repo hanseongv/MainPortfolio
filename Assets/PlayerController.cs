@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         Turn();
         Jump();
         Swap();
-
+        Interation();
         Skill1();
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -391,21 +391,41 @@ public class PlayerController : MonoBehaviour
     }
 
     private Item item;
+    public GameObject nearObject;
+
+    private void Interation()
+    {
+        if (Input.GetKeyDown(KeyCode.G) && nearObject != null)
+        {
+            if (nearObject.CompareTag("Item"))
+            {
+                item = nearObject.GetComponent<Item>();
+                playerData.GetItem(item.id, item.type, item.sprite);
+                //Destroy(nearObject); //완료하면 활성화
+            }
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Item") && Input.GetKeyDown(KeyCode.Alpha5))
+        //if (other.tag == "Weapon")
+
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        if (other.CompareTag("Item"))
         {
-            item = other.GetComponent<Item>();
-            playerData.GetItem(item.id, item.sprite);
+            nearObject = other.gameObject;
+
             //playerData.ItemSprite.Add(item.sprite);
             //playerData.itemId.Add(item.id);
             //playerData.itemIndex.Add();
         }
-        else
-        {
-            return;
-        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Item"))
+            nearObject = null;
     }
 
     //private void StopToWall()
