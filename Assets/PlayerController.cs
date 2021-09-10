@@ -400,7 +400,7 @@ public class PlayerController : MonoBehaviour
             if (nearObject.CompareTag("Item"))
             {
                 item = nearObject.GetComponent<Item>();
-                playerData.GetItem(item.id, item.type, item.sprite);
+                playerData.GetItem(item.id, item.type, item.sprite, item.count);
                 //Destroy(nearObject); //완료하면 활성화
             }
         }

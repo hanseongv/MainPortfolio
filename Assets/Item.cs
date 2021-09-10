@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
 
     public ItemData.Type type;
     public int id;
+    public int count;
 
     public Sprite sprite;
     private BoxCollider boxCollider;

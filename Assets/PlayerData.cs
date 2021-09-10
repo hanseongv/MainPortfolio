@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
@@ -44,9 +45,18 @@ public class PlayerData : MonoBehaviour
 
     //public List<int> itemIndex;
     //public List<int> hasEquipItem;
-    public List<int> itemId;
+    public List<int> equipmentItemId;
 
-    public List<Sprite> itemSprite;
+    public List<int> equipmentItemText;
+
+    public List<Sprite> equipmentItemSprite;
+
+    public List<int> consumableItemId;
+
+    public List<int> consumableItemText;
+
+    public List<Sprite> consumableItemSprite;
+
     public int itemECount;
     public int itemCCount;
 
@@ -93,16 +103,59 @@ public class PlayerData : MonoBehaviour
         equipWeaponRate = rate;
     }
 
-    public void GetItem(int id, ItemData.Type type, Sprite sprite)
+    public int inventoryAddNum;
+    public bool consumableOnlyAddNum;
+
+    public void GetItem(int id, ItemData.Type type, Sprite sprite, int count)
     {
         switch (type)
         {
             case ItemData.Type.Equipment:
                 itemECount++;
+                for (int i = 0; i < equipmentItemId.Count; i++)
+                {
+                    if (equipmentItemId[i] == 0)
+                    {
+                        equipmentItemId[i] = id;
+                        equipmentItemSprite[i] = sprite;
+
+                        equipmentItemText[i] += count;
+                        inventoryAddNum = i;
+                        i = equipmentItemId.Count;
+                    }
+                }
                 break;
 
             case ItemData.Type.Consumable:
                 itemCCount++;
+
+                for (int i = 0; i < consumableItemId.Count; i++)
+                {
+                    if (consumableItemId[i] == id)
+                    {
+                        consumableItemText[i] = count;
+                        inventoryAddNum = i;
+                        i = consumableItemId.Count;
+                        consumableOnlyAddNum = true;
+                        Debug.Log("트루");
+                    }
+                }
+
+                if (!consumableOnlyAddNum)
+                    for (int i = 0; i < equipmentItemId.Count; i++)
+                    {
+                        if (consumableItemId[i] == 0)
+                        {
+                            Debug.Log("펄스");
+                            consumableItemId[i] = id;
+                            consumableItemSprite[i] = sprite;
+
+                            consumableItemText[i] += count;
+                            inventoryAddNum = i;
+                            i = consumableItemId.Count;
+                            consumableOnlyAddNum = false;
+                        }
+                    }
                 break;
 
             case ItemData.Type.Other:
@@ -110,8 +163,10 @@ public class PlayerData : MonoBehaviour
                 break;
         }
 
-        itemId.Add(id);
-        itemSprite.Add(sprite);
+        //consumableItemId
+
+        //itemId.Add(id);
+        //itemSprite.Add(sprite);
     }
 
     private int i;
