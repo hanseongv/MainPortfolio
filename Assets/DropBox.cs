@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class DropBox : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
 {
     public int num;
     public ItemData.Type type;
@@ -15,60 +15,39 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public InventoryUI inventoryUI;
     private Slot slot1;
     private Slot slot2;
-    public DropBox dropBox;
 
-    private void Start()
-    {
-        dropBox = GameObject.Find("InventoryUI/EquipUI/WeaponBox/ItemImage").GetComponent<DropBox>();
-    }
+    public bool hasEquip;
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (hasEquip)
+            return;
         Debug.Log("Drop");
-        // throw new System.NotImplementedException();
 
-        if (dropBox.hasEquip)
-        {
-            playerData.equipmentItemId[num] = playerData.hasEquipmentItemId;
-            playerData.equipmentItemIntText[num] = playerData.hasEquipmentItemIntText;
-            playerData.equipmentItemSprite[num] = playerData.hasEquipmentItemSprite;
+        playerData.changeNum[1] = num;
 
-            //changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
-            //changeIntText[0] = int.Parse("" + equipmenItemTextList[playerData.changeNum[0]].text);
-
-            //changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
-            //changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
-
-            inventoryUI.equipmenItemImageList[num].sprite = playerData.hasEquipmentItemSprite;
-            inventoryUI.equipmenItemTextList[num].text = "" + playerData.hasEquipmentItemIntText;
-            //텍스트 인트
-            inventoryUI.hasEquipBox.sprite = inventoryUI.nullSprite;
-            dropBox.hasEquip = false;
-        }
-        else
-        {
-            playerData.changeNum[1] = num;
-
-            if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
-            {
-                playerData.SwapItem();
-                inventoryUI.ChangeItemPos();
-            }
-        }
+        //if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
+        //{
+        playerData.EuqipItem();
+        inventoryUI.EquipItemPos();
+        hasEquip = true;
+        //}
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!hasEquip)
+            return;
         Debug.Log("스타트");
 
-        playerData.changeNum[0] = num;
-        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
-        {
-            inventoryUI.dragItemObj.SetActive(true);
+        //playerData.changeNum[0] = num;
+        //if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
+        //{
+        inventoryUI.dragItemObj.SetActive(true);
 
-            dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
-            dragImage.sprite = playerData.equipmentItemSprite[num];
-        }
+        dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
+        dragImage.sprite = playerData.hasEquipmentItemSprite;
+        //}
 
         //playerData.SwapItem();
         //inventoryUI.startDragId = playerData.equipmentItemId[num];
@@ -80,6 +59,8 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!hasEquip)
+            return;
         inventoryUI.dragItemObj.transform.position = eventData.position;
     }
 

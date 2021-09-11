@@ -10973,6 +10973,7 @@ GameObject:
   - component: {fileID: 824699189}
   - component: {fileID: 824699191}
   - component: {fileID: 824699190}
+  - component: {fileID: 824699192}
   m_Layer: 5
   m_Name: ItemImage
   m_TagString: Untagged
@@ -11037,6 +11038,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824699188}
   m_CullTransparentMesh: 1
+--- !u!114 &824699192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824699188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ec05e5907b528488851cde5ee09b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  num: 21
+  type: 0
+  playerData: {fileID: 0}
+  dragObj: {fileID: 0}
+  dragImage: {fileID: 0}
+  startDragImage: {fileID: 0}
+  inventoryUI: {fileID: 0}
 --- !u!1 &825747993
 GameObject:
   m_ObjectHideFlags: 0
@@ -21807,6 +21827,9 @@ MonoBehaviour:
   equipmentItemId: 
   equipmentItemIntText: 
   equipmentItemSprite: []
+  hasEquipmentItemId: 0
+  hasEquipmentItemIntText: 0
+  hasEquipmentItemSprite: {fileID: 0}
   changeId: 0
   changeIntText: 0
   changeSprite: {fileID: 0}
@@ -26751,6 +26774,7 @@ MonoBehaviour:
   - {fileID: 1921046517}
   - {fileID: 1346967209}
   equipmenItemImageList: []
+  hasEquipBox: {fileID: 0}
   equipmenItemTextList: []
   equipmenItemOnImageList: []
   consumableItemList:
@@ -26833,6 +26857,7 @@ MonoBehaviour:
   changeSprite:
   - {fileID: 0}
   - {fileID: 0}
+  nullSprite: {fileID: 21300000, guid: 4f033cdd2b09f9a43b139729d09d002c, type: 3}
 --- !u!1 &1916860757
 GameObject:
   m_ObjectHideFlags: 0

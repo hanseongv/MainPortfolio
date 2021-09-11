@@ -51,6 +51,11 @@ public class PlayerData : MonoBehaviour
 
     public List<Sprite> equipmentItemSprite;
 
+    public int hasEquipmentItemId;
+
+    public int hasEquipmentItemIntText;
+
+    public Sprite hasEquipmentItemSprite;
     //public List<int> changeId;
     //public List<int> changeIntText;
     //public List<Sprite> changeSprite;
@@ -86,6 +91,27 @@ public class PlayerData : MonoBehaviour
         equipmentItemId[changeNum[1]] = changeId;
         equipmentItemIntText[changeNum[1]] = changeIntText;
         equipmentItemSprite[changeNum[1]] = changeSprite;
+        Debug.Log("플레이어첸지");
+    }
+
+    //public int hasEquipId;
+    //public int hasEquipText;
+    //public Sprite hasEquipSprite;
+
+    public void EuqipItem()
+    {
+        //changeId = equipmentItemId[changeNum[0]];
+        //changeIntText = equipmentItemIntText[changeNum[0]];
+        //changeSprite = equipmentItemSprite[changeNum[0]];
+
+        hasEquipmentItemId = equipmentItemId[changeNum[0]];
+        hasEquipmentItemIntText = equipmentItemIntText[changeNum[0]];
+        hasEquipmentItemSprite = equipmentItemSprite[changeNum[0]];
+
+        equipmentItemId[changeNum[0]] = 0;
+        equipmentItemIntText[changeNum[0]] = 0;
+        equipmentItemSprite[changeNum[0]] = null;
+
         Debug.Log("플레이어첸지");
     }
 

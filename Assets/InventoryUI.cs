@@ -19,6 +19,7 @@ public class InventoryUI : MonoBehaviour
 
     public List<GameObject> equipmenItemList;
     public List<Image> equipmenItemImageList;
+    public Image hasEquipBox;
     public List<Text> equipmenItemTextList;
     public List<Image> equipmenItemOnImageList;
 
@@ -69,7 +70,7 @@ public class InventoryUI : MonoBehaviour
         //contentsWeapon = GameObject.Find("Book/ContentsWeapon");
         //contentsExpendables = GameObject.Find("Book/ContentsExpendables");
         //contentsOther = GameObject.Find("Book/ContentsOther");
-
+        hasEquipBox = GameObject.Find("InventoryUI/EquipUI/WeaponBox/ItemImage").GetComponent<Image>();
         dragItemObj = GameObject.Find("InventoryUI/DragItemImage");
         //dragItemImage = dragItemObj.GetComponent<Image>();
         dragItemObj.SetActive(false);
@@ -92,11 +93,11 @@ public class InventoryUI : MonoBehaviour
         {
             slotEquip[i] = GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")").GetComponent<Slot>();
             slotEquip[i].num = i;
-            equipmenItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
-            equipmenItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
-            playerData.equipmentItemIntText.Add(0);
-            playerData.equipmentItemId.Add(0);
-            playerData.equipmentItemSprite.Add(null);
+            //equipmenItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
+            //equipmenItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
+            //playerData.equipmentItemIntText.Add(0);
+            //playerData.equipmentItemId.Add(0);
+            //playerData.equipmentItemSprite.Add(null);
         }
 
         for (int i = 0; i < equipmenItemList.Count; i++)
@@ -161,6 +162,31 @@ public class InventoryUI : MonoBehaviour
 
     public List<int> changeIntText;
     public List<Sprite> changeSprite;
+    private Sprite sprite;
+    public Sprite nullSprite;
+
+    public void EquipItemPos()
+    {
+        //changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
+        //changeIntText[0] = int.Parse("" + equipmenItemTextList[playerData.changeNum[0]].text);
+
+        //changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
+        //changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
+
+        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
+        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
+
+        sprite = equipmenItemImageList[playerData.changeNum[0]].sprite;
+        hasEquipBox.sprite = sprite;
+
+        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
+        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
+
+        equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
+        equipmenItemTextList[playerData.changeNum[0]].text = null;
+
+        Debug.Log("인벤첸지");
+    }
 
     public void ChangeItemPos()
     {
