@@ -47,13 +47,23 @@ public class PlayerData : MonoBehaviour
     //public List<int> hasEquipItem;
     public List<int> equipmentItemId;
 
-    public List<int> equipmentItemText;
+    public List<int> equipmentItemIntText;
 
     public List<Sprite> equipmentItemSprite;
 
+    //public List<int> changeId;
+    //public List<int> changeIntText;
+    //public List<Sprite> changeSprite;
+
+    public int changeId;
+    public int changeIntText;
+    public Sprite changeSprite;
+
+    public List<int> changeNum;
+
     public List<int> consumableItemId;
 
-    public List<int> consumableItemText;
+    public List<int> consumableItemIntText;
 
     public List<Sprite> consumableItemSprite;
 
@@ -61,10 +71,28 @@ public class PlayerData : MonoBehaviour
     public int itemCCount;
 
     public int itemOCount;
+    public InventoryUI inventoryUI;
+
+    public void SwapItem()
+    {
+        changeId = equipmentItemId[changeNum[0]];
+        changeIntText = equipmentItemIntText[changeNum[0]];
+        changeSprite = equipmentItemSprite[changeNum[0]];
+
+        equipmentItemId[changeNum[0]] = equipmentItemId[changeNum[1]];
+        equipmentItemIntText[changeNum[0]] = equipmentItemIntText[changeNum[1]];
+        equipmentItemSprite[changeNum[0]] = equipmentItemSprite[changeNum[1]];
+
+        equipmentItemId[changeNum[1]] = changeId;
+        equipmentItemIntText[changeNum[1]] = changeIntText;
+        equipmentItemSprite[changeNum[1]] = changeSprite;
+        Debug.Log("플레이어첸지");
+    }
 
     private void Awake()
     {
         player = GameObject.Find("Player");
+        inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
         maxExp = new int[] { 15, 50, 100, 500, 1000 };
 
         equipWeapon = hasWeapon[0];
@@ -105,6 +133,8 @@ public class PlayerData : MonoBehaviour
 
     public int inventoryAddNum;
     public bool consumableOnlyAddNum;
+    private Slot slot;
+    private Image image;
 
     public void GetItem(int id, ItemData.Type type, Sprite sprite, int count)
     {
@@ -119,7 +149,10 @@ public class PlayerData : MonoBehaviour
                         equipmentItemId[i] = id;
                         equipmentItemSprite[i] = sprite;
 
-                        equipmentItemText[i] += count;
+                        equipmentItemIntText[i] += count;
+                        //inventoryUI.slotEquip[i].enabled = true;
+                        image = inventoryUI.slotEquip[i].GetComponent<Image>();
+                        image.raycastTarget = true;
                         inventoryAddNum = i;
                         i = equipmentItemId.Count;
                     }
@@ -133,7 +166,7 @@ public class PlayerData : MonoBehaviour
                 {
                     if (consumableItemId[i] == id)
                     {
-                        consumableItemText[i] = count;
+                        consumableItemIntText[i] = count;
                         inventoryAddNum = i;
                         i = consumableItemId.Count;
                         consumableOnlyAddNum = true;
@@ -150,7 +183,7 @@ public class PlayerData : MonoBehaviour
                             consumableItemId[i] = id;
                             consumableItemSprite[i] = sprite;
 
-                            consumableItemText[i] += count;
+                            consumableItemIntText[i] += count;
                             inventoryAddNum = i;
                             i = consumableItemId.Count;
                             consumableOnlyAddNum = false;

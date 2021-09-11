@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -29,6 +31,17 @@ public class InventoryUI : MonoBehaviour
 
     //public List<GameObject> otherList;
 
+    //public GameObject startDragObj;
+    public int startDragId;
+
+    public int startDragNum;
+    public Image startDragImage;
+    public int startDragText;
+
+    public int endDragId;
+    public Image endDragImage;
+    public int endDragText;
+
     public PlayerData playerData;
 
     private enum CountentsType
@@ -36,13 +49,17 @@ public class InventoryUI : MonoBehaviour
 
     public Sprite spriteNull;
     private CountentsType countentsType;
+    private PointerEventData pointerEvent;
     private bool contentsEquipmentB;
     private bool contentsConsumableB;
     private bool contentsOtherB;
     private List<string> contentsName = new List<string> { "Equipment", "Consumable", "Other" };
+    public GameObject dragItemObj;
 
+    //public Image dragItemImage;
     //private List<string> contentsBName = new List<string> { "contentsWeapon", "contentsExpendables", "contentsOther" };
     //public Text itemText;
+    public List<Slot> slotEquip;
 
     private void Start()
     {
@@ -53,6 +70,9 @@ public class InventoryUI : MonoBehaviour
         //contentsExpendables = GameObject.Find("Book/ContentsExpendables");
         //contentsOther = GameObject.Find("Book/ContentsOther");
 
+        dragItemObj = GameObject.Find("InventoryUI/DragItemImage");
+        //dragItemImage = dragItemObj.GetComponent<Image>();
+        dragItemObj.SetActive(false);
         contentsList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment"));
         contentsList.Add(GameObject.Find("InventoryUI/Book/ContentsConsumable"));
         contentsList.Add(GameObject.Find("InventoryUI/Book/ContentsOther"));
@@ -62,15 +82,21 @@ public class InventoryUI : MonoBehaviour
         () => OnContents(CountentsType.Consumable));
         transform.Find("InventoryUI/Book/Category/Other").GetComponent<Button>().onClick.AddListener(
         () => OnContents(CountentsType.Other));
-        //        for (int i = 0; i < contentsList.Count; i++)
-        //        {
-        //            transform.Find("Book/Category/" + contentsName[i]).GetComponent<Button>().onClick.AddListener(
-        //() => OnContents(CountentsType.);
-        //        }
+
         contentsList[0].SetActive(true);
         for (int i = 1; i < contentsList.Count; i++)
         {
             contentsList[i].SetActive(false);
+        }
+        for (int i = 0; i < equipmenItemList.Count; i++)
+        {
+            slotEquip[i] = GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")").GetComponent<Slot>();
+            slotEquip[i].num = i;
+            equipmenItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
+            equipmenItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
+            playerData.equipmentItemIntText.Add(0);
+            playerData.equipmentItemId.Add(0);
+            playerData.equipmentItemSprite.Add(null);
         }
 
         for (int i = 0; i < equipmenItemList.Count; i++)
@@ -78,16 +104,17 @@ public class InventoryUI : MonoBehaviour
             equipmenItemImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/ItemImage").GetComponent<Image>());
             equipmenItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
             equipmenItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
-            playerData.equipmentItemText.Add(0);
+            playerData.equipmentItemIntText.Add(0);
             playerData.equipmentItemId.Add(0);
             playerData.equipmentItemSprite.Add(null);
         }
+
         for (int i = 0; i < equipmenItemList.Count; i++)
         {
             consumableItemImageList.Add(GameObject.Find("InventoryUI/Book/ContentsConsumable/Inventory/Viewport/Content5x4/Item (" + i + ")/ItemImage").GetComponent<Image>());
             consumableItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsConsumable/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
             consumableItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsConsumable/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
-            playerData.consumableItemText.Add(0);
+            playerData.consumableItemIntText.Add(0);
             playerData.consumableItemId.Add(0);
             playerData.consumableItemSprite.Add(null);
         }
@@ -132,6 +159,28 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public List<int> changeIntText;
+    public List<Sprite> changeSprite;
+
+    public void ChangeItemPos()
+    {
+        changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
+        changeIntText[0] = int.Parse("" + equipmenItemTextList[playerData.changeNum[0]].text);
+
+        changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
+        changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
+
+        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
+        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
+
+        equipmenItemImageList[playerData.changeNum[0]].sprite = changeSprite[1];
+        equipmenItemTextList[playerData.changeNum[0]].text = "" + changeIntText[1];
+        equipmenItemImageList[playerData.changeNum[1]].sprite = changeSprite[0];
+        equipmenItemTextList[playerData.changeNum[1]].text = "" + changeIntText[0];
+
+        Debug.Log("인벤첸지");
+    }
+
     private void Update()
     {
         if (itemOldECount < playerData.itemECount)
@@ -143,7 +192,7 @@ public class InventoryUI : MonoBehaviour
             equipmenItemImageList[playerData.inventoryAddNum].sprite = playerData.equipmentItemSprite[playerData.inventoryAddNum];
 
             int oldNum = int.Parse("" + equipmenItemTextList[playerData.inventoryAddNum].text);
-            int addNum = playerData.equipmentItemText[playerData.inventoryAddNum];
+            int addNum = playerData.equipmentItemIntText[playerData.inventoryAddNum];
             oldNum += addNum;
             equipmenItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
             itemOldECount = playerData.itemECount;
@@ -155,7 +204,7 @@ public class InventoryUI : MonoBehaviour
         if (itemOldCCount < playerData.itemCCount)
         {
             int oldNum = int.Parse("" + consumableItemTextList[playerData.inventoryAddNum].text);
-            int addNum = playerData.consumableItemText[playerData.inventoryAddNum];
+            int addNum = playerData.consumableItemIntText[playerData.inventoryAddNum];
             oldNum += addNum;
 
             consumableItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
