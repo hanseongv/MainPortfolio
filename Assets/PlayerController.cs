@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private bool wDown;
     private bool jDown;
-    private bool isFireReady;
+    public bool isFireReady;
     private bool isFireReady2;
     private bool isJump;
     private bool isSkill1;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     //public GameObject sword8;
 
-    private Renderer skill1SwordRenderer;
+    public Renderer skill1SwordRenderer;
 
     //bool isBorder;
     //public float timed;
@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
         if (isSkill1)
             return;
         GetInput();
+        if (inventoryUIB)
+            return;
         Move();
         Attack();
         Turn();
@@ -206,16 +208,19 @@ public class PlayerController : MonoBehaviour
         int weaponNum = 0;
         if (Input.GetKeyDown(KeyCode.Alpha1)) weaponNum = 1;
 
-        if (Input.GetKeyDown(KeyCode.Alpha2)) weaponNum = 2;
+        //if (Input.GetKeyDown(KeyCode.Alpha2)) weaponNum = 2;
 
-        if (Input.GetKeyDown(KeyCode.Alpha3)) weaponNum = 3;
+        //if (Input.GetKeyDown(KeyCode.Alpha3)) weaponNum = 3;
 
-        if (Input.GetKeyDown(KeyCode.Alpha4)) weaponNum = 4;
+        //if (Input.GetKeyDown(KeyCode.Alpha4)) weaponNum = 4;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha1)/* || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4)*/)
         {
             if (playerData.hasWeapon[weaponNum] == null)
+            {
+                Debug.Log("무기를 장착하지 않았습니다.");
                 return;
+            }
             IEnumerator swapAnimCoroutine;
             swapAnimCoroutine = SwapTrail();
             playerData.equipWeapon.SetActive(false);

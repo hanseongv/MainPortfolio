@@ -105,6 +105,7 @@ public class InventoryUI : MonoBehaviour
             equipmenItemImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/ItemImage").GetComponent<Image>());
             equipmenItemTextList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/Value").GetComponent<Text>());
             equipmenItemOnImageList.Add(GameObject.Find("InventoryUI/Book/ContentsEquipment/Inventory/Viewport/Content5x4/Item (" + i + ")/OnImage").GetComponent<Image>());
+            equipmenItemOnImageList[i].enabled = false;
             playerData.equipmentItemIntText.Add(0);
             playerData.equipmentItemId.Add(0);
             playerData.equipmentItemSprite.Add(null);
@@ -165,6 +166,16 @@ public class InventoryUI : MonoBehaviour
     private Sprite sprite;
     public Sprite nullSprite;
 
+    public void UnEquipItemPos()
+    {
+        sprite = nullSprite;
+        hasEquipBox.sprite = sprite;
+        for (int i = 0; i < equipmenItemOnImageList.Count; i++)
+        {
+            equipmenItemOnImageList[i].enabled = false;
+        }
+    }
+
     public void EquipItemPos()
     {
         //changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
@@ -182,9 +193,13 @@ public class InventoryUI : MonoBehaviour
         //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
         //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
 
-        equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
-        equipmenItemTextList[playerData.changeNum[0]].text = null;
-
+        //equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
+        //equipmenItemTextList[playerData.changeNum[0]].text = null;
+        for (int i = 0; i < equipmenItemOnImageList.Count; i++)
+        {
+            equipmenItemOnImageList[i].enabled = false;
+        }
+        equipmenItemOnImageList[playerData.changeNum[0]].enabled = true;
         Debug.Log("인벤첸지");
     }
 

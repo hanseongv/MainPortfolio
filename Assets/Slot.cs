@@ -13,9 +13,10 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public Image dragImage;
     public Image startDragImage;
     public InventoryUI inventoryUI;
-    private Slot slot1;
-    private Slot slot2;
+    public Slot slot;
+
     public DropBox dropBox;
+    public bool lockBox;
 
     private void Start()
     {
@@ -24,36 +25,19 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Drop");
-        // throw new System.NotImplementedException();
-
-        if (dropBox.hasEquip)
+        switch (type)
         {
-            playerData.equipmentItemId[num] = playerData.hasEquipmentItemId;
-            playerData.equipmentItemIntText[num] = playerData.hasEquipmentItemIntText;
-            playerData.equipmentItemSprite[num] = playerData.hasEquipmentItemSprite;
+            case ItemData.Type.Equipment:
+                Debug.Log("Drop");
 
-            //changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
-            //changeIntText[0] = int.Parse("" + equipmenItemTextList[playerData.changeNum[0]].text);
+                playerData.changeNum[1] = num;
 
-            //changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
-            //changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
-
-            inventoryUI.equipmenItemImageList[num].sprite = playerData.hasEquipmentItemSprite;
-            inventoryUI.equipmenItemTextList[num].text = "" + playerData.hasEquipmentItemIntText;
-            //텍스트 인트
-            inventoryUI.hasEquipBox.sprite = inventoryUI.nullSprite;
-            dropBox.hasEquip = false;
-        }
-        else
-        {
-            playerData.changeNum[1] = num;
-
-            if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
-            {
-                playerData.SwapItem();
-                inventoryUI.ChangeItemPos();
-            }
+                if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum && playerData.changeNum[0] != dropBox.lockBoxNum)
+                {
+                    playerData.SwapItem();
+                    inventoryUI.ChangeItemPos();
+                }
+                break;
         }
     }
 
@@ -62,7 +46,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         Debug.Log("스타트");
 
         playerData.changeNum[0] = num;
-        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
+        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum)
         {
             inventoryUI.dragItemObj.SetActive(true);
 
@@ -80,7 +64,10 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        inventoryUI.dragItemObj.transform.position = eventData.position;
+        if (num != dropBox.lockBoxNum)
+        {
+            inventoryUI.dragItemObj.transform.position = eventData.position;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)

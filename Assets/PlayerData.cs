@@ -33,8 +33,8 @@ public class PlayerData : MonoBehaviour
 
     public int skill1Level = 1;//테스트때만1
     public List<GameObject> hasWeapon;
-    public List<GameObject> testHaveWeapon;
-    public List<GameObject> testHaveWeapon2;
+    public List<GameObject> weaponList;
+
     public GameObject equipWeapon;
     public GameObject equipWeaponEffect;
     public TrailRenderer equipWeaponTrail;
@@ -42,6 +42,7 @@ public class PlayerData : MonoBehaviour
     public List<GameObject> camList;
     public GameObject curentCam;
     public BoxCollider equipWeaponBoxColl;
+    private PlayerController playerController;
 
     //public List<int> itemIndex;
     //public List<int> hasEquipItem;
@@ -98,19 +99,46 @@ public class PlayerData : MonoBehaviour
     //public int hasEquipText;
     //public Sprite hasEquipSprite;
 
+    public void UnEquip()
+    {
+        equipWeapon.SetActive(false);
+        hasWeapon[1] = weaponList[0];
+
+        equipWeapon = hasWeapon[0];
+        equipWeaponTrail = null;
+        equipWeaponEffect = null;
+        playerController.skill1SwordRenderer = null;
+    }
+
     public void EuqipItem()
     {
         //changeId = equipmentItemId[changeNum[0]];
         //changeIntText = equipmentItemIntText[changeNum[0]];
         //changeSprite = equipmentItemSprite[changeNum[0]];
+        equipWeapon.SetActive(false);
+        hasWeapon[1] = weaponList[equipmentItemId[changeNum[0]]];
+        if (equipWeapon != hasWeapon[0])
+        {
+            equipWeapon = hasWeapon[1];
+            equipWeaponTrail = equipWeapon.GetComponentInChildren<TrailRenderer>();
+            equipWeaponEffect = equipWeapon.transform.GetChild(0).gameObject;
+            playerController.skill1SwordRenderer = equipWeapon.GetComponent<Renderer>();
+            equipWeaponTrail.emitting = false;
+            equipWeaponEffect.SetActive(false);
+        }
+        //equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
+        //equipWeaponTrail.emitting = false;
 
-        hasEquipmentItemId = equipmentItemId[changeNum[0]];
-        hasEquipmentItemIntText = equipmentItemIntText[changeNum[0]];
-        hasEquipmentItemSprite = equipmentItemSprite[changeNum[0]];
+        //equipWeapon =/* weaponList[equipmentItemId[changeNum[0]]]; */hasWeapon[0];
+        //hasWeapon[1] =
 
-        equipmentItemId[changeNum[0]] = 0;
-        equipmentItemIntText[changeNum[0]] = 0;
-        equipmentItemSprite[changeNum[0]] = null;
+        //hasEquipmentItemId = equipmentItemId[changeNum[0]];
+        //hasEquipmentItemIntText = equipmentItemIntText[changeNum[0]];
+        //hasEquipmentItemSprite = equipmentItemSprite[changeNum[0]];
+
+        //equipmentItemId[changeNum[0]] = 0;
+        //equipmentItemIntText[changeNum[0]] = 0;
+        //equipmentItemSprite[changeNum[0]] = null;
 
         Debug.Log("플레이어첸지");
     }
@@ -118,6 +146,7 @@ public class PlayerData : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
         inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
         maxExp = new int[] { 15, 50, 100, 500, 1000 };
 
@@ -128,15 +157,18 @@ public class PlayerData : MonoBehaviour
     private void Update()
     {
         LevelUp();
-        Test();
+
         PlayerStata();
         EquipWeapon();
     }
 
     private void EquipWeapon()
     {
+        //if (!equipWeapon)
+        //{
         equipWeapon.SetActive(true);
         equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
+        //}
         //if (equipWeapon != hasWeapon[0])
         //    //    equipWeaponEffect = equipWeapon.GetComponent<GameObject>();
         //    //GameObject.Find("Panel").transform.GetChild(0).gameObject;
@@ -228,22 +260,22 @@ public class PlayerData : MonoBehaviour
         //itemSprite.Add(sprite);
     }
 
-    private int i;
-    private int b;
+    //private int i;
+    //private int b;
 
-    private void Test()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            i++;
-            hasWeapon[i] = testHaveWeapon[i - 1];
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            b++;
-            hasWeapon[b] = testHaveWeapon2[b - 1];
-        }
-    }
+    //private void Test()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.H))
+    //    {
+    //        i++;
+    //        hasWeapon[i] = weaponList[i - 1];
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.J))
+    //    {
+    //        b++;
+    //        hasWeapon[b] = testHaveWeapon2[b - 1];
+    //    }
+    //}
 
     private void LevelUp()
     {
