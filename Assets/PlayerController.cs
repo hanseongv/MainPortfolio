@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Rigidbody rigid;
     public Transform skill1Pos;
+    public float autoSwapTime;
 
     //public GameObject skill1SwordEffect;
     private Vector3 moveVec;
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
         Swap();
         Interation();
         Skill1();
-
+        AutoSwap();
         //if (Input.GetKeyDown(KeyCode.B))
         //{
         //    Instantiate(testListObj[0], transform.position, transform.rotation);
@@ -95,6 +96,23 @@ public class PlayerController : MonoBehaviour
     }
 
     public Text explanationText;
+
+    private void AutoSwap()
+    {
+        if (autoSwapTime < 15 && playerData.equipWeapon != playerData.hasWeapon[0])
+            autoSwapTime += Time.deltaTime;
+
+        if (autoSwapTime > 15 && playerData.equipWeapon != playerData.hasWeapon[0])
+        {
+            IEnumerator swapAnimCoroutine;
+            swapAnimCoroutine = SwapTrail();
+            playerData.equipWeapon.SetActive(false);
+
+            playerData.equipWeapon = playerData.hasWeapon[0];
+
+            anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
+        }
+    }
 
     private void Skill1()
     {
@@ -243,6 +261,7 @@ public class PlayerController : MonoBehaviour
             playerData.equipWeapon = (playerData.equipWeapon == playerData.hasWeapon[weaponNum]) ? playerData.hasWeapon[0] : playerData.hasWeapon[weaponNum];
             if (playerData.equipWeapon != playerData.hasWeapon[0]) // 현재 착용 무기가 널무기가 아닐 때
             {
+                autoSwapTime = 0;
                 anim.Play("Swap");
                 playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
                 playerData.equipWeaponEffect = playerData.equipWeapon.transform.GetChild(0).gameObject;
@@ -253,7 +272,13 @@ public class PlayerController : MonoBehaviour
                 StopCoroutine(swapAnimCoroutine);
                 StartCoroutine(swapAnimCoroutine);
             }
-            else anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
+            else
+            {
+                playerData.equipWeaponTrail = null;
+                playerData.equipWeaponEffect = null;
+                skill1SwordRenderer = null;
+                anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
+            }
         }
     }
 
@@ -362,6 +387,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("1-1");
                 if (playerData.hasWeapon[1] != null)
                 {
+                    autoSwapTime = 0;
                     Debug.Log("1-1-1");
                     IEnumerator swapAnimCoroutine;
                     swapAnimCoroutine = SwapTrail();
@@ -385,6 +411,7 @@ public class PlayerController : MonoBehaviour
                 trailon = TrailOn();
                 if (isFireReady2 && fireDelay > 0.5f) //공격 2
                 {
+                    autoSwapTime = 0;
                     //StopCoroutine(trailon);
                     StartCoroutine(TrailOn2());
                     anim.SetBool("isSwing2", true);
@@ -393,6 +420,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (isFireReady) //공격 1
                 {
+                    autoSwapTime = 0;
                     //StopCoroutine(trailon);
                     StartCoroutine(trailon);
                     anim.SetTrigger("doSwing1");
