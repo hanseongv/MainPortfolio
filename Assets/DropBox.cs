@@ -27,25 +27,12 @@ public class DropBox : MonoBehaviour, IDropHandler, IPointerClickHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        //if (hasEquip)
-        //    return;
         Debug.Log("Drop");
-        //PlayerController playerController;
-        //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        //if (playerController.isFireReady)
-        //{
-        //playerData.changeNum[1] = num;
 
-        //if (playerData.equipmentItemId[playerData.changeNum[0]] != 0)
-        //{
-        //playerData.equipWeapon.SetActive(false);
         lockBoxNum = playerData.changeNum[0];
         playerData.EuqipItem();
         inventoryUI.EquipItemPos();
         mountingEquipment = true;
-        //}
-        //hasEquip = true;
-        //}
     }
 
     public void OnPointerClick(PointerEventData eventData)

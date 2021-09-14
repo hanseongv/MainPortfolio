@@ -102,7 +102,7 @@ public class PlayerData : MonoBehaviour
     public void UnEquip()
     {
         equipWeapon.SetActive(false);
-        hasWeapon[1] = weaponList[0];
+        hasWeapon[1] = null;//weaponList[0]; 20210914 수정
 
         equipWeapon = hasWeapon[0];
         equipWeaponTrail = null;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     public int num;
     public ItemData.Type type;
@@ -82,6 +82,20 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         //dragImage = dragObj.GetComponent<Image>();
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        playerData.changeNum[0] = num;
+
+        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum && eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log(":2");
+            dropBox.lockBoxNum = playerData.changeNum[0];
+            playerData.EuqipItem();
+            inventoryUI.EquipItemPos();
+            dropBox.mountingEquipment = true;
+        }
     }
 
     //public void OnBeginDrag(PointerEventData eventData)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> testListObj;
     public GameObject inventoryUI;
+    private UiScript uiScript;
 
     private void Awake()
     {
@@ -65,6 +67,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         skill1Pos = transform.GetChild(0).GetComponent<Transform>();
         inventoryUI = GameObject.Find("UI/InventoryUI");
+        uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         //trailRenderer.emitting = true;
         //임시
     }
@@ -85,19 +88,30 @@ public class PlayerController : MonoBehaviour
         Interation();
         Skill1();
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Instantiate(testListObj[0], transform.position, transform.rotation);
-        }
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    Instantiate(testListObj[0], transform.position, transform.rotation);
+        //}
     }
+
+    public Text explanationText;
 
     private void Skill1()
     {
-        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1 && playerData.curentMp >= 20)//20으로 일단 설정
+        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1 /*&& playerData.curentMp >= 20*/)//20으로 일단 설정
         {
-            playerData.curentMp -= 20;
+            if (playerData.curentMp >= 20)
+            {
+                playerData.curentMp -= 20;
 
-            StartCoroutine(Skill1Co());
+                StartCoroutine(Skill1Co());
+            }
+            else if (playerData.curentMp < 20)
+            {
+                //explanationText.text = "마나가 부족합니다.";
+                uiScript.explanationTextUI.text = "마나가 부족합니다.";
+                uiScript.ExplanationUI();
+            }
         }
     }
 
@@ -218,7 +232,8 @@ public class PlayerController : MonoBehaviour
         {
             if (playerData.hasWeapon[weaponNum] == null)
             {
-                Debug.Log("무기를 장착하지 않았습니다.");
+                uiScript.explanationTextUI.text = "무기를 장착하세요.";
+                uiScript.ExplanationUI();
                 return;
             }
             IEnumerator swapAnimCoroutine;
@@ -255,7 +270,7 @@ public class PlayerController : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         //wDown = Input.GetButton("Walk");
         jDown = Input.GetButtonDown("Jump");
-        fDown = Input.GetButton("Fire1");
+        fDown = Input.GetButtonDown("Fire1");
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryUIB = !inventoryUIB;
@@ -335,25 +350,56 @@ public class PlayerController : MonoBehaviour
 
         if (fDown)
         {
-            if (playerData.equipWeapon == playerData.hasWeapon[0]) return;
-            IEnumerator trailon;
-            trailon = TrailOn();
-            if (isFireReady2 && fireDelay > 0.5f) //공격 2
+            if (playerData.hasWeapon[1] == null)
             {
-                //StopCoroutine(trailon);
-                StartCoroutine(TrailOn2());
-                anim.SetBool("isSwing2", true);
-                isFireReady2 = false;
-                fireDelay = -playerData.equipWeaponRate;
+                uiScript.explanationTextUI.text = "무기를 장착하세요.";
+                uiScript.ExplanationUI();
             }
-            else if (isFireReady) //공격 1
+
+            Debug.Log("1");
+            if (playerData.equipWeapon == playerData.hasWeapon[0])
             {
-                //StopCoroutine(trailon);
-                StartCoroutine(trailon);
-                anim.SetTrigger("doSwing1");
-                anim.SetBool("isSwing2", false);
-                fireDelay = 0;
-                isFireReady2 = true;
+                Debug.Log("1-1");
+                if (playerData.hasWeapon[1] != null)
+                {
+                    Debug.Log("1-1-1");
+                    IEnumerator swapAnimCoroutine;
+                    swapAnimCoroutine = SwapTrail();
+                    playerData.equipWeapon.SetActive(false);
+                    playerData.equipWeapon = playerData.hasWeapon[1];
+                    anim.Play("Swap");
+                    playerData.equipWeaponTrail = playerData.equipWeapon.GetComponentInChildren<TrailRenderer>();
+                    playerData.equipWeaponEffect = playerData.equipWeapon.transform.GetChild(0).gameObject;
+                    skill1SwordRenderer = playerData.equipWeapon.GetComponent<Renderer>();
+
+                    playerData.equipWeaponEffect.SetActive(false);
+
+                    StopCoroutine(swapAnimCoroutine);
+                    StartCoroutine(swapAnimCoroutine);
+                }
+            }
+            else if (playerData.equipWeapon == playerData.hasWeapon[1])
+            {
+                Debug.Log("1-2");
+                IEnumerator trailon;
+                trailon = TrailOn();
+                if (isFireReady2 && fireDelay > 0.5f) //공격 2
+                {
+                    //StopCoroutine(trailon);
+                    StartCoroutine(TrailOn2());
+                    anim.SetBool("isSwing2", true);
+                    isFireReady2 = false;
+                    fireDelay = -playerData.equipWeaponRate;
+                }
+                else if (isFireReady) //공격 1
+                {
+                    //StopCoroutine(trailon);
+                    StartCoroutine(trailon);
+                    anim.SetTrigger("doSwing1");
+                    anim.SetBool("isSwing2", false);
+                    fireDelay = 0;
+                    isFireReady2 = true;
+                }
             }
         }
     }

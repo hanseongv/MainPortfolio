@@ -17,6 +17,8 @@ public class UiScript : MonoBehaviour
     public Image expBar;
     public Image hpBar;
     public Image mpBar;
+    public GameObject explanation;
+    public Text explanationTextUI;
 
     private void Start()
     {
@@ -27,6 +29,11 @@ public class UiScript : MonoBehaviour
         mpBar = GameObject.Find("UI/CharacterStatus/Bar/MpBar").GetComponent<Image>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
+        explanation = GameObject.Find("UI/Explanation");
+        //GameObject.Find("UI/InventoryUI");
+        explanationTextUI = explanation.GetComponentInChildren<Text>();
+        //explanationTextUI = GameObject.Find("UI/Explanation/ExplanationText").GetComponent<Text>();
+        explanation.SetActive(false);
     }
 
     private void Update()
@@ -73,5 +80,14 @@ public class UiScript : MonoBehaviour
 
             expBar.fillAmount = expPersent * 0.01f;
         }
+    }
+
+    //public Text explanationText;
+
+    public void ExplanationUI()
+    {
+        explanation.SetActive(false);
+        explanation.SetActive(true);
+        //explanationTextUI ;
     }
 }
