@@ -38,20 +38,73 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                     inventoryUI.ChangeItemPos();
                 }
                 break;
+
+            case ItemData.Type.Consumable:
+
+                Debug.Log("Drop");
+
+                playerData.changeCNum[1] = num;
+                if (playerData.consumableItemId[playerData.changeCNum[0]] != 0)
+                {
+                    playerData.SwapItemConsumable();
+                    inventoryUI.ChangeItemConsumablePos();
+                }
+                break;
+
+            case ItemData.Type.Other:
+
+                Debug.Log("Drop");
+
+                playerData.changeONum[1] = num;
+                if (playerData.otherItemId[playerData.changeONum[0]] != 0)
+                {
+                    playerData.SwapItemOther();
+                    inventoryUI.ChangeItemOtherPos();
+                }
+                break;
         }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("스타트");
-
-        playerData.changeNum[0] = num;
-        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum)
+        switch (type)
         {
-            inventoryUI.dragItemObj.SetActive(true);
+            case ItemData.Type.Equipment:
+                playerData.changeNum[0] = num;
 
-            dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
-            dragImage.sprite = playerData.equipmentItemSprite[num];
+                if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum)
+                {
+                    inventoryUI.dragItemObj.SetActive(true);
+
+                    dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
+                    dragImage.sprite = playerData.equipmentItemSprite[num];
+                }
+                break;
+
+            case ItemData.Type.Consumable:
+                playerData.changeCNum[0] = num;
+
+                if (playerData.consumableItemId[playerData.changeCNum[0]] != 0 /*&& num != dropBox.lockBoxNum*/)
+                {
+                    inventoryUI.dragItemObj.SetActive(true);
+
+                    dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
+                    dragImage.sprite = playerData.consumableItemSprite[num];
+                }
+                break;
+
+            case ItemData.Type.Other:
+                playerData.changeONum[0] = num;
+
+                if (playerData.otherItemId[playerData.changeONum[0]] != 0 /*&& num != dropBox.lockBoxNum*/)
+                {
+                    inventoryUI.dragItemObj.SetActive(true);
+
+                    dragImage = inventoryUI.dragItemObj.GetComponent<Image>();
+                    dragImage.sprite = playerData.otherItemSprite[num];
+                }
+                break;
         }
 
         //playerData.SwapItem();
@@ -64,9 +117,22 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (num != dropBox.lockBoxNum)
+        switch (type)
         {
-            inventoryUI.dragItemObj.transform.position = eventData.position;
+            case ItemData.Type.Equipment:
+                if (num != dropBox.lockBoxNum)
+                {
+                    inventoryUI.dragItemObj.transform.position = eventData.position;
+                }
+                break;
+
+            case ItemData.Type.Consumable:
+                inventoryUI.dragItemObj.transform.position = eventData.position;
+                break;
+
+            case ItemData.Type.Other:
+                inventoryUI.dragItemObj.transform.position = eventData.position;
+                break;
         }
     }
 
@@ -86,15 +152,28 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        playerData.changeNum[0] = num;
-
-        if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum && eventData.button == PointerEventData.InputButton.Right)
+        switch (type)
         {
-            Debug.Log(":2");
-            dropBox.lockBoxNum = playerData.changeNum[0];
-            playerData.EuqipItem();
-            inventoryUI.EquipItemPos();
-            dropBox.mountingEquipment = true;
+            case ItemData.Type.Equipment:
+                playerData.changeNum[0] = num;
+
+                if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum && eventData.button == PointerEventData.InputButton.Right)
+                {
+                    Debug.Log(":2");
+                    dropBox.lockBoxNum = playerData.changeNum[0];
+                    playerData.EuqipItem();
+                    inventoryUI.EquipItemPos();
+                    dropBox.mountingEquipment = true;
+                }
+                break;
+
+            case ItemData.Type.Consumable:
+
+                break;
+
+            case ItemData.Type.Other:
+
+                break;
         }
     }
 

@@ -66,12 +66,17 @@ public class PlayerData : MonoBehaviour
     public Sprite changeSprite;
 
     public List<int> changeNum;
-
+    public List<int> changeCNum;
+    public List<int> changeONum;
     public List<int> consumableItemId;
 
     public List<int> consumableItemIntText;
 
     public List<Sprite> consumableItemSprite;
+
+    public List<int> otherItemId;
+    public List<int> otherItemIntText;
+    public List<Sprite> otherItemSprite;
 
     public int itemECount;
     public int itemCCount;
@@ -92,6 +97,38 @@ public class PlayerData : MonoBehaviour
         equipmentItemId[changeNum[1]] = changeId;
         equipmentItemIntText[changeNum[1]] = changeIntText;
         equipmentItemSprite[changeNum[1]] = changeSprite;
+        Debug.Log("플레이어첸지");
+    }
+
+    public void SwapItemConsumable()
+    {
+        changeId = consumableItemId[changeCNum[0]];
+        changeIntText = consumableItemIntText[changeCNum[0]];
+        changeSprite = consumableItemSprite[changeCNum[0]];
+
+        consumableItemId[changeCNum[0]] = consumableItemId[changeCNum[1]];
+        consumableItemIntText[changeCNum[0]] = consumableItemIntText[changeCNum[1]];
+        consumableItemSprite[changeCNum[0]] = consumableItemSprite[changeCNum[1]];
+
+        consumableItemId[changeCNum[1]] = changeId;
+        consumableItemIntText[changeCNum[1]] = changeIntText;
+        consumableItemSprite[changeCNum[1]] = changeSprite;
+        Debug.Log("플레이어첸지");
+    }
+
+    public void SwapItemOther()
+    {
+        changeId = otherItemId[changeONum[0]];
+        changeIntText = otherItemIntText[changeONum[0]];
+        changeSprite = otherItemSprite[changeONum[0]];
+
+        otherItemId[changeONum[0]] = otherItemId[changeONum[1]];
+        otherItemIntText[changeONum[0]] = otherItemIntText[changeONum[1]];
+        otherItemSprite[changeONum[0]] = otherItemSprite[changeONum[1]];
+
+        otherItemId[changeONum[1]] = changeId;
+        otherItemIntText[changeONum[1]] = changeIntText;
+        otherItemSprite[changeONum[1]] = changeSprite;
         Debug.Log("플레이어첸지");
     }
 
@@ -191,6 +228,7 @@ public class PlayerData : MonoBehaviour
 
     public int inventoryAddNum;
     public bool consumableOnlyAddNum;
+    public bool otherOnlyAddNum;
     private Slot slot;
     private Image image;
 
@@ -219,21 +257,25 @@ public class PlayerData : MonoBehaviour
 
             case ItemData.Type.Consumable:
                 itemCCount++;
-
+                Debug.Log("일반");
                 for (int i = 0; i < consumableItemId.Count; i++)
                 {
                     if (consumableItemId[i] == id)
                     {
-                        consumableItemIntText[i] = count;
+                        consumableItemIntText[i] += count;
                         inventoryAddNum = i;
                         i = consumableItemId.Count;
                         consumableOnlyAddNum = true;
                         Debug.Log("트루");
                     }
+                    else
+                    {
+                        consumableOnlyAddNum = false;
+                    }
                 }
 
                 if (!consumableOnlyAddNum)
-                    for (int i = 0; i < equipmentItemId.Count; i++)
+                    for (int i = 0; i < consumableItemId.Count; i++)
                     {
                         if (consumableItemId[i] == 0)
                         {
@@ -251,6 +293,39 @@ public class PlayerData : MonoBehaviour
 
             case ItemData.Type.Other:
                 itemOCount++;
+                Debug.Log("일반");
+                for (int i = 0; i < otherItemId.Count; i++)
+                {
+                    if (otherItemId[i] == id)
+                    {
+                        otherItemIntText[i] += count;
+                        inventoryAddNum = i;
+                        i = otherItemId.Count;
+                        otherOnlyAddNum = true;
+                        Debug.Log("트루");
+                    }
+                    else
+                    {
+                        otherOnlyAddNum = false;
+                    }
+                }
+
+                if (!otherOnlyAddNum)
+                    for (int i = 0; i < otherItemId.Count; i++)
+                    {
+                        if (otherItemId[i] == 0)
+                        {
+                            Debug.Log("펄스");
+                            otherItemId[i] = id;
+                            otherItemSprite[i] = sprite;
+
+                            otherItemIntText[i] += count;
+                            inventoryAddNum = i;
+                            i = otherItemId.Count;
+                            otherOnlyAddNum = false;
+                        }
+                    }
+
                 break;
         }
 
