@@ -16287,7 +16287,7 @@ MonoBehaviour:
   type: 1
   id: 11
   count: 1
-  sprite: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
+  sprite: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
 --- !u!65 &1057568973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23222,7 +23222,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 99
+  m_Text: 0
 --- !u!222 &1502997363
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24602,6 +24602,7 @@ MonoBehaviour:
   skill1Time: 10
   skill1TimeMax: 10
   skill1B: 0
+  portionCount: 0
   inventoryAddNum: 0
   consumableOnlyAddNum: 0
   otherOnlyAddNum: 0
@@ -29642,6 +29643,7 @@ MonoBehaviour:
   explanationTextUI: {fileID: 0}
   skill1CoolObj: {fileID: 0}
   skill1CoolImage: {fileID: 0}
+  portionText: {fileID: 0}
 --- !u!114 &1910679270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29740,6 +29742,7 @@ MonoBehaviour:
   endDragImage: {fileID: 0}
   endDragText: 0
   playerData: {fileID: 0}
+  uiScript: {fileID: 0}
   spriteNull: {fileID: 0}
   dragItemObj: {fileID: 0}
   slotEquip:

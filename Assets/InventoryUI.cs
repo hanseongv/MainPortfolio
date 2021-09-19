@@ -46,6 +46,7 @@ public class InventoryUI : MonoBehaviour
     public int endDragText;
 
     public PlayerData playerData;
+    public UiScript uiScript;
 
     private enum CountentsType
     { Equipment, Consumable, Other };
@@ -72,6 +73,7 @@ public class InventoryUI : MonoBehaviour
         //itemText.text = "0";
         inventory = GameObject.Find("InventoryUI");
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
+        uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         //contentsWeapon = GameObject.Find("Book/ContentsWeapon");
         //contentsExpendables = GameObject.Find("Book/ContentsExpendables");
         //contentsOther = GameObject.Find("Book/ContentsOther");
@@ -301,6 +303,16 @@ public class InventoryUI : MonoBehaviour
             int oldNum = int.Parse("" + consumableItemTextList[playerData.inventoryAddNum].text); //0
             int addNum = playerData.consumableItemIntText[playerData.inventoryAddNum]; //1
             oldNum = addNum;
+
+            for (int i = 0; i < playerData.consumableItemId.Count; i++)
+            {
+                if (playerData.consumableItemId[i] == 11)
+                {
+                    playerData.portionCount = playerData.consumableItemIntText[i];
+                    //return;
+                }
+            }
+            uiScript.portionText.text = $"{playerData.portionCount}";
 
             consumableItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
             itemOldCCount = playerData.itemCCount;

@@ -88,6 +88,8 @@ public class PlayerData : MonoBehaviour
     public float skill1TimeMax = 15;
     public bool skill1B;
 
+    public int portionCount;
+
     private void Skill()
     {
         if (skill1B)
@@ -215,6 +217,11 @@ public class PlayerData : MonoBehaviour
         PlayerStata();
         EquipWeapon();
         Skill();
+        PortionCount();
+    }
+
+    private void PortionCount()
+    {
     }
 
     private void EquipWeapon()
