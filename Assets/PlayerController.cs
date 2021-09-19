@@ -116,18 +116,26 @@ public class PlayerController : MonoBehaviour
 
     private void Skill1()
     {
-        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1 /*&& playerData.curentMp >= 20*/)//20으로 일단 설정
+        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1)
         {
-            if (playerData.curentMp >= 20)
+            if (!(playerData.skill1B))
             {
-                playerData.curentMp -= 20;
-
-                StartCoroutine(Skill1Co());
+                if (playerData.curentMp >= 20)
+                {
+                    playerData.curentMp -= 20;
+                    playerData.skill1B = true;
+                    StartCoroutine(Skill1Co());
+                }
+                else if (playerData.curentMp < 20)
+                {
+                    //explanationText.text = "마나가 부족합니다.";
+                    uiScript.explanationTextUI.text = "마나가 부족합니다.";
+                    uiScript.ExplanationUI();
+                }
             }
-            else if (playerData.curentMp < 20)
+            else
             {
-                //explanationText.text = "마나가 부족합니다.";
-                uiScript.explanationTextUI.text = "마나가 부족합니다.";
+                uiScript.explanationTextUI.text = "스킬이 쿨타임 입니다.";
                 uiScript.ExplanationUI();
             }
         }

@@ -84,6 +84,23 @@ public class PlayerData : MonoBehaviour
     public int itemOCount;
     public InventoryUI inventoryUI;
 
+    public float skill1Time = 15;
+    public float skill1TimeMax = 15;
+    public bool skill1B;
+
+    private void Skill()
+    {
+        if (skill1B)
+        {
+            skill1Time -= Time.deltaTime;
+            if (skill1Time <= 0)
+            {
+                skill1Time = skill1TimeMax;
+                skill1B = false;
+            }
+        }
+    }
+
     public void SwapItem()
     {
         changeId = equipmentItemId[changeNum[0]];
@@ -197,6 +214,7 @@ public class PlayerData : MonoBehaviour
 
         PlayerStata();
         EquipWeapon();
+        Skill();
     }
 
     private void EquipWeapon()

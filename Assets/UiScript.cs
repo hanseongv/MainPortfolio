@@ -21,6 +21,8 @@ public class UiScript : MonoBehaviour
     public Image mpHideBar;
     public GameObject explanation;
     public Text explanationTextUI;
+    public GameObject skill1CoolObj;
+    public Image skill1CoolImage;
 
     private void Start()
     {
@@ -31,6 +33,9 @@ public class UiScript : MonoBehaviour
         mpBar = GameObject.Find("UI/CharacterStatus/Bar/MpBar").GetComponent<Image>();
         hpHideBar = GameObject.Find("UI/CharacterStatus/Bar/HpBarHide").GetComponent<Image>();
         mpHideBar = GameObject.Find("UI/CharacterStatus/Bar/MpBarHide").GetComponent<Image>();
+        skill1CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<Image>();
+        //skill1CoolObj = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<GameObject>();
+
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
         explanation = GameObject.Find("UI/Explanation");
@@ -70,6 +75,17 @@ public class UiScript : MonoBehaviour
 
     private void Update()
     {
+        if (playerData.skill1B)
+        {
+            //skill1CoolObj.SetActive(true);
+            skill1CoolImage.enabled = true;
+            skill1CoolImage.fillAmount = playerData.skill1Time / playerData.skill1TimeMax;
+        }
+        else
+        {
+            skill1CoolImage.enabled = false;
+            //skill1CoolObj.SetActive(false);
+        }
         //이름
         if (oldName != playerData.playerName)
         {
