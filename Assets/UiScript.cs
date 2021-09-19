@@ -13,10 +13,12 @@ public class UiScript : MonoBehaviour
     private float oldExp = -1;
     private float oldHp = -1;
     private string oldName = "용사한성";
-    private float oldMp = -1;
+    private float oldMp = 50;
     public Image expBar;
     public Image hpBar;
     public Image mpBar;
+    public Image hpHideBar;
+    public Image mpHideBar;
     public GameObject explanation;
     public Text explanationTextUI;
 
@@ -27,6 +29,8 @@ public class UiScript : MonoBehaviour
         expBar = GameObject.Find("UI/ExpBarImageBg/ExpBarImage").GetComponent<Image>();
         hpBar = GameObject.Find("UI/CharacterStatus/Bar/HpBar").GetComponent<Image>();
         mpBar = GameObject.Find("UI/CharacterStatus/Bar/MpBar").GetComponent<Image>();
+        hpHideBar = GameObject.Find("UI/CharacterStatus/Bar/HpBarHide").GetComponent<Image>();
+        mpHideBar = GameObject.Find("UI/CharacterStatus/Bar/MpBarHide").GetComponent<Image>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
         explanation = GameObject.Find("UI/Explanation");
@@ -34,6 +38,34 @@ public class UiScript : MonoBehaviour
         explanationTextUI = explanation.GetComponentInChildren<Text>();
         //explanationTextUI = GameObject.Find("UI/Explanation/ExplanationText").GetComponent<Text>();
         explanation.SetActive(false);
+    }
+
+    private IEnumerator HpCo()
+    {
+        float a = (float)oldHp / (float)playerData.maxHp;
+        float b = (float)playerData.curentHp / (float)playerData.maxHp;
+        oldHp = playerData.curentHp;
+
+        for (; a >= b; a -= 0.01f)
+        {
+            yield return new WaitForSeconds(0.05f);
+            hpHideBar.fillAmount = a;
+        }
+        hpHideBar.fillAmount = (float)playerData.curentHp / (float)playerData.maxHp;
+    }
+
+    private IEnumerator MpCo()
+    {
+        float a = (float)oldMp / (float)playerData.maxMp;
+        float b = (float)playerData.curentMp / (float)playerData.maxMp;
+        oldMp = playerData.curentMp;
+
+        for (; a >= b; a -= 0.01f)
+        {
+            yield return new WaitForSeconds(0.05f);
+            mpHideBar.fillAmount = a;
+        }
+        mpHideBar.fillAmount = (float)playerData.curentMp / (float)playerData.maxMp;
     }
 
     private void Update()
@@ -56,17 +88,16 @@ public class UiScript : MonoBehaviour
         if (oldHp != playerData.curentHp)
         {
             //Debug.Log("에치피변동ㅇ요");
-            oldHp = playerData.curentHp;
 
             hpBar.fillAmount = (float)playerData.curentHp / (float)playerData.maxHp;
+            StartCoroutine(HpCo());
         }
         // MP바
         if (oldMp != playerData.curentMp)
         {
             //Debug.Log("엠핍ㄴ동이요");
-            oldMp = playerData.curentMp;
-
-            mpBar.fillAmount = (float)playerData.curentMp / (float)playerData.maxMp;
+            mpBar.fillAmount = (float)playerData.curentMp / (float)playerData.maxMp; //mp바는 선 줄어들기
+            StartCoroutine(MpCo());
         }
         //경험치 바
         if (oldExp != playerData.curentExp)
