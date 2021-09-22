@@ -488,7 +488,7 @@ public class PlayerController : MonoBehaviour
             {
                 item = nearObject.GetComponent<Item>();
                 playerData.GetItem(item.id, item.type, item.sprite, item.count);
-                //Destroy(nearObject); //완료하면 활성화
+                Destroy(nearObject);
             }
         }
     }

@@ -298,7 +298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1071,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1444,11 +1444,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 11
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -2612,11 +2612,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -3140,11 +3140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -3204,11 +3204,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -3586,11 +3586,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -3804,11 +3804,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -3998,7 +3998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4471,11 +4471,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 13
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -4618,11 +4618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.86
+      value: 3.0999994
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5197,7 +5197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &301366964
 GameObject:
@@ -5934,11 +5934,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 12
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -6234,11 +6234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 15
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -6870,11 +6870,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 1
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -7679,11 +7679,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -8193,11 +8193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 5
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -8670,11 +8670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 10
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -8895,11 +8895,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -9195,11 +9195,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -10252,11 +10252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 16
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -10557,11 +10557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -10853,11 +10853,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -11669,11 +11669,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -11733,11 +11733,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 9
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -11923,7 +11923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12098,11 +12098,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -12521,11 +12521,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -12840,11 +12840,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -14413,11 +14413,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -14713,11 +14713,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -15421,11 +15421,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -15567,11 +15567,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -16223,11 +16223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.56
+      value: 8.5199995
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16680,11 +16680,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 3
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -17175,11 +17175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.65
+      value: 1.3099995
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17677,11 +17677,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -17898,11 +17898,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -18205,11 +18205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.61
+      value: 12.57
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18420,11 +18420,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.69
+      value: 16.65
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18753,11 +18753,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -19203,11 +19203,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -19805,11 +19805,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -20244,11 +20244,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -20856,11 +20856,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 19
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -21974,11 +21974,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 6
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -22202,11 +22202,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -22662,6 +22662,7 @@ GameObject:
   - component: {fileID: 1467443283}
   - component: {fileID: 1467443285}
   - component: {fileID: 1467443284}
+  - component: {fileID: 1467443286}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -22731,6 +22732,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467443282}
   m_CullTransparentMesh: 1
+--- !u!114 &1467443286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467443282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776040d2a3f2fab41b9dbb38595009cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
+  dropPrefab: {fileID: 0}
 --- !u!1 &1473214551
 GameObject:
   m_ObjectHideFlags: 0
@@ -23397,11 +23413,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -23618,11 +23634,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -24104,11 +24120,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 14
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -24373,7 +24389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25382,11 +25398,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -25607,11 +25623,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -26871,11 +26887,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 8
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -27096,11 +27112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -27207,11 +27223,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.69
+      value: 16.65
       objectReference: {fileID: 0}
     - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27704,11 +27720,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -27843,11 +27859,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -28343,11 +28359,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 17
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -28489,11 +28505,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -28860,11 +28876,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -29081,11 +29097,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -29505,11 +29521,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 1
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -29944,11 +29960,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 18
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -30319,11 +30335,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -30465,11 +30481,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 7
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -31265,11 +31281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -31614,11 +31630,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 4
   type: 0
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -31843,11 +31859,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -32218,11 +32234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -32439,11 +32455,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 0
   type: 2
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -32964,11 +32980,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   num: 2
   type: 1
-  playerData: {fileID: 0}
   dragObj: {fileID: 0}
   dragImage: {fileID: 0}
   startDragImage: {fileID: 0}
   inventoryUI: {fileID: 0}
+  playerData: {fileID: 0}
   slot: {fileID: 0}
   dropBox: {fileID: 0}
   lockBox: 0
@@ -33388,6 +33404,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb2e23dfe14c4d4f8c1c6a48e0fe5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1054965606704814167
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386876372486055745, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 53.779
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762310546630753787, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+      propertyPath: m_Name
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 449c598e736da36469d4e0335d2cb4f1, type: 3}
+--- !u!1001 &1466030393441741926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5128929338884139370, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_Name
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505174059194053584, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 53.779
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 06cd0b58e00439048a176082398f57c3, type: 3}
 --- !u!1001 &3410075990305732819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33470,11 +33600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178648, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5197479739611178655, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33518,121 +33648,120 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97604d2cf20c25c45b1f17c7a88a0262, type: 3}
---- !u!1001 &5293886040986620615
+--- !u!1001 &5972125359664777965
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 426660285364643380, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
-      propertyPath: m_Name
-      value: Sword4_Item
-      objectReference: {fileID: 0}
-    - target: {fileID: 426660285364643380, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 426660285364643380, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
-      propertyPath: m_TagString
-      value: Item
-      objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.23
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.24
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 4.77
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.00000004371139
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalRotation.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1053875196254846094, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
+    - target: {fileID: 1528678475515208868, guid: 532c725463c516342951cabf468f2bf6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 53.779
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196952144986177054, guid: 532c725463c516342951cabf468f2bf6, type: 3}
+      propertyPath: m_Name
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 532c725463c516342951cabf468f2bf6, type: 3}
+--- !u!1001 &6195839788478108370
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 530523598602651518, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_Name
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871196708793228740, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 53.779
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
---- !u!1 &5520397239618712819 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 426660285364643380, guid: a81245c6c1c14764ca6cf7fe77c1f0d6, type: 3}
-  m_PrefabInstance: {fileID: 5293886040986620615}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5520397239618712820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5520397239618712819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae75bf6b7ed8084c8b3977c835a87b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  id: 4
-  count: 1
-  sprite: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
---- !u!54 &5520397239618712821
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5520397239618712819}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 14
-  m_CollisionDetection: 0
---- !u!65 &5520397239618712822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5520397239618712819}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 0.91, z: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: b45d6ec03369ddb42b3e2ff41e7577bb, type: 3}
 --- !u!1001 &8929904665837550071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33796,7 +33925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9091855214600440358, guid: e2ebfc11a0d9b6a44a7d3976874f1846, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9091855214600440358, guid: e2ebfc11a0d9b6a44a7d3976874f1846, type: 3}
       propertyPath: m_LocalPosition.x

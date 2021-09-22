@@ -224,6 +224,12 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("인벤첸지");
     }
 
+    public void DropItem()
+    {
+        equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
+        equipmenItemTextList[playerData.changeNum[0]].text = "0";
+    }
+
     public void ChangeItemPos()
     {
         changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;

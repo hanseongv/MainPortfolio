@@ -103,6 +103,13 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public void DropItem()
+    {
+        equipmentItemId[changeNum[0]] = 0;
+        equipmentItemIntText[changeNum[0]] = 0;
+        equipmentItemSprite[changeNum[0]] = null;
+    }
+
     public void SwapItem()
     {
         changeId = equipmentItemId[changeNum[0]];

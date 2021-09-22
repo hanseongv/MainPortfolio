@@ -8,11 +8,12 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 {
     public int num;
     public ItemData.Type type;
-    public PlayerData playerData;
+
     public GameObject dragObj;
     public Image dragImage;
     public Image startDragImage;
     public InventoryUI inventoryUI;
+    public PlayerData playerData;
     public Slot slot;
 
     public DropBox dropBox;
