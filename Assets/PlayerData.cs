@@ -108,9 +108,31 @@ public class PlayerData : MonoBehaviour
 
     public void DropItem()
     {
-        equipmentItemId[changeNum[0]] = 0;
-        equipmentItemIntText[changeNum[0]] = 0;
-        equipmentItemSprite[changeNum[0]] = null;
+        switch (changeItemType)
+        {
+            case ItemData.ItemType.Equipment:
+                equipmentItemId[changeNum[0]] = 0;
+                equipmentItemIntText[changeNum[0]] = 0;
+                equipmentItemSprite[changeNum[0]] = null;
+                break;
+
+            case ItemData.ItemType.Consumable:
+                if (consumableItemIntText[changeCNum[0]] > 1)
+                    return;
+                else
+                {
+                    consumableItemId[changeCNum[0]] = 0;
+                    consumableItemIntText[changeCNum[0]] = 0;
+                    consumableItemSprite[changeCNum[0]] = null;
+                }
+                break;
+
+            case ItemData.ItemType.Other:
+                otherItemId[changeONum[0]] = 0;
+                otherItemIntText[changeONum[0]] = 0;
+                otherItemSprite[changeONum[0]] = null;
+                break;
+        }
     }
 
     public void SwapItem()

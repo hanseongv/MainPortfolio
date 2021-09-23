@@ -226,8 +226,31 @@ public class InventoryUI : MonoBehaviour
 
     public void DropItem()
     {
-        equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
-        equipmenItemTextList[playerData.changeNum[0]].text = "0";
+        switch (playerData.changeItemType)
+        {
+            case ItemData.ItemType.Equipment:
+                equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
+                equipmenItemTextList[playerData.changeNum[0]].text = "0";
+                break;
+
+            case ItemData.ItemType.Consumable:
+                if (playerData.consumableItemIntText[playerData.changeCNum[0]] > 1)
+                {
+                    playerData.consumableItemIntText[playerData.changeCNum[0]]--;
+                    consumableItemTextList[playerData.changeCNum[0]].text = "" + playerData.consumableItemIntText[playerData.changeCNum[0]];
+                }
+                else
+                {
+                    consumableItemImageList[playerData.changeCNum[0]].sprite = nullSprite;
+                    consumableItemTextList[playerData.changeCNum[0]].text = "0";
+                }
+                break;
+
+            case ItemData.ItemType.Other:
+                otherItemImageList[playerData.changeONum[0]].sprite = nullSprite;
+                otherItemTextList[playerData.changeONum[0]].text = "0";
+                break;
+        }
     }
 
     public void ChangeItemPos()

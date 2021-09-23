@@ -26,7 +26,7 @@ public class ItemDrop : MonoBehaviour, IDropHandler
     {
         itemType = playerData.changeItemType;
 
-        if (playerData.changeNum[0] == dropBox.lockBoxNum || itemType != ItemData.ItemType.Equipment)
+        if (playerData.changeNum[0] == dropBox.lockBoxNum /*|| itemType != ItemData.ItemType.Equipment*/)
             return;
 
         int dropNum = 0;
@@ -38,11 +38,11 @@ public class ItemDrop : MonoBehaviour, IDropHandler
                 break;
 
             case ItemData.ItemType.Consumable:
-                dropNum = playerData.consumableItemId[playerData.changeNum[0]];
+                dropNum = playerData.consumableItemId[playerData.changeCNum[0]];
                 break;
 
             case ItemData.ItemType.Other:
-                dropNum = playerData.otherItemId[playerData.changeNum[0]];
+                dropNum = playerData.otherItemId[playerData.changeONum[0]];
                 break;
         }
         dropPrefab = Resources.Load<GameObject>($"{dropNum}");
