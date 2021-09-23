@@ -20,12 +20,31 @@ public class ItemDrop : MonoBehaviour, IDropHandler
         dropBox = GameObject.Find("InventoryUI/EquipUI/WeaponBox/ItemImage").GetComponent<DropBox>();
     }
 
+    private ItemData.ItemType itemType;
+
     public void OnDrop(PointerEventData eventData)
     {
-        if (playerData.changeNum[0] == dropBox.lockBoxNum)
-            return;
-        int dropNum = playerData.equipmentItemId[playerData.changeNum[0]];
+        itemType = playerData.changeItemType;
 
+        if (playerData.changeNum[0] == dropBox.lockBoxNum || itemType != ItemData.ItemType.Equipment)
+            return;
+
+        int dropNum = 0;
+
+        switch (itemType)
+        {
+            case ItemData.ItemType.Equipment:
+                dropNum = playerData.equipmentItemId[playerData.changeNum[0]];
+                break;
+
+            case ItemData.ItemType.Consumable:
+                dropNum = playerData.consumableItemId[playerData.changeNum[0]];
+                break;
+
+            case ItemData.ItemType.Other:
+                dropNum = playerData.otherItemId[playerData.changeNum[0]];
+                break;
+        }
         dropPrefab = Resources.Load<GameObject>($"{dropNum}");
         Instantiate(dropPrefab, playerPos.position, Quaternion.identity);
 

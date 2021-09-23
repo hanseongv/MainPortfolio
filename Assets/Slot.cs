@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     public int num;
-    public ItemData.Type type;
+    public ItemData.ItemType type;
 
     public GameObject dragObj;
     public Image dragImage;
@@ -28,7 +28,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         switch (type)
         {
-            case ItemData.Type.Equipment:
+            case ItemData.ItemType.Equipment:
                 Debug.Log("Drop");
 
                 playerData.changeNum[1] = num;
@@ -40,7 +40,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 }
                 break;
 
-            case ItemData.Type.Consumable:
+            case ItemData.ItemType.Consumable:
 
                 Debug.Log("Drop");
 
@@ -52,7 +52,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 }
                 break;
 
-            case ItemData.Type.Other:
+            case ItemData.ItemType.Other:
 
                 Debug.Log("Drop");
 
@@ -69,9 +69,10 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("스타트");
+        playerData.changeItemType = type;
         switch (type)
         {
-            case ItemData.Type.Equipment:
+            case ItemData.ItemType.Equipment:
                 playerData.changeNum[0] = num;
 
                 if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum)
@@ -83,7 +84,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 }
                 break;
 
-            case ItemData.Type.Consumable:
+            case ItemData.ItemType.Consumable:
                 playerData.changeCNum[0] = num;
 
                 if (playerData.consumableItemId[playerData.changeCNum[0]] != 0 /*&& num != dropBox.lockBoxNum*/)
@@ -95,7 +96,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 }
                 break;
 
-            case ItemData.Type.Other:
+            case ItemData.ItemType.Other:
                 playerData.changeONum[0] = num;
 
                 if (playerData.otherItemId[playerData.changeONum[0]] != 0 /*&& num != dropBox.lockBoxNum*/)
@@ -120,18 +121,18 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         switch (type)
         {
-            case ItemData.Type.Equipment:
+            case ItemData.ItemType.Equipment:
                 if (num != dropBox.lockBoxNum)
                 {
                     inventoryUI.dragItemObj.transform.position = eventData.position;
                 }
                 break;
 
-            case ItemData.Type.Consumable:
+            case ItemData.ItemType.Consumable:
                 inventoryUI.dragItemObj.transform.position = eventData.position;
                 break;
 
-            case ItemData.Type.Other:
+            case ItemData.ItemType.Other:
                 inventoryUI.dragItemObj.transform.position = eventData.position;
                 break;
         }
@@ -155,7 +156,7 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         switch (type)
         {
-            case ItemData.Type.Equipment:
+            case ItemData.ItemType.Equipment:
                 playerData.changeNum[0] = num;
 
                 if (playerData.equipmentItemId[playerData.changeNum[0]] != 0 && num != dropBox.lockBoxNum && eventData.button == PointerEventData.InputButton.Right)
@@ -168,11 +169,11 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 }
                 break;
 
-            case ItemData.Type.Consumable:
+            case ItemData.ItemType.Consumable:
 
                 break;
 
-            case ItemData.Type.Other:
+            case ItemData.ItemType.Other:
 
                 break;
         }

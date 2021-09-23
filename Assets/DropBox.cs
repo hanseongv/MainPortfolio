@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DropBox : MonoBehaviour, IDropHandler, IPointerClickHandler
 {
     public int num;
-    public ItemData.Type type;
+    public ItemData.ItemType type;
     public PlayerData playerData;
     public GameObject dragObj;
     public Image dragImage;

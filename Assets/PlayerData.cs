@@ -68,6 +68,9 @@ public class PlayerData : MonoBehaviour
     public List<int> changeNum;
     public List<int> changeCNum;
     public List<int> changeONum;
+
+    public ItemData.ItemType changeItemType;
+
     public List<int> consumableItemId;
 
     public List<int> consumableItemIntText;
@@ -264,11 +267,11 @@ public class PlayerData : MonoBehaviour
     private Slot slot;
     private Image image;
 
-    public void GetItem(int id, ItemData.Type type, Sprite sprite, int count)
+    public void GetItem(int id, ItemData.ItemType type, Sprite sprite, int count)
     {
         switch (type)
         {
-            case ItemData.Type.Equipment:
+            case ItemData.ItemType.Equipment:
                 itemECount++;
                 for (int i = 0; i < equipmentItemId.Count; i++)
                 {
@@ -287,7 +290,7 @@ public class PlayerData : MonoBehaviour
                 }
                 break;
 
-            case ItemData.Type.Consumable:
+            case ItemData.ItemType.Consumable:
                 itemCCount++;
                 Debug.Log("일반");
                 for (int i = 0; i < consumableItemId.Count; i++)
@@ -323,7 +326,7 @@ public class PlayerData : MonoBehaviour
                     }
                 break;
 
-            case ItemData.Type.Other:
+            case ItemData.ItemType.Other:
                 itemOCount++;
                 Debug.Log("일반");
                 for (int i = 0; i < otherItemId.Count; i++)

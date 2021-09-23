@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 {
     //이름, 아이디, 타입, 스프라이트
 
-    public ItemData.Type type;
+    public ItemData.ItemType type;
     public int id;
     public int count;
 

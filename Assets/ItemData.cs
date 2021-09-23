@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemData : MonoBehaviour
 {
-    public enum Type { Equipment, Consumable, Other };
+    public enum ItemType { Equipment, Consumable, Other };
 
-    public Type type;
+    public ItemType type;
     public string name;
     public int id;
 
