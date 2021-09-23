@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,12 @@ public class UiScript : MonoBehaviour
     public GameObject skill1CoolObj;
     public Image skill1CoolImage;
     public Text portionText;
+    public GameObject characterStats;
+    public Text characterStatsText;
+    public Text characterStatText;
+    public Text characterRandomPointText;
+    public Text characterNameText;
+    //public Text characterStatText;
 
     private void Start()
     {
@@ -35,14 +42,20 @@ public class UiScript : MonoBehaviour
         hpHideBar = GameObject.Find("UI/CharacterStatus/Bar/HpBarHide").GetComponent<Image>();
         mpHideBar = GameObject.Find("UI/CharacterStatus/Bar/MpBarHide").GetComponent<Image>();
         skill1CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<Image>();
-        //skill1CoolObj = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<GameObject>();
+
         portionText = GameObject.Find("UI/ControlUI/RightControl/Portion/Text").GetComponent<Text>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
         explanation = GameObject.Find("UI/Explanation");
-        //GameObject.Find("UI/InventoryUI");
+        characterStats = GameObject.Find("UI/CharacterStats").GetComponent<GameObject>();
+        characterStatsText = GameObject.Find("UI/CharacterStats/Stats/StatsUp/StatText").GetComponent<Text>();
+        characterRandomPointText = GameObject.Find("UI/CharacterStats/Stats/StatsDown/SP/RandomPointInt").GetComponent<Text>();
+
+        characterStatText = GameObject.Find("UI/CharacterStats/Stats/StatsUp/StatPointInt").GetComponent<Text>();
+        characterNameText = GameObject.Find("UI/CharacterStats/PlayerName/Text").GetComponent<Text>();
+        characterNameText.text = oldName;
         explanationTextUI = explanation.GetComponentInChildren<Text>();
-        //explanationTextUI = GameObject.Find("UI/Explanation/ExplanationText").GetComponent<Text>();
+
         explanation.SetActive(false);
     }
 
@@ -76,6 +89,7 @@ public class UiScript : MonoBehaviour
 
     private void Update()
     {
+        Stat();
         if (playerData.skill1B)
         {
             //skill1CoolObj.SetActive(true);
@@ -129,6 +143,13 @@ public class UiScript : MonoBehaviour
 
             expBar.fillAmount = expPersent * 0.01f;
         }
+    }
+
+    private void Stat()
+    {
+        characterStatsText.text = $"{playerData.level}\n\n{playerData.curentHp}/{playerData.curentMaxHp}\n\n{playerData.curentMp}/{playerData.curentMaxMp}\n\n{playerData.playerStr}\n\n{playerData.playerInt}";
+        characterRandomPointText.text = "" + playerData.randomPoints;
+        characterStatText.text = "" + playerData.statPoints;
     }
 
     //public Text explanationText;

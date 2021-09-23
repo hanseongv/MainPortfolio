@@ -8,11 +8,12 @@ public class PlayerData : MonoBehaviour
 {
     public GameObject player;
     public MonsterNormal monsterNormal;
-    public string playerName;
+    public string playerName = "용사한성";
     public int level = 1;
     public int playerStr = 0;
 
     public int playerInt = 0;
+    public int randomPoints = 5;
     public int statPoints = 0;
     public int skillPoints = 0;
 
