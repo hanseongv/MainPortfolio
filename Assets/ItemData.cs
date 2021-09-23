@@ -10,15 +10,7 @@ public class ItemData : MonoBehaviour
     public string name;
     public int id;
 
-    private void Start()
-    {
-    }
-
     private void ItemList()
-    {
-    }
-
-    private void Update()
     {
     }
 }

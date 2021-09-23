@@ -89,10 +89,25 @@ public class PlayerController : MonoBehaviour
         Interation();
         Skill1();
         AutoSwap();
+        Portion();
         //if (Input.GetKeyDown(KeyCode.B))
         //{
         //    Instantiate(testListObj[0], transform.position, transform.rotation);
         //}
+    }
+
+    private void Portion()
+    {
+        if (Input.GetKeyDown(KeyCode.F1) && playerData.hpCount >= 1)
+        {
+            playerData.itemCCount--;
+            playerData.hpCount--;
+            uiScript.portionText.text = $"{playerData.hpCount}";
+            playerData.curentHp += (int)(playerData.curentMaxHp * 0.3f);
+            if (playerData.curentHp > playerData.curentMaxHp)
+                playerData.curentHp = playerData.curentMaxHp;
+            Debug.Log("포션 먹음");
+        }
     }
 
     public Text explanationText;

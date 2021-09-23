@@ -337,11 +337,11 @@ public class InventoryUI : MonoBehaviour
             {
                 if (playerData.consumableItemId[i] == 11)
                 {
-                    playerData.portionCount = playerData.consumableItemIntText[i];
+                    playerData.hpCount = playerData.consumableItemIntText[i];
                     //return;
                 }
             }
-            uiScript.portionText.text = $"{playerData.portionCount}";
+            uiScript.portionText.text = $"{playerData.hpCount}";
 
             consumableItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
             itemOldCCount = playerData.itemCCount;

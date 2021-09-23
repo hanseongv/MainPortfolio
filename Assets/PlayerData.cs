@@ -29,7 +29,7 @@ public class PlayerData : MonoBehaviour
     public int[] maxExp;
     public int curentExp = 0;
     public int playerGold = 0;
-    public List<int> playerPortion;
+    //public List<int> playerPortion;
 
     public int skill1Level = 1;//테스트때만1
     public List<GameObject> hasWeapon;
@@ -91,7 +91,7 @@ public class PlayerData : MonoBehaviour
     public float skill1TimeMax = 15;
     public bool skill1B;
 
-    public int portionCount;
+    public int hpCount;
 
     private void Skill()
     {
@@ -117,7 +117,9 @@ public class PlayerData : MonoBehaviour
                 break;
 
             case ItemData.ItemType.Consumable:
-                if (consumableItemIntText[changeCNum[0]] > 1)
+                if (consumableItemId[changeCNum[0]] == 101)
+                    hpCount--;
+                if (consumableItemIntText[changeCNum[0]] >= 1)
                     return;
                 else
                 {
@@ -183,10 +185,6 @@ public class PlayerData : MonoBehaviour
         Debug.Log("플레이어첸지");
     }
 
-    //public int hasEquipId;
-    //public int hasEquipText;
-    //public Sprite hasEquipSprite;
-
     public void UnEquip()
     {
         equipWeapon.SetActive(false);
@@ -200,9 +198,6 @@ public class PlayerData : MonoBehaviour
 
     public void EuqipItem()
     {
-        //changeId = equipmentItemId[changeNum[0]];
-        //changeIntText = equipmentItemIntText[changeNum[0]];
-        //changeSprite = equipmentItemSprite[changeNum[0]];
         equipWeapon.SetActive(false);
         hasWeapon[1] = weaponList[equipmentItemId[changeNum[0]]];
         if (equipWeapon != hasWeapon[0])
@@ -214,19 +209,6 @@ public class PlayerData : MonoBehaviour
             equipWeaponTrail.emitting = false;
             equipWeaponEffect.SetActive(false);
         }
-        //equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
-        //equipWeaponTrail.emitting = false;
-
-        //equipWeapon =/* weaponList[equipmentItemId[changeNum[0]]]; */hasWeapon[0];
-        //hasWeapon[1] =
-
-        //hasEquipmentItemId = equipmentItemId[changeNum[0]];
-        //hasEquipmentItemIntText = equipmentItemIntText[changeNum[0]];
-        //hasEquipmentItemSprite = equipmentItemSprite[changeNum[0]];
-
-        //equipmentItemId[changeNum[0]] = 0;
-        //equipmentItemIntText[changeNum[0]] = 0;
-        //equipmentItemSprite[changeNum[0]] = null;
 
         Debug.Log("플레이어첸지");
     }
@@ -249,24 +231,12 @@ public class PlayerData : MonoBehaviour
         PlayerStata();
         EquipWeapon();
         Skill();
-        PortionCount();
-    }
-
-    private void PortionCount()
-    {
     }
 
     private void EquipWeapon()
     {
-        //if (!equipWeapon)
-        //{
         equipWeapon.SetActive(true);
         equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
-        //}
-        //if (equipWeapon != hasWeapon[0])
-        //    //    equipWeaponEffect = equipWeapon.GetComponent<GameObject>();
-        //    //GameObject.Find("Panel").transform.GetChild(0).gameObject;
-        //    equipWeaponEffect = equipWeapon.transform.GetChild(0).gameObject;
     }
 
     private void PlayerStata()
@@ -315,6 +285,8 @@ public class PlayerData : MonoBehaviour
             case ItemData.ItemType.Consumable:
                 itemCCount++;
                 Debug.Log("일반");
+                if (id == 101)
+                    hpCount += count;
                 for (int i = 0; i < consumableItemId.Count; i++)
                 {
                     if (consumableItemId[i] == id)
@@ -324,6 +296,8 @@ public class PlayerData : MonoBehaviour
                         i = consumableItemId.Count;
                         consumableOnlyAddNum = true;
                         Debug.Log("트루");
+                        //if (consumableItemId[i] == 101)
+                        //    hpCount += count;
                     }
                     else
                     {
@@ -387,27 +361,7 @@ public class PlayerData : MonoBehaviour
         }
 
         //consumableItemId
-
-        //itemId.Add(id);
-        //itemSprite.Add(sprite);
     }
-
-    //private int i;
-    //private int b;
-
-    //private void Test()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.H))
-    //    {
-    //        i++;
-    //        hasWeapon[i] = weaponList[i - 1];
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.J))
-    //    {
-    //        b++;
-    //        hasWeapon[b] = testHaveWeapon2[b - 1];
-    //    }
-    //}
 
     private void LevelUp()
     {
