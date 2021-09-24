@@ -91,7 +91,7 @@ public class PlayerData : MonoBehaviour
     public float skill1Time = 15;
     public float skill1TimeMax = 15;
     public bool skill1B;
-
+    public UiScript uiScript;
     public int hpCount;
 
     private void Skill()
@@ -118,10 +118,21 @@ public class PlayerData : MonoBehaviour
                 break;
 
             case ItemData.ItemType.Consumable:
+                //itemCCount--;
+
                 if (consumableItemId[changeCNum[0]] == 101)
+                {
                     hpCount--;
+
+                    //hpCount = consumableItemIntText[changeCNum[0]];
+
+                    uiScript.portionText.text = $"{hpCount}";
+                }
                 if (consumableItemIntText[changeCNum[0]] >= 1)
+                {
+                    //consumableItemIntText[changeCNum[0]]--;
                     return;
+                }
                 else
                 {
                     consumableItemId[changeCNum[0]] = 0;
@@ -219,6 +230,7 @@ public class PlayerData : MonoBehaviour
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
         inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
+        uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         maxExp = new int[] { 15, 50, 100, 500, 1000 };
 
         equipWeapon = hasWeapon[0];
@@ -229,9 +241,30 @@ public class PlayerData : MonoBehaviour
     {
         LevelUp();
 
-        PlayerStata();
+        //PlayerStata();
         EquipWeapon();
         Skill();
+        PhyDamageCal();
+    }
+
+    private int oldStr;
+    private int oldInt;
+
+    private void PhyDamageCal()
+    {
+        if (oldStr != playerStr)
+        {
+            playerPhyDamage = (int)(playerStr * 1.5f);//7.5 7?
+            maxHp = playerStr * 10 + curentMaxHp;
+            uiScript.hpHideBar.fillAmount = (float)curentHp / (float)maxHp;
+            uiScript.hpBar.fillAmount = (float)curentHp / (float)maxHp;
+        }
+        if (oldInt != playerInt)
+        {
+            maxMp = playerInt * 10 + curentMaxMp;
+            uiScript.mpHideBar.fillAmount = (float)curentMp / (float)maxMp;
+            uiScript.mpBar.fillAmount = (float)curentMp / (float)maxMp;
+        }
     }
 
     private void EquipWeapon()
@@ -240,13 +273,13 @@ public class PlayerData : MonoBehaviour
         equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
     }
 
-    private void PlayerStata()
-    {
-        playerPhyDamage = playerStr * 2;
-        playerMagDamage = playerInt * 2;
-        maxHp = playerStr * 10 + curentMaxHp;
-        maxMp = playerInt * 10 + curentMaxMp;
-    }
+    //private void PlayerStata()
+    //{
+    //    //playerPhyDamage = playerStr * 2;
+    //    //playerMagDamage = playerInt * 2;
+
+    //    //maxMp = playerInt * 10 + curentMaxMp;
+    //}
 
     public void EquipWeapon(GameObject weaponObj, float rate)
     {
@@ -255,6 +288,7 @@ public class PlayerData : MonoBehaviour
     }
 
     public int inventoryAddNum;
+    public int inventoryMNum;
     public bool consumableOnlyAddNum;
     public bool otherOnlyAddNum;
     private Slot slot;
@@ -286,8 +320,11 @@ public class PlayerData : MonoBehaviour
             case ItemData.ItemType.Consumable:
                 itemCCount++;
                 Debug.Log("일반");
-                if (id == 101)
-                    hpCount += count;
+                //if (id == 101)
+                //{
+                //    hpCount += count;
+                //    Debug.Log("포션카운트");
+                //}
                 for (int i = 0; i < consumableItemId.Count; i++)
                 {
                     if (consumableItemId[i] == id)
@@ -318,7 +355,7 @@ public class PlayerData : MonoBehaviour
                             consumableItemIntText[i] += count;
                             inventoryAddNum = i;
                             i = consumableItemId.Count;
-                            consumableOnlyAddNum = false;
+                            //consumableOnlyAddNum = false;
                         }
                     }
                 break;
@@ -354,7 +391,7 @@ public class PlayerData : MonoBehaviour
                             otherItemIntText[i] += count;
                             inventoryAddNum = i;
                             i = otherItemId.Count;
-                            otherOnlyAddNum = false;
+                            //otherOnlyAddNum = false;
                         }
                     }
 

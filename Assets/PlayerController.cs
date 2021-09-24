@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> testListObj;
     public GameObject inventoryUI;
+    public InventoryUI inventoryUIC;
     private UiScript uiScript;
 
     private void Awake()
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         skill1Pos = transform.GetChild(0).GetComponent<Transform>();
         inventoryUI = GameObject.Find("UI/InventoryUI");
+        inventoryUIC = GameObject.Find("UI").GetComponent<InventoryUI>();
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         //trailRenderer.emitting = true;
         //임시
@@ -94,20 +96,6 @@ public class PlayerController : MonoBehaviour
         //{
         //    Instantiate(testListObj[0], transform.position, transform.rotation);
         //}
-    }
-
-    private void Portion()
-    {
-        if (Input.GetKeyDown(KeyCode.F1) && playerData.hpCount >= 1)
-        {
-            playerData.itemCCount--;
-            playerData.hpCount--;
-            uiScript.portionText.text = $"{playerData.hpCount}";
-            playerData.curentHp += (int)(playerData.curentMaxHp * 0.3f);
-            if (playerData.curentHp > playerData.curentMaxHp)
-                playerData.curentHp = playerData.curentMaxHp;
-            Debug.Log("포션 먹음");
-        }
     }
 
     public Text explanationText;
@@ -505,6 +493,25 @@ public class PlayerController : MonoBehaviour
                 playerData.GetItem(item.id, item.type, item.sprite, item.count);
                 Destroy(nearObject);
             }
+        }
+    }
+
+    private void Portion()
+    {
+        if (Input.GetKeyDown(KeyCode.F1) && playerData.hpCount >= 1)
+        {
+            playerData.itemCCount--;
+            inventoryUIC.itemOldCCount--;
+            playerData.hpCount--;
+            uiScript.portionText.text = $"{playerData.hpCount}";
+
+            inventoryUIC.PortionC();
+
+            playerData.curentHp += (int)(playerData.maxHp * 0.3f);
+
+            if (playerData.curentHp > playerData.maxHp)
+                playerData.curentHp = playerData.maxHp;
+            Debug.Log("포션 먹음");
         }
     }
 

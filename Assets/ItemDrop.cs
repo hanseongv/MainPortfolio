@@ -34,14 +34,26 @@ public class ItemDrop : MonoBehaviour, IDropHandler
         switch (itemType)
         {
             case ItemData.ItemType.Equipment:
+                playerData.itemECount--;
+                //inventoryUI.itemOldECount--;
+
                 dropNum = playerData.equipmentItemId[playerData.changeNum[0]];
                 break;
 
             case ItemData.ItemType.Consumable:
                 dropNum = playerData.consumableItemId[playerData.changeCNum[0]];
+                //playerData.inventoryMNum = playerData.changeCNum[0];
+                playerData.itemCCount--;
+                //inventoryUI.itemOldCCount--;
+
+                //uiScript.portionText.text = $"{playerData.hpCount}";
+                //playerData.hpCount = playerData.consumableItemIntText[i];
                 break;
 
             case ItemData.ItemType.Other:
+                playerData.itemOCount--;
+                //inventoryUI.itemOldOCount--;
+
                 dropNum = playerData.otherItemId[playerData.changeONum[0]];
                 break;
         }

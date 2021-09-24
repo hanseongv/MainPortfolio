@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float rate = 0.5f;
-    public int damage = 1;
+    public int weaponDamage = 1;
     private PlayerData playerData;
     public BoxCollider boxCollider;
     private MonsterNormal monsterNormal;
@@ -26,8 +26,9 @@ public class Weapon : MonoBehaviour
         {
             boxCollider.enabled = false;
             monsterNormal = other.GetComponent<MonsterNormal>();
-            monsterNormal.GetHit(damage + playerData.playerPhyDamage, transform);
-            Debug.Log($"무기 공격력 {damage}, 플레이어 데미지{playerData.playerPhyDamage}");
+            int damage = weaponDamage + playerData.playerPhyDamage;
+            monsterNormal.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
+            Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
         }
     }
 

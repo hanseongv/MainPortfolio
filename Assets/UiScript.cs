@@ -30,7 +30,9 @@ public class UiScript : MonoBehaviour
     public Text characterStatText;
     public Text characterRandomPointText;
     public Text characterNameText;
+
     //public Text characterStatText;
+    public GameObject characterStatObj;
 
     private void Start()
     {
@@ -56,10 +58,12 @@ public class UiScript : MonoBehaviour
         characterNameText.text = oldName;
         explanationTextUI = explanation.GetComponentInChildren<Text>();
 
+        characterStatObj = GameObject.Find("UI/CharacterStats");
+        characterStatObj.SetActive(false);
         explanation.SetActive(false);
     }
 
-    private IEnumerator HpCo()
+    public IEnumerator HpCo()
     {
         float a = (float)oldHp / (float)playerData.maxHp;
         float b = (float)playerData.curentHp / (float)playerData.maxHp;

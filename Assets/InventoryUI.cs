@@ -7,9 +7,9 @@ using System;
 
 public class InventoryUI : MonoBehaviour
 {
-    private int itemOldECount;
-    private int itemOldCCount;
-    private int itemOldOCount;
+    public int itemOldECount;
+    public int itemOldCCount;
+    public int itemOldOCount;
 
     public GameObject contentsEquipment;
     public GameObject contentsConsumable;
@@ -199,23 +199,9 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItemPos()
     {
-        //changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
-        //changeIntText[0] = int.Parse("" + equipmenItemTextList[playerData.changeNum[0]].text);
-
-        //changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
-        //changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
-
-        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
-        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
-
         sprite = equipmenItemImageList[playerData.changeNum[0]].sprite;
         hasEquipBox.sprite = sprite;
 
-        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
-        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
-
-        //equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
-        //equipmenItemTextList[playerData.changeNum[0]].text = null;
         for (int i = 0; i < equipmenItemOnImageList.Count; i++)
         {
             equipmenItemOnImageList[i].enabled = false;
@@ -229,11 +215,13 @@ public class InventoryUI : MonoBehaviour
         switch (playerData.changeItemType)
         {
             case ItemData.ItemType.Equipment:
+                itemOldECount = playerData.itemECount;
                 equipmenItemImageList[playerData.changeNum[0]].sprite = nullSprite;
                 equipmenItemTextList[playerData.changeNum[0]].text = "0";
                 break;
 
             case ItemData.ItemType.Consumable:
+                itemOldCCount = playerData.itemCCount;
                 if (playerData.consumableItemIntText[playerData.changeCNum[0]] > 1)
                 {
                     playerData.consumableItemIntText[playerData.changeCNum[0]]--;
@@ -243,10 +231,14 @@ public class InventoryUI : MonoBehaviour
                 {
                     consumableItemImageList[playerData.changeCNum[0]].sprite = nullSprite;
                     consumableItemTextList[playerData.changeCNum[0]].text = "0";
+                    playerData.consumableItemId[playerData.changeCNum[0]] = 0;
+                    playerData.consumableItemIntText[playerData.changeCNum[0]] = 0;
+                    playerData.consumableItemSprite[playerData.changeCNum[0]] = null;
                 }
                 break;
 
             case ItemData.ItemType.Other:
+                itemOldOCount = playerData.itemOCount;
                 otherItemImageList[playerData.changeONum[0]].sprite = nullSprite;
                 otherItemTextList[playerData.changeONum[0]].text = "0";
                 break;
@@ -260,9 +252,6 @@ public class InventoryUI : MonoBehaviour
 
         changeSprite[1] = equipmenItemImageList[playerData.changeNum[1]].sprite;
         changeIntText[1] = int.Parse("" + equipmenItemTextList[playerData.changeNum[1]].text);
-
-        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
-        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
 
         equipmenItemImageList[playerData.changeNum[0]].sprite = changeSprite[1];
         equipmenItemTextList[playerData.changeNum[0]].text = "" + changeIntText[1];
@@ -279,9 +268,6 @@ public class InventoryUI : MonoBehaviour
 
         changeSprite[1] = consumableItemImageList[playerData.changeCNum[1]].sprite;
         changeIntText[1] = int.Parse("" + consumableItemTextList[playerData.changeCNum[1]].text);
-
-        //equipmenItemImageList[playerData.changeNum[1]] = equipmenItemImageList[playerData.changeNum[0]];
-        //equipmenItemTextList[playerData.changeNum[1]] = equipmenItemTextList[playerData.changeNum[0]];
 
         consumableItemImageList[playerData.changeCNum[0]].sprite = changeSprite[1];
         consumableItemTextList[playerData.changeCNum[0]].text = "" + changeIntText[1];
@@ -311,10 +297,6 @@ public class InventoryUI : MonoBehaviour
     {
         if (itemOldECount < playerData.itemECount)
         {
-            //for (int i = 0; i < playerData.itemId.Count; i++)
-            //{
-            //    if (playerData.itemId[i] == 0)
-            //    {
             equipmenItemImageList[playerData.inventoryAddNum].sprite = playerData.equipmentItemSprite[playerData.inventoryAddNum];
 
             int oldNum = int.Parse("" + equipmenItemTextList[playerData.inventoryAddNum].text);
@@ -322,9 +304,6 @@ public class InventoryUI : MonoBehaviour
             oldNum += addNum;
             equipmenItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
             itemOldECount = playerData.itemECount;
-            //i = playerData.itemId.Count;
-            //    }
-            //}
         }
 
         if (itemOldCCount < playerData.itemCCount)
@@ -335,7 +314,7 @@ public class InventoryUI : MonoBehaviour
 
             for (int i = 0; i < playerData.consumableItemId.Count; i++)
             {
-                if (playerData.consumableItemId[i] == 11)
+                if (playerData.consumableItemId[i] == 101)
                 {
                     playerData.hpCount = playerData.consumableItemIntText[i];
                     //return;
@@ -362,21 +341,31 @@ public class InventoryUI : MonoBehaviour
                 return;
             otherItemImageList[playerData.inventoryAddNum].sprite = playerData.otherItemSprite[playerData.inventoryAddNum];
         }
-        //else if (itemOldCCount > playerData.itemCCount)
-        //{
-        //    int oldNum = int.Parse("" + consumableItemTextList[playerData.inventoryAddNum].text);
-        //    int addNum = playerData.consumableItemText[playerData.inventoryAddNum];
-        //    oldNum -= addNum;
+    }
 
-        //    consumableItemTextList[playerData.inventoryAddNum].text = "" + oldNum;
-        //    itemOldCCount = playerData.itemCCount;
-        //    if (playerData.consumableOnlyAddNum)
-        //        return;
-        //    consumableItemImageList[playerData.inventoryAddNum].sprite = playerData.consumableItemSprite[playerData.inventoryAddNum];
-        //}
-        if (itemOldOCount < playerData.itemOCount)
+    public void PortionC()
+    {
+        for (int i = 0; i < playerData.consumableItemId.Count; i++)
         {
-            itemOldOCount = playerData.itemOCount;
+            if (playerData.consumableItemId[i] == 101)
+            {
+                if (playerData.hpCount >= 1)
+                {
+                    //uiScript.portionText.text = $"{playerData.hpCount}";
+                    playerData.consumableItemIntText[i] = playerData.hpCount;
+                    consumableItemTextList[i].text = $"{playerData.hpCount}";
+                }
+                else
+                {
+                    //uiScript.portionText.text =
+                    consumableItemImageList[i].sprite = nullSprite;
+                    consumableItemTextList[i].text = "0";
+                    playerData.consumableItemIntText[i] = 0;
+                    playerData.consumableItemId[i] = 0;
+                    playerData.consumableItemSprite[i] = null;
+                }
+                return;
+            }
         }
     }
 
