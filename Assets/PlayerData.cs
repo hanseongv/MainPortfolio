@@ -240,11 +240,28 @@ public class PlayerData : MonoBehaviour
     private void Update()
     {
         LevelUp();
-
+        Mana();
         //PlayerStata();
         EquipWeapon();
         Skill();
         PhyDamageCal();
+    }
+
+    private float temp;
+
+    private void Mana()
+    {
+        if (curentMp < maxMp)
+        {
+            temp += Time.deltaTime;
+            if (temp > 1)
+            {
+                temp = 0;
+                curentMp++;
+            }
+        }
+        else
+            curentMp = maxMp;
     }
 
     private int oldStr;

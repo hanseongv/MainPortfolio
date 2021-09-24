@@ -94,6 +94,7 @@ public class UiScript : MonoBehaviour
     private void Update()
     {
         Stat();
+
         if (playerData.skill1B)
         {
             //skill1CoolObj.SetActive(true);
@@ -151,7 +152,7 @@ public class UiScript : MonoBehaviour
 
     private void Stat()
     {
-        characterStatsText.text = $"{playerData.level}\n\n{playerData.curentHp}/{playerData.curentMaxHp}\n\n{playerData.curentMp}/{playerData.curentMaxMp}\n\n{playerData.playerStr}\n\n{playerData.playerInt}";
+        characterStatsText.text = $"{playerData.level}\n\n{playerData.curentHp}/{playerData.maxHp}\n\n{playerData.curentMp}/{playerData.maxMp}\n\n{playerData.playerStr}\n\n{playerData.playerInt}";
         characterRandomPointText.text = "" + playerData.randomPoints;
         characterStatText.text = "" + playerData.statPoints;
     }
