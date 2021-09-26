@@ -92,8 +92,11 @@ public class PlayerData : MonoBehaviour
     public float skill1TimeMax = 15;
     public float skill2Time = 8;
     public float skill2TimeMax = 8;
+    public float skill3Time = 1;
+    public float skill3TimeMax = 1;
     public bool skill1B;
     public bool skill2B;
+    public bool skill3B;
     public UiScript uiScript;
     public int hpCount;
 
@@ -116,6 +119,15 @@ public class PlayerData : MonoBehaviour
             {
                 skill2Time = skill2TimeMax;
                 skill2B = false;
+            }
+        }
+        if (skill3B)
+        {
+            skill3Time -= Time.deltaTime;
+            if (skill3Time <= 0)
+            {
+                skill3Time = skill3TimeMax;
+                skill3B = false;
             }
         }
     }

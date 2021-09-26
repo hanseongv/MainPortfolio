@@ -53,7 +53,6 @@ public class StatPlusBtn : MonoBehaviour
 
     public void OnClickPlusBtn()
     {
-        Debug.Log("플러스버튼클릭온");
         if (playerData.statPoints >= 1)
         {
             if (StatType.Int == type)
@@ -62,8 +61,6 @@ public class StatPlusBtn : MonoBehaviour
                 playerData.playerStr++;
 
             playerData.statPoints--;
-
-            Debug.Log("플러스 버튼 클릭");
         }
     }
 }

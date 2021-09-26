@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private float isSkillTime;
     private bool inventoryUIB;
 
+    public bool characterStatsUIB;
+
     //public TrailRenderer trailRenderer;
     public GameObject hitEffect;
 
@@ -61,8 +63,11 @@ public class PlayerController : MonoBehaviour
 
     public List<GameObject> testListObj;
     public GameObject inventoryUI;
+    public GameObject characterStats;
     public InventoryUI inventoryUIC;
     private UiScript uiScript;
+    public GameObject skill3Range;
+    public Vector3 skill3Pos;
 
     private void Awake()
     {
@@ -70,7 +75,9 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponent<Rigidbody>();
         skill1Pos = transform.GetChild(0).GetComponent<Transform>();
+        skill3Range = GameObject.Find("Skill3Range");
         inventoryUI = GameObject.Find("UI/InventoryUI");
+        characterStats = GameObject.Find("UI/CharacterStats");
         inventoryUIC = GameObject.Find("UI").GetComponent<InventoryUI>();
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         skill2Wave = GameObject.Find("Skill2Wave");
@@ -94,12 +101,43 @@ public class PlayerController : MonoBehaviour
         Interation();
         Skill1();
         Skill2();
+        Skill3();
         AutoSwap();
         Portion();
         //if (Input.GetKeyDown(KeyCode.B))
         //{
         //    Instantiate(testListObj[0], transform.position, transform.rotation);
         //}
+    }
+
+    private void Skill3()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && !isSkill)
+        {
+            if (!(playerData.skill3B))
+            {
+                if (playerData.curentMp >= 5)
+                {
+                    playerData.skill3B = true;
+                    playerData.curentMp -= 5;
+                    isSkillTime = 0.2f;
+                    StartCoroutine(IsSkillOnOffCo());
+                    anim.Play("Skill03");
+                    skill3Range.SetActive(true);
+                }
+                else if (playerData.curentMp < 5)
+                {
+                    //explanationText.text = "마나가 부족합니다.";
+                    uiScript.explanationTextUI.text = "마나가 부족합니다.";
+                    uiScript.ExplanationUI();
+                }
+            }
+            else
+            {
+                uiScript.explanationTextUI.text = "스킬이 쿨타임 입니다.";
+                uiScript.ExplanationUI();
+            }
+        }
     }
 
     private void Skill2()
@@ -352,6 +390,11 @@ public class PlayerController : MonoBehaviour
         {
             inventoryUIB = !inventoryUIB;
             inventoryUI.SetActive(inventoryUIB);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            characterStatsUIB = !characterStatsUIB;
+            characterStats.SetActive(characterStatsUIB);
         }
         //dDown = Input.GetButton("Dodge");
         //iDown = Input.GetButton("Interation");

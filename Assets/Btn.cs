@@ -17,7 +17,6 @@ public class Btn : MonoBehaviour
     {
         if (playerData.randomPoints >= 1)
         {
-            Debug.Log("버튼 클릭");
             animator.Play("Btn");
             playerData.randomPoints--;
             playerData.statPoints += Random.Range(1, 7);

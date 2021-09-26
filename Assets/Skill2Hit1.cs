@@ -6,12 +6,12 @@ public class Skill2Hit1 : MonoBehaviour
 {
     private void OnEnable()
     {
-        Debug.Log(Time.time);
+        //Debug.Log(Time.time);
     }
 
     private void OnDestroy()
     {
-        Debug.Log(Time.time);
+        //Debug.Log(Time.time);
     }
 
     private void Start()
