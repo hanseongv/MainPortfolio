@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigid;
     public Transform skill1Pos;
     public float autoSwapTime;
+    public GameObject skill2Wave;
 
     //public GameObject skill1SwordEffect;
     private Vector3 moveVec;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         inventoryUI = GameObject.Find("UI/InventoryUI");
         inventoryUIC = GameObject.Find("UI").GetComponent<InventoryUI>();
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
+        skill2Wave = GameObject.Find("Skill2Wave");
         //trailRenderer.emitting = true;
         //임시
     }
@@ -90,12 +92,21 @@ public class PlayerController : MonoBehaviour
         Swap();
         Interation();
         Skill1();
+        Skill2();
         AutoSwap();
         Portion();
         //if (Input.GetKeyDown(KeyCode.B))
         //{
         //    Instantiate(testListObj[0], transform.position, transform.rotation);
         //}
+    }
+
+    private void Skill2()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            skill2Wave.SetActive(true);
+        }
     }
 
     public Text explanationText;
