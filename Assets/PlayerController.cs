@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
     public bool isFireReady;
     private bool isFireReady2;
     private bool isJump;
-    private bool isSkill1;
+    private bool isSkill;
+    private float isSkillTime;
     private bool inventoryUIB;
 
     //public TrailRenderer trailRenderer;
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //timed += Time.deltaTime;
-        if (isSkill1)
+        if (isSkill)
             return;
         GetInput();
         if (inventoryUIB)
@@ -103,40 +104,45 @@ public class PlayerController : MonoBehaviour
 
     private void Skill2()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && !isSkill)
         {
-            skill2Wave.SetActive(true);
+            if (!(playerData.skill2B))
+            {
+                if (playerData.curentMp >= 20)
+                {
+                    playerData.skill2B = true;
+                    playerData.curentMp -= 20;
+                    isSkillTime = 1.8f;
+                    StartCoroutine(IsSkillOnOffCo());
+                    anim.Play("Skill02");
+                    skill2Wave.SetActive(true);
+                }
+                else if (playerData.curentMp < 20)
+                {
+                    //explanationText.text = "마나가 부족합니다.";
+                    uiScript.explanationTextUI.text = "마나가 부족합니다.";
+                    uiScript.ExplanationUI();
+                }
+            }
+            else
+            {
+                uiScript.explanationTextUI.text = "스킬이 쿨타임 입니다.";
+                uiScript.ExplanationUI();
+            }
         }
     }
 
     public Text explanationText;
 
-    private void AutoSwap()
-    {
-        if (autoSwapTime < 15 && playerData.equipWeapon != playerData.hasWeapon[0])
-            autoSwapTime += Time.deltaTime;
-
-        if (autoSwapTime > 15 && playerData.equipWeapon != playerData.hasWeapon[0])
-        {
-            IEnumerator swapAnimCoroutine;
-            swapAnimCoroutine = SwapTrail();
-            playerData.equipWeapon.SetActive(false);
-
-            playerData.equipWeapon = playerData.hasWeapon[0];
-
-            anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
-        }
-    }
-
     private void Skill1()
     {
-        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill1)
+        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill)
         {
             if (!(playerData.skill1B))
             {
-                if (playerData.curentMp >= 20)
+                if (playerData.curentMp >= 50)
                 {
-                    playerData.curentMp -= 20;
+                    playerData.curentMp -= 50;
                     playerData.skill1B = true;
                     StartCoroutine(Skill1Co());
                 }
@@ -152,6 +158,23 @@ public class PlayerController : MonoBehaviour
                 uiScript.explanationTextUI.text = "스킬이 쿨타임 입니다.";
                 uiScript.ExplanationUI();
             }
+        }
+    }
+
+    private void AutoSwap()
+    {
+        if (autoSwapTime < 15 && playerData.equipWeapon != playerData.hasWeapon[0])
+            autoSwapTime += Time.deltaTime;
+
+        if (autoSwapTime > 15 && playerData.equipWeapon != playerData.hasWeapon[0])
+        {
+            IEnumerator swapAnimCoroutine;
+            swapAnimCoroutine = SwapTrail();
+            playerData.equipWeapon.SetActive(false);
+
+            playerData.equipWeapon = playerData.hasWeapon[0];
+
+            anim.Play("SwapRe");//현재 착용 무기가 널무기일 때
         }
     }
 
@@ -191,9 +214,16 @@ public class PlayerController : MonoBehaviour
 
     public GameObject OnEffect;
 
+    private IEnumerator IsSkillOnOffCo()
+    {
+        isSkill = true;
+        yield return new WaitForSeconds(isSkillTime);
+        isSkill = false;
+    }
+
     private IEnumerator Skill1Co()
     {
-        isSkill1 = true;
+        isSkill = true;
         Color originC = skill1SwordRenderer.material.color;
         anim.Play("Skill01");
 
@@ -229,7 +259,7 @@ public class PlayerController : MonoBehaviour
         skill1SwordRenderer.material.color = originC;
         fireYellowEffect.SetActive(false);
         yield return new WaitForSeconds(0.6f);
-        isSkill1 = false;
+        isSkill = false;
     }
 
     //public int tenum = 30;
@@ -358,7 +388,7 @@ public class PlayerController : MonoBehaviour
         playerData.curentHp -= hitDamage;
 
         Debug.Log("데미지 입음" + hitDamage);
-        if (!isSkill1)
+        if (!isSkill)
         {
             anim.Play("GetHit");
             Instantiate(hitEffect, hitPos.position, transform.rotation);

@@ -24,6 +24,7 @@ public class UiScript : MonoBehaviour
     public Text explanationTextUI;
     public GameObject skill1CoolObj;
     public Image skill1CoolImage;
+    public Image skill2CoolImage;
     public Text portionText;
     public GameObject characterStats;
     public Text characterStatsText;
@@ -44,7 +45,7 @@ public class UiScript : MonoBehaviour
         hpHideBar = GameObject.Find("UI/CharacterStatus/Bar/HpBarHide").GetComponent<Image>();
         mpHideBar = GameObject.Find("UI/CharacterStatus/Bar/MpBarHide").GetComponent<Image>();
         skill1CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<Image>();
-
+        skill2CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill2/Image/SkillCool").GetComponent<Image>();
         portionText = GameObject.Find("UI/ControlUI/RightControl/Portion/Text").GetComponent<Text>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
@@ -94,20 +95,13 @@ public class UiScript : MonoBehaviour
     private void Update()
     {
         Stat();
-
-        if (playerData.skill1B)
-        {
-            //skill1CoolObj.SetActive(true);
-            skill1CoolImage.enabled = true;
-            skill1CoolImage.fillAmount = playerData.skill1Time / playerData.skill1TimeMax;
-        }
-        else
-        {
-            skill1CoolImage.enabled = false;
-            //skill1CoolObj.SetActive(false);
-        }
-
+        SkillCoolImage();
+        UIState();
         //이름
+    }
+
+    private void UIState()
+    {
         if (oldName != playerData.playerName)
         {
             //Debug.Log("에치피변동ㅇ요");
@@ -147,6 +141,33 @@ public class UiScript : MonoBehaviour
             expText.text = $"{playerData.curentExp}/{playerData.maxExp[playerData.level - 1]} [{expPersent.ToString("N1")}%]";
 
             expBar.fillAmount = expPersent * 0.01f;
+        }
+    }
+
+    private void SkillCoolImage()
+    {
+        if (playerData.skill1B)
+        {
+            //skill1CoolObj.SetActive(true);
+            skill1CoolImage.enabled = true;
+            skill1CoolImage.fillAmount = playerData.skill1Time / playerData.skill1TimeMax;
+        }
+        else
+        {
+            skill1CoolImage.enabled = false;
+            //skill1CoolObj.SetActive(false);
+        }
+
+        if (playerData.skill2B)
+        {
+            //skill1CoolObj.SetActive(true);
+            skill2CoolImage.enabled = true;
+            skill2CoolImage.fillAmount = playerData.skill2Time / playerData.skill2TimeMax;
+        }
+        else
+        {
+            skill2CoolImage.enabled = false;
+            //skill1CoolObj.SetActive(false);
         }
     }
 

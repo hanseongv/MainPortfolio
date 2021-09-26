@@ -14,7 +14,7 @@ public class StatOnOffBtn : MonoBehaviour
     public OnOffType onOfftype;
     public GameObject characterStatObj;
 
-    private void Start()
+    private void Awake()
     {
         switch (btnType)
         {
