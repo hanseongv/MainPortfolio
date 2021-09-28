@@ -25,6 +25,7 @@ public class UiScript : MonoBehaviour
     public GameObject skill1CoolObj;
     public Image skill1CoolImage;
     public Image skill2CoolImage;
+    public Image skill3CoolImage;
     public Text portionText;
     public GameObject characterStats;
     public Text characterStatsText;
@@ -46,6 +47,7 @@ public class UiScript : MonoBehaviour
         mpHideBar = GameObject.Find("UI/CharacterStatus/Bar/MpBarHide").GetComponent<Image>();
         skill1CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillCool").GetComponent<Image>();
         skill2CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill2/Image/SkillCool").GetComponent<Image>();
+        skill3CoolImage = GameObject.Find("UI/ControlUI/RightControl/Skill3/Image/SkillCool").GetComponent<Image>();
         portionText = GameObject.Find("UI/ControlUI/RightControl/Portion/Text").GetComponent<Text>();
         levelText = GameObject.Find("UI/CharacterStatus/LevelImage/Level").GetComponent<Text>();
         nameText = GameObject.Find("UI/CharacterStatus/Name").GetComponent<Text>();
@@ -167,6 +169,17 @@ public class UiScript : MonoBehaviour
         else
         {
             skill2CoolImage.enabled = false;
+            //skill1CoolObj.SetActive(false);
+        }
+        if (playerData.skill3B)
+        {
+            //skill1CoolObj.SetActive(true);
+            skill3CoolImage.enabled = true;
+            skill3CoolImage.fillAmount = playerData.skill3Time / playerData.skill3TimeMax;
+        }
+        else
+        {
+            skill3CoolImage.enabled = false;
             //skill1CoolObj.SetActive(false);
         }
     }

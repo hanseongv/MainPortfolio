@@ -7,6 +7,7 @@ public class Skill3 : MonoBehaviour
     public PlayerController playerController;
     public GameObject player;
     private bool on;
+    public GameObject effect;
 
     private void Start()
     {
@@ -23,6 +24,8 @@ public class Skill3 : MonoBehaviour
             if (other.CompareTag("Monster"))
             {
                 //playerController.skill3Pos = other.transform.forward * -1;
+                //player.transform.position = new Vector3(other.transform.position.x, player.transform.position.y, other.transform.position.z);
+                Instantiate(effect, player.transform.position, Quaternion.identity);
                 player.transform.position = other.transform.position;
             }
             gameObject.SetActive(false);
