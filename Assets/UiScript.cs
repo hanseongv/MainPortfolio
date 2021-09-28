@@ -94,8 +94,13 @@ public class UiScript : MonoBehaviour
         }
     }
 
+    public GameObject optionUI;
+    public GameObject reQuestions;
+
     private void Start()
     {
+        optionUI = GameObject.Find("UI/OptionUI");
+        reQuestions = GameObject.Find("UI/ReQuestions");
         skill1LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillImage/SkillImageLock");
         skill2LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill2/Image/SkillImage/SkillImageLock");
         skill3LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill3/Image/SkillImage/SkillImageLock");
@@ -135,6 +140,8 @@ public class UiScript : MonoBehaviour
         explanationTextUI = explanation.GetComponentInChildren<Text>();
 
         characterStatObj = GameObject.Find("UI/CharacterStats");
+        optionUI.SetActive(false);
+        reQuestions.SetActive(false);
         characterStatObj.SetActive(false);
         explanation.SetActive(false);
     }
