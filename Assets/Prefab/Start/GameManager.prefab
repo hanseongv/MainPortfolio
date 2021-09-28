@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2471157157530645785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2471157157530645767}
+  - component: {fileID: 2471157157530645766}
+  - component: {fileID: 2471157157530645764}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2471157157530645767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471157157530645785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2471157157530645766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471157157530645785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b0138a1109788468c5b7905ac867f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  monsterNormal: {fileID: 0}
+  playerName: 
+  level: 1
+  playerStr: 0
+  playerInt: 0
+  randomPoints: 5
+  statPoints: 0
+  skillPoints: 0
+  playerSpeed: 5
+  playerJumpPower: 5
+  playerPhyDamage: 0
+  playerMagDamage: 0
+  curentHp: 50
+  maxHp: 50
+  curentMaxHp: 50
+  curentMp: 50
+  maxMp: 50
+  curentMaxMp: 50
+  maxExp: 
+  curentExp: 2
+  playerGold: 0
+  skill1Level: 1
+  hasWeapon:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  equipWeapon: {fileID: 0}
+  equipWeaponEffect: {fileID: 0}
+  equipWeaponTrail: {fileID: 0}
+  equipWeaponRate: 0
+  camList: []
+  curentCam: {fileID: 0}
+  equipWeaponBoxColl: {fileID: 0}
+  equipmentItemId: 
+  equipmentItemIntText: 
+  equipmentItemSprite: []
+  hasEquipmentItemId: 0
+  hasEquipmentItemIntText: 0
+  hasEquipmentItemSprite: {fileID: 0}
+  changeId: 0
+  changeIntText: 0
+  changeSprite: {fileID: 0}
+  changeNum: 0000000000000000
+  changeCNum: 0000000000000000
+  changeONum: 0000000000000000
+  changeItemType: 0
+  consumableItemId: 
+  consumableItemIntText: 
+  consumableItemSprite: []
+  otherItemId: 
+  otherItemIntText: 
+  otherItemSprite: []
+  itemECount: 0
+  itemCCount: 0
+  itemOCount: 0
+  inventoryUI: {fileID: 0}
+  skill1Time: 10
+  skill1TimeMax: 10
+  skill2Time: 8
+  skill2TimeMax: 8
+  skill3Time: 1
+  skill3TimeMax: 1
+  skill1B: 0
+  skill2B: 0
+  skill3B: 0
+  skill1On: 0
+  skill2On: 0
+  skill3On: 0
+  uiScript: {fileID: 0}
+  hpCount: 0
+  inventoryAddNum: 0
+  inventoryMNum: 0
+  consumableOnlyAddNum: 0
+  otherOnlyAddNum: 0
+--- !u!114 &2471157157530645764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2471157157530645785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a0b6e2b6d7d77749a435cbe1e3f8dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  name: 
+  id: 0

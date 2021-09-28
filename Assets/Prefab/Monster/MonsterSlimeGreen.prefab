@@ -184,9 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 0
   monsterAttackType: 0
-  monsterHp: 10
-  monsterMaxHp: 10
-  monsterDamage: 5
+  monsterHp: 15
+  monsterMaxHp: 15
+  monsterDamage: 3
   knockBackForce: 2
   monsterExp: 2
   monsterSpeed: 1

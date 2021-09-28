@@ -261,7 +261,7 @@ public class PlayerData : MonoBehaviour
         inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         maxExp = new int[] { 15, 50, 100, 500, 1000, 1000000000 };
-
+        hasWeapon[0] = weaponList[0];
         equipWeapon = hasWeapon[0];
     }
 
