@@ -33,11 +33,84 @@ public class UiScript : MonoBehaviour
     public Text characterRandomPointText;
     public Text characterNameText;
 
+    public GameObject characterSkillUI;
+    public GameObject skill1OffImage;
+    public Text skill1LockLevel;
+    public GameObject skill2OffImage;
+    public Text skill2LockLevel;
+    public GameObject skill3OffImage;
+    public Text skill3LockLevel;
+    public Text skillPoint;
+    public GameObject skill1PlusBtnImage;
+    public GameObject skill2PlusBtnImage;
+    public GameObject skill3PlusBtnImage;
+    public GameObject skill1LockImage;
+    public GameObject skill2LockImage;
+    public GameObject skill3LockImage;
+
     //public Text characterStatText;
     public GameObject characterStatObj;
 
+    private void SkillUI()
+    {
+        skillPoint.text = $"{playerData.skillPoints}";
+
+        if (playerData.level >= 2)
+            skill1LockLevel.color = Color.white;
+        if (playerData.level >= 3)
+            skill2LockLevel.color = Color.white;
+        if (playerData.level >= 5)
+            skill3LockLevel.color = Color.white;
+
+        if (playerData.skillPoints >= 1)
+        {
+            skill1PlusBtnImage.SetActive(true);
+            skill2PlusBtnImage.SetActive(true);
+            skill3PlusBtnImage.SetActive(true);
+        }
+        else
+        {
+            skill1PlusBtnImage.SetActive(false);
+            skill2PlusBtnImage.SetActive(false);
+            skill3PlusBtnImage.SetActive(false);
+        }
+        if (playerData.skill1On)
+        {
+            skill1PlusBtnImage.SetActive(false);
+            skill1OffImage.SetActive(false);
+            skill3LockImage.SetActive(false);
+        }
+        if (playerData.skill2On)
+        {
+            skill2PlusBtnImage.SetActive(false);
+            skill2OffImage.SetActive(false);
+            skill2LockImage.SetActive(false);
+        }
+        if (playerData.skill3On)
+        {
+            skill3PlusBtnImage.SetActive(false);
+            skill3OffImage.SetActive(false);
+            skill1LockImage.SetActive(false);
+        }
+    }
+
     private void Start()
     {
+        skill1LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillImage/SkillImageLock");
+        skill2LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill2/Image/SkillImage/SkillImageLock");
+        skill3LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill3/Image/SkillImage/SkillImageLock");
+        characterSkillUI = GameObject.Find("UI/CharacterSkill");
+        skillPoint = GameObject.Find("UI/CharacterSkill/SkillPointImage/SkillPoint").GetComponent<Text>();
+        skill1OffImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill1/SkillImage/SkillImageLock");
+        skill2OffImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill2/SkillImage/SkillImageLock");
+        skill3OffImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill3/SkillImage/SkillImageLock");
+        skill1LockLevel = GameObject.Find("UI/CharacterSkill/SkillList/Skill1/LockLevel").GetComponent<Text>();
+        skill2LockLevel = GameObject.Find("UI/CharacterSkill/SkillList/Skill2/LockLevel").GetComponent<Text>();
+        skill3LockLevel = GameObject.Find("UI/CharacterSkill/SkillList/Skill3/LockLevel").GetComponent<Text>();
+        skill1PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill1/Skill1Plus/PlusBtnOn");
+        skill2PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill2/Skill1Plus/PlusBtnOn");
+        skill3PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill3/Skill1Plus/PlusBtnOn");
+        characterSkillUI.SetActive(false);
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         expText = GameObject.Find("UI/ExpBarImageBg/ExpBarText").GetComponent<Text>();
         expBar = GameObject.Find("UI/ExpBarImageBg/ExpBarImage").GetComponent<Image>();
@@ -99,6 +172,7 @@ public class UiScript : MonoBehaviour
         Stat();
         SkillCoolImage();
         UIState();
+        SkillUI();
         //이름
     }
 

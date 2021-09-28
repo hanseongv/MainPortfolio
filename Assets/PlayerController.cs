@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private bool inventoryUIB;
 
     public bool characterStatsUIB;
+    public bool skillUIB;
 
     //public TrailRenderer trailRenderer;
     public GameObject hitEffect;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> testListObj;
     public GameObject inventoryUI;
     public GameObject characterStats;
+    public GameObject skillUI;
     public InventoryUI inventoryUIC;
     private UiScript uiScript;
     public GameObject skill3Range;
@@ -79,6 +81,7 @@ public class PlayerController : MonoBehaviour
         inventoryUI = GameObject.Find("UI/InventoryUI");
         characterStats = GameObject.Find("UI/CharacterStats");
         inventoryUIC = GameObject.Find("UI").GetComponent<InventoryUI>();
+        skillUI = GameObject.Find("UI/CharacterSkill");
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
         skill2Wave = GameObject.Find("Skill2Wave");
         //trailRenderer.emitting = true;
@@ -112,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private void Skill3()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !isSkill)
+        if (Input.GetKeyDown(KeyCode.F) && !isSkill && playerData.skill1On)
         {
             if (!(playerData.skill3B))
             {
@@ -142,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     private void Skill2()
     {
-        if (Input.GetKeyDown(KeyCode.D) && !isSkill)
+        if (Input.GetKeyDown(KeyCode.D) && !isSkill && playerData.skill2On)
         {
             if (!(playerData.skill2B))
             {
@@ -174,7 +177,7 @@ public class PlayerController : MonoBehaviour
 
     private void Skill1()
     {
-        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill)
+        if (playerData.equipWeapon != playerData.hasWeapon[0] && Input.GetKeyDown(KeyCode.R) && !isSkill && playerData.skill3On)
         {
             if (!(playerData.skill1B))
             {
@@ -396,8 +399,11 @@ public class PlayerController : MonoBehaviour
             characterStatsUIB = !characterStatsUIB;
             characterStats.SetActive(characterStatsUIB);
         }
-        //dDown = Input.GetButton("Dodge");
-        //iDown = Input.GetButton("Interation");
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            skillUIB = !skillUIB;
+            skillUI.SetActive(skillUIB);
+        }
     }
 
     public void Shake()

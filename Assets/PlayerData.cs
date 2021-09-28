@@ -97,6 +97,10 @@ public class PlayerData : MonoBehaviour
     public bool skill1B;
     public bool skill2B;
     public bool skill3B;
+
+    public bool skill1On;
+    public bool skill2On;
+    public bool skill3On;
     public UiScript uiScript;
     public int hpCount;
 
@@ -256,7 +260,7 @@ public class PlayerData : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         inventoryUI = GameObject.Find("UI").GetComponent<InventoryUI>();
         uiScript = GameObject.Find("UI").GetComponent<UiScript>();
-        maxExp = new int[] { 15, 50, 100, 500, 1000 };
+        maxExp = new int[] { 15, 50, 100, 500, 1000, 1000000000 };
 
         equipWeapon = hasWeapon[0];
     }
@@ -270,6 +274,13 @@ public class PlayerData : MonoBehaviour
         EquipWeapon();
         Skill();
         PhyDamageCal();
+        TestKey();
+    }
+
+    private void TestKey()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+            curentExp += 500;
     }
 
     private float temp;
