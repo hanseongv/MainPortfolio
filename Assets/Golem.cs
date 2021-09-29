@@ -70,7 +70,7 @@ public class Golem : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
         //ExclamationMarkImage = GameObject.Find("Canvas/ExclamationMarkImage");
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
-        attackCo = Attack();
+
         rigid = GetComponent<Rigidbody>();
         //hpBar = Resources.Load<GameObject>("HpBar");
         //Instantiate(hpBar);
@@ -122,7 +122,7 @@ public class Golem : MonoBehaviour
 
         yield return new WaitForSeconds(offSkillTime);
 
-        Instantiate(skillBulletStone, skillBulletPos.position, skillBulletStone.transform.rotation, transform);
+        Instantiate(skillBulletStone, skillBulletPos.position, skillBulletPos.transform.rotation, transform);
 
         skillHandStone.SetActive(false);
 
@@ -149,14 +149,24 @@ public class Golem : MonoBehaviour
                 isHissing = true;
                 Instantiate(ExclamationMark, hitDamageNumPos.position, ExclamationMark.transform.rotation);
             }
-            else if (dis <= attackSkillArea && dis > attackShortArea && skillDelay > skillRate)//스킬 실행
+            //else if (dis <= attackSkillArea && dis > attackShortArea && skillDelay > skillRate)//스킬 실행
+            //{
+            //    transform.LookAt(target.transform);
+            //    StartCoroutine(Skill());
+            //    anim.SetBool("isBattle", false);
+            //    anim.SetBool("isBattleIdle", false);
+            //}
+            else if (dis <= attackSkillArea && dis > attackShortArea)//스킬 실행
             {
+                if (skillDelay > skillRate)
+                {
+                    StartCoroutine(Skill());
+                }
                 transform.LookAt(target.transform);
-                StartCoroutine(Skill());
+
                 anim.SetBool("isBattle", false);
                 anim.SetBool("isBattleIdle", false);
             }
-
             //else if (dis > attackShortArea && dis <= hissingRange)//dis > 7 전투시작전 하악질 상태
             //{
             //    transform.LookAt(target.transform);
@@ -212,6 +222,9 @@ public class Golem : MonoBehaviour
     {
         if (isDie)
             return;
+        //attackCo = Attack();
+        if (attackCo != null)
+            StopCoroutine(attackCo);
         hitDamageScript.hitBarTime = 0;
         hpBarImage.fillAmount = ((float)monsterHp - hitDamage) / (float)monsterMaxHp;
         hpBar.SetActive(true);
@@ -262,10 +275,11 @@ public class Golem : MonoBehaviour
                 {
                     isChase = false;
                     anim.SetBool("isBattleIdle", true);
-                    if (fireRate < fireDelay)//공격속도<공격딜레이
+                    if (fireRate < fireDelay && !isHit)//공격속도<공격딜레이
                     {
                         //StartCoroutine(attackCo);
-                        StartCoroutine(Attack());
+                        attackCo = Attack();
+                        StartCoroutine(attackCo);
                         Debug.Log("z");
                     }
                 }

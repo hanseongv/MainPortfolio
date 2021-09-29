@@ -13,7 +13,7 @@ public class HitDamageScript : MonoBehaviour
     //public GameObject target;
     private void Awake()
     {
-        hitBarImage = GameObject.Find("HpBar/HpBarImage").GetComponent<Image>();
+        //hitBarImage = GameObject.Find("HpBar/HpBarImage").GetComponent<Image>();
     }
 
     private void OnEnable()

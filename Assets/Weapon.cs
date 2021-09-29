@@ -11,11 +11,12 @@ public class Weapon : MonoBehaviour
     private MonsterNormal monsterNormal;
     private Golem golem;
     private StoneSkill stoneSkill;
+    public PlayerController playerController;
 
     private void Awake()
     {
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
-
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         playerData.EquipWeapon(gameObject, rate);
         gameObject.SetActive(false);
         boxCollider = GetComponent<BoxCollider>();
@@ -27,14 +28,7 @@ public class Weapon : MonoBehaviour
         if (other.CompareTag("Monster"))
         {
             boxCollider.enabled = false;
-            //if (other.GetComponent<MonsterNormal>())
-            //{
-            //    Debug.Log("몬스터");
-            //}
-            //if (other.GetComponent<Golem>())
-            //{
-            //    Debug.Log("골렘");
-            //}
+
             monsterNormal = other.GetComponent<MonsterNormal>();
             int damage = weaponDamage + playerData.playerPhyDamage;
             monsterNormal.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
@@ -43,14 +37,7 @@ public class Weapon : MonoBehaviour
         if (other.CompareTag("Golem"))
         {
             boxCollider.enabled = false;
-            //if (other.GetComponent<MonsterNormal>())
-            //{
-            //    Debug.Log("몬스터");
-            //}
-            //if (other.GetComponent<Golem>())
-            //{
-            //    Debug.Log("골렘");
-            //}
+
             golem = other.GetComponent<Golem>();
             int damage = weaponDamage + playerData.playerPhyDamage;
             golem.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
@@ -61,6 +48,8 @@ public class Weapon : MonoBehaviour
             stoneSkill = other.GetComponent<StoneSkill>();
             Instantiate(stoneSkill.destroyStone, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            playerController.Shake();
+
             Debug.Log("바위 부심");
         }
     }

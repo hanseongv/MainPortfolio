@@ -176,9 +176,10 @@ public class MonsterNormal : MonoBehaviour
     {
         if (isDie)
             return;
-        hitDamageScript.hitBarTime = 0;
-        hpBarImage.fillAmount = ((float)monsterHp - hitDamage) / (float)monsterMaxHp;
         hpBar.SetActive(true);
+        hitDamageScript.hitBarTime = 0;
+        hpBarImage.fillAmount = ((float)monsterHp - (float)hitDamage) / (float)monsterMaxHp;
+
         hitDamageNumText = hitDamageNumObj.GetComponentInChildren<Text>();
         hitDamageNumText.text = $"{hitDamage}";
         Instantiate(hitDamageNumObj, hitDamageNumPos.position, hitDamageNumObj.transform.rotation);
