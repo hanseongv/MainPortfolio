@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class MonsterNormal : MonoBehaviour
@@ -48,11 +49,16 @@ public class MonsterNormal : MonoBehaviour
     public float fireDelay;
     public float fireRate = 1.5f;
     public float dis;
-
+    public GameObject hpBar;
     private IEnumerator attackCo;
+    public Transform hitDamageNumPos;
+    public Image hpBarImage;
+    public HitDamageScript hitDamageScript;
 
     private void Awake()
+
     {
+        hitDamageNumPos = transform.GetChild(1).GetComponent<Transform>();
         nav = GetComponent<NavMeshAgent>();
         target = GameObject.Find("Player");
         anim = GetComponentInChildren<Animator>();
@@ -64,6 +70,12 @@ public class MonsterNormal : MonoBehaviour
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         attackCo = Attack();
         rigid = GetComponent<Rigidbody>();
+        //hpBar = Resources.Load<GameObject>("HpBar");
+        //Instantiate(hpBar);
+        hitDamageScript = hpBar.GetComponent<HitDamageScript>();
+        hitDamageScript.target = gameObject;
+        hpBarImage = hitDamageScript.hitBarImage;
+        hpBar.SetActive(false);
     }
 
     private void Update()
@@ -76,7 +88,10 @@ public class MonsterNormal : MonoBehaviour
         FireDelay();//임시
         Dying();
 
-        //ExclamationMarkImage.transform.position = Camera.main.WorldToScreenPoint(transform.position + f);
+        //if (hpBar)
+        //{
+        //    Debug.Log("에치비바");
+        //}
     }
 
     private void FireDelay()
@@ -154,10 +169,19 @@ public class MonsterNormal : MonoBehaviour
         //cam.transform.position = camPos;
     }
 
+    public GameObject hitDamageNumObj;
+    public Text hitDamageNumText;
+
     public void GetHit(int hitDamage, Transform hitPos)
     {
         if (isDie)
             return;
+        hitDamageScript.hitBarTime = 0;
+        hpBarImage.fillAmount = ((float)monsterHp - hitDamage) / (float)monsterMaxHp;
+        hpBar.SetActive(true);
+        hitDamageNumText = hitDamageNumObj.GetComponentInChildren<Text>();
+        hitDamageNumText.text = $"{hitDamage}";
+        Instantiate(hitDamageNumObj, hitDamageNumPos.position, hitDamageNumObj.transform.rotation);
         ShakeHit();
         //Shake();
         isChase = false;
@@ -252,21 +276,62 @@ public class MonsterNormal : MonoBehaviour
         if (monsterHp <= 0)
         {
             isDie = true;
-
+            hitDamageScript.hitBarTime = 0;
+            hpBarImage.fillAmount = (float)monsterHp / (float)monsterMaxHp;
+            Destroy(hpBar);
             nav.enabled = false;
             anim.Play("Die");
-            StopCoroutine(attackCo);
+            //StopCoroutine(attackCo);
             Invoke("Die", 1.5f);
         }
     }
 
+    public List<GameObject> dieDropItemList;
+    public GameObject coin;
+
+    private void DieDropItem()
+    {
+        float randomVecX = transform.position.x + Random.Range(0.5f, 2.5f);
+        float randomVecZ = transform.position.z + Random.Range(0.5f, 2.5f);
+        Vector3 randomVec = new Vector3(randomVecX, transform.position.y, randomVecZ);
+        int randomNum = Random.Range(0, dieDropItemList.Count);
+        Instantiate(dieDropItemList[randomNum], randomVec, Quaternion.identity);
+    }
+
+    private void DieDropCoin()
+    {
+        float randomVecX = transform.position.x + Random.Range(0.5f, 2.5f);
+        float randomVecZ = transform.position.z + Random.Range(0.5f, 2.5f);
+        Vector3 randomVec = new Vector3(randomVecX, transform.position.y, randomVecZ);
+        coin = Resources.Load<GameObject>("Coin");
+        Instantiate(coin, randomVec, Quaternion.identity);
+    }
+
     private void Die()
     {
+        float randomDropCount = Random.Range(0.05f, 0.15f);
+        InvokeRepeating("DieDropItem", 0f, 0.05f);
+        Invoke("DieDropItemStop", randomDropCount);
+        float randomDropCount2 = Random.Range(0.05f, 0.2f);
+        InvokeRepeating("DieDropCoin", 0f, 0.05f);
+        Invoke("DieDropCoinStop", randomDropCount2);
+
+        Debug.Log(randomDropCount);
         for (int i = 0; i < renderers.Length; i++)
             renderers[i].material.color = Color.black;
         rigid.constraints = RigidbodyConstraints.None;
         gameObject.layer = 31;
         playerData.curentExp += monsterExp;
         Destroy(gameObject, 1f);
+    }
+
+    private void DieDropItemStop()
+    {
+        CancelInvoke("DieDropItem");
+    }
+
+    private void DieDropCoinStop()
+    {
+        CancelInvoke("DieDropCoin");
     }
 }

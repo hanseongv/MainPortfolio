@@ -51,6 +51,9 @@ public class UiScript : MonoBehaviour
     //public Text characterStatText;
     public GameObject characterStatObj;
 
+    //public Text playerCoinText;
+    //public int oldPlayerCoin;
+
     private void SkillUI()
     {
         skillPoint.text = $"{playerData.skillPoints}";
@@ -115,7 +118,7 @@ public class UiScript : MonoBehaviour
         skill1PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill1/Skill1Plus/PlusBtnOn");
         skill2PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill2/Skill1Plus/PlusBtnOn");
         skill3PlusBtnImage = GameObject.Find("UI/CharacterSkill/SkillList/Skill3/Skill1Plus/PlusBtnOn");
-        characterSkillUI.SetActive(false);
+
         playerData = GameObject.Find("GameManager").GetComponent<PlayerData>();
         expText = GameObject.Find("UI/ExpBarImageBg/ExpBarText").GetComponent<Text>();
         expBar = GameObject.Find("UI/ExpBarImageBg/ExpBarImage").GetComponent<Image>();
@@ -133,12 +136,12 @@ public class UiScript : MonoBehaviour
         characterStats = GameObject.Find("UI/CharacterStats").GetComponent<GameObject>();
         characterStatsText = GameObject.Find("UI/CharacterStats/Stats/StatsUp/StatText").GetComponent<Text>();
         characterRandomPointText = GameObject.Find("UI/CharacterStats/Stats/StatsDown/SP/RandomPointInt").GetComponent<Text>();
-
+        //playerCoinText = GameObject.Find("UI/InventoryUI/EquipUI/Coin/Text").GetComponent<Text>();
         characterStatText = GameObject.Find("UI/CharacterStats/Stats/StatsUp/StatPointInt").GetComponent<Text>();
         characterNameText = GameObject.Find("UI/CharacterStats/PlayerName/Text").GetComponent<Text>();
         characterNameText.text = oldName;
         explanationTextUI = explanation.GetComponentInChildren<Text>();
-
+        characterSkillUI.SetActive(false);
         characterStatObj = GameObject.Find("UI/CharacterStats");
         optionUI.SetActive(false);
         reQuestions.SetActive(false);
@@ -180,8 +183,14 @@ public class UiScript : MonoBehaviour
         SkillCoolImage();
         UIState();
         SkillUI();
+        //Coin();
         //이름
     }
+
+    //private void Coin()
+    //{
+    //    playerCoinText.text = $"{playerData.playerCoin}";
+    //}
 
     private void UIState()
     {

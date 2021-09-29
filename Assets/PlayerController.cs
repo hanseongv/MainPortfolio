@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         if (isSkill)
             return;
         GetInput();
-        if (inventoryUIB)
+        if (inventoryUIB || characterStatsUIB || skillUIB)
             return;
         Move();
         Attack();
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
                     playerData.skill1B = true;
                     StartCoroutine(Skill1Co());
                 }
-                else if (playerData.curentMp < 20)
+                else if (playerData.curentMp < 50)
                 {
                     //explanationText.text = "마나가 부족합니다.";
                     uiScript.explanationTextUI.text = "마나가 부족합니다.";
@@ -482,14 +482,12 @@ public class PlayerController : MonoBehaviour
                 uiScript.ExplanationUI();
             }
 
-            Debug.Log("1");
             if (playerData.equipWeapon == playerData.hasWeapon[0])
             {
-                Debug.Log("1-1");
                 if (playerData.hasWeapon[1] != null)
                 {
                     autoSwapTime = 0;
-                    Debug.Log("1-1-1");
+
                     IEnumerator swapAnimCoroutine;
                     swapAnimCoroutine = SwapTrail();
                     playerData.equipWeapon.SetActive(false);
@@ -507,7 +505,6 @@ public class PlayerController : MonoBehaviour
             }
             else if (playerData.equipWeapon == playerData.hasWeapon[1])
             {
-                Debug.Log("1-2");
                 IEnumerator trailon;
                 trailon = TrailOn();
                 if (isFireReady2 && fireDelay > 0.5f) //공격 2

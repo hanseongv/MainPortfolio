@@ -223,7 +223,6 @@ public class PlayerData : MonoBehaviour
         otherItemId[changeONum[1]] = changeId;
         otherItemIntText[changeONum[1]] = changeIntText;
         otherItemSprite[changeONum[1]] = changeSprite;
-        Debug.Log("플레이어첸지");
     }
 
     public void UnEquip()
@@ -415,7 +414,7 @@ public class PlayerData : MonoBehaviour
 
             case ItemData.ItemType.Other:
                 itemOCount++;
-                Debug.Log("일반");
+
                 for (int i = 0; i < otherItemId.Count; i++)
                 {
                     if (otherItemId[i] == id)
@@ -424,7 +423,6 @@ public class PlayerData : MonoBehaviour
                         inventoryAddNum = i;
                         i = otherItemId.Count;
                         otherOnlyAddNum = true;
-                        Debug.Log("트루");
                     }
                     else
                     {
@@ -437,7 +435,6 @@ public class PlayerData : MonoBehaviour
                     {
                         if (otherItemId[i] == 0)
                         {
-                            Debug.Log("펄스");
                             otherItemId[i] = id;
                             otherItemSprite[i] = sprite;
 
@@ -449,10 +446,16 @@ public class PlayerData : MonoBehaviour
                     }
 
                 break;
+
+            case ItemData.ItemType.Coin:
+                playerCoin += count;
+                break;
         }
 
         //consumableItemId
     }
+
+    public int playerCoin;
 
     private void LevelUp()
     {

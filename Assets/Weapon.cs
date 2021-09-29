@@ -9,6 +9,8 @@ public class Weapon : MonoBehaviour
     private PlayerData playerData;
     public BoxCollider boxCollider;
     private MonsterNormal monsterNormal;
+    private Golem golem;
+    private StoneSkill stoneSkill;
 
     private void Awake()
     {
@@ -25,10 +27,41 @@ public class Weapon : MonoBehaviour
         if (other.CompareTag("Monster"))
         {
             boxCollider.enabled = false;
+            //if (other.GetComponent<MonsterNormal>())
+            //{
+            //    Debug.Log("몬스터");
+            //}
+            //if (other.GetComponent<Golem>())
+            //{
+            //    Debug.Log("골렘");
+            //}
             monsterNormal = other.GetComponent<MonsterNormal>();
             int damage = weaponDamage + playerData.playerPhyDamage;
             monsterNormal.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
             Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
+        }
+        if (other.CompareTag("Golem"))
+        {
+            boxCollider.enabled = false;
+            //if (other.GetComponent<MonsterNormal>())
+            //{
+            //    Debug.Log("몬스터");
+            //}
+            //if (other.GetComponent<Golem>())
+            //{
+            //    Debug.Log("골렘");
+            //}
+            golem = other.GetComponent<Golem>();
+            int damage = weaponDamage + playerData.playerPhyDamage;
+            golem.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
+            Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
+        }
+        if (other.CompareTag("Stone"))
+        {
+            stoneSkill = other.GetComponent<StoneSkill>();
+            Instantiate(stoneSkill.destroyStone, other.transform.position, Quaternion.identity);
+            Destroy(other.gameObject);
+            Debug.Log("바위 부심");
         }
     }
 

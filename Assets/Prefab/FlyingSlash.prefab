@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2475202198511687002}
   - component: {fileID: 1401684392}
   - component: {fileID: 3116502048389051609}
+  - component: {fileID: 6479817424762455439}
   m_Layer: 0
   m_Name: FlyingSlash
   m_TagString: Untagged
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   hitEffect2: {fileID: 7839574471927507868, guid: d276b6cc263c4404aa4ede82c1e82958, type: 3}
-  i: 0
+  boxCollider: {fileID: 0}
 --- !u!65 &1401684392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -143,6 +144,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6479817424762455439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346535348628820228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d897ae5c88318f645af49df7eee38adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 5
 --- !u!1001 &354484421
 PrefabInstance:
   m_ObjectHideFlags: 0

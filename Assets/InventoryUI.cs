@@ -289,8 +289,6 @@ public class InventoryUI : MonoBehaviour
         otherItemTextList[playerData.changeONum[0]].text = "" + changeIntText[1];
         otherItemImageList[playerData.changeONum[1]].sprite = changeSprite[0];
         otherItemTextList[playerData.changeONum[1]].text = "" + changeIntText[0];
-
-        Debug.Log("인벤첸지");
     }
 
     private void Update()

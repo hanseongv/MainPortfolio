@@ -9,6 +9,9 @@ TagManager:
   - Bullet
   - Pos
   - Item
+  - Golem
+  - Stone
+  - Weapon
   layers:
   - Default
   - TransparentFX

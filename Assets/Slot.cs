@@ -29,7 +29,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
         switch (type)
         {
             case ItemData.ItemType.Equipment:
-                Debug.Log("Drop");
 
                 playerData.changeNum[1] = num;
 
@@ -42,8 +41,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
             case ItemData.ItemType.Consumable:
 
-                Debug.Log("Drop");
-
                 playerData.changeCNum[1] = num;
                 if (playerData.consumableItemId[playerData.changeCNum[0]] != 0)
                 {
@@ -53,8 +50,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
                 break;
 
             case ItemData.ItemType.Other:
-
-                Debug.Log("Drop");
 
                 playerData.changeONum[1] = num;
                 if (playerData.otherItemId[playerData.changeONum[0]] != 0)
@@ -68,7 +63,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("스타트");
         playerData.changeItemType = type;
         switch (type)
         {
@@ -140,7 +134,6 @@ public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("끝");
         inventoryUI.dragItemObj.SetActive(false);
     }
 

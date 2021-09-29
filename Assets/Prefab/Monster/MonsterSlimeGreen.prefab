@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5197479739611178655}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &634627146
 SpriteRenderer:
@@ -82,6 +82,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1175475022606837370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2232847709360534399}
+  m_Layer: 6
+  m_Name: HitDamageNumPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2232847709360534399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175475022606837370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5197479739611178655}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5197479739611178648
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 926564330946517469}
+  - {fileID: 2232847709360534399}
   - {fileID: 5201485353602866520}
   - {fileID: 634627145}
   m_Father: {fileID: 0}
@@ -184,8 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 0
   monsterAttackType: 0
-  monsterHp: 15
-  monsterMaxHp: 15
+  monsterHp: 1000
+  monsterMaxHp: 10000
   monsterDamage: 3
   knockBackForce: 2
   monsterExp: 2
@@ -210,10 +241,17 @@ MonoBehaviour:
   fireDelay: 0
   fireRate: 1.5
   dis: 0
+  hitDamageNumObj: {fileID: 2526607302049062556, guid: ceff7de6e33aa214eadbd91c27370761, type: 3}
+  hitDamageNumText: {fileID: 0}
   ExclamationMark: {fileID: 8133124533319342219, guid: 4e159107b12f852488e9b7bee98791f6, type: 3}
   onCollTime: 0.3
   attackCount: 0
   renderers: []
+  dieDropItemList:
+  - {fileID: 7508004797320975619, guid: c23f0f386918ef441846c66675c6573a, type: 3}
+  - {fileID: 58133664940111827, guid: 38957cc37b9997c49a6226e415943657, type: 3}
+  - {fileID: 4340293595610647727, guid: c9d75be27aef20948970f8ba65f76e6e, type: 3}
+  coin: {fileID: 0}
 --- !u!1 &5472592067420684508
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4023215848608658, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4023215848608658, guid: 55776efecb0cd134ea5f418c2f97a705, type: 3}
       propertyPath: m_LocalPosition.x
