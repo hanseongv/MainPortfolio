@@ -6083,6 +6083,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1370684575}
     - target: {fileID: 582294407338897582, guid: 0027ed5c2ec1f98408229097913f741a, type: 3}
+      propertyPath: monsterHp
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 582294407338897582, guid: 0027ed5c2ec1f98408229097913f741a, type: 3}
+      propertyPath: monsterMaxHp
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 582294407338897582, guid: 0027ed5c2ec1f98408229097913f741a, type: 3}
       propertyPath: dieDropItemList.Array.size
       value: 4
       objectReference: {fileID: 0}
