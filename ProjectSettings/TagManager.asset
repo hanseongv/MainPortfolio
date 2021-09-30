@@ -12,6 +12,7 @@ TagManager:
   - Golem
   - Stone
   - Weapon
+  - Npc
   layers:
   - Default
   - TransparentFX

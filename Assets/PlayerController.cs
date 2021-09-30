@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform skill1Pos;
     public float autoSwapTime;
     public GameObject skill2Wave;
+    public bool talkToNpc;
 
     //public GameObject skill1SwordEffect;
     private Vector3 moveVec;
@@ -23,6 +24,10 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
     private float hAxis;
     private float vAxis;
+
+    private float moveX;
+    private float moveZ;
+
     public float trailOnTime = 0.5f;
     public float trailOffTime = 0.2f;
 
@@ -91,8 +96,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //timed += Time.deltaTime;
-        if (isSkill)
+        if (isSkill || talkToNpc)
+        {
+            anim.SetBool("isRun", false);
+            Debug.Log("토크중");
             return;
+        }
         GetInput();
         if (inventoryUIB || characterStatsUIB || skillUIB)
             return;
@@ -382,11 +391,34 @@ public class PlayerController : MonoBehaviour
         playerData.equipWeaponTrail.emitting = false;
     }
 
+    private void Move()
+    {
+        //moveVec = new Vector3(camPlayerMove.hAxis2, 0, camPlayerMove.vAxis2).normalized;
+        moveVec = new Vector3(hAxis, 0, vAxis).normalized;
+        //moveVec = new Vector3(moveX, 0, moveZ).normalized;
+        transform.position += moveVec * (wDown ? 0.2f : 1f) * playerData.playerSpeed * Time.deltaTime;
+        anim.SetBool("isRun", moveVec != Vector3.zero);
+    }
+
+    //public CamPlayerMove camPlayerMove;
+
     private void GetInput()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
-        //wDown = Input.GetButton("Walk");
+        //moveVec = Vector3.zero;
+        //moveZ = 0;
+        //moveX = 0;
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //    moveZ = 1;
+        //if (Input.GetKey(KeyCode.DownArrow))
+        //    transform.rotation = Quaternion.Euler(0, 180, 0);
+        //moveZ = -1;
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //    moveX = -1;
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //    moveX = 1;
+
         jDown = Input.GetButtonDown("Jump");
         fDown = Input.GetButtonDown("Fire1");
         if (Input.GetKeyDown(KeyCode.I))
@@ -455,14 +487,6 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("doJump");
             //isJump = true;
         }
-    }
-
-    private void Move()
-    {
-        moveVec = new Vector3(hAxis, 0, vAxis).normalized;
-
-        transform.position += moveVec * (wDown ? 0.2f : 1f) * playerData.playerSpeed * Time.deltaTime;
-        anim.SetBool("isRun", moveVec != Vector3.zero);
     }
 
     private void Attack()
@@ -569,6 +593,7 @@ public class PlayerController : MonoBehaviour
 
     private Item item;
     public GameObject nearObject;
+    public Npc npc;
 
     private void Interation()
     {
@@ -579,6 +604,15 @@ public class PlayerController : MonoBehaviour
                 item = nearObject.GetComponent<Item>();
                 playerData.GetItem(item.id, item.type, item.sprite, item.count);
                 Destroy(nearObject);
+            }
+            else if (nearObject.CompareTag("Npc"))
+            {
+                //item = nearObject.GetComponent<Item>();
+                //playerData.GetItem(item.id, item.type, item.sprite, item.count);
+                //Destroy(nearObject);
+
+                npc = nearObject.GetComponent<Npc>();
+                npc.onUI(gameObject);
             }
         }
     }
@@ -604,17 +638,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //if (other.tag == "Weapon")
-
-        //if (Input.GetKeyDown(KeyCode.G))
-        //{
         if (other.CompareTag("Item"))
         {
             nearObject = other.gameObject;
-
-            //playerData.ItemSprite.Add(item.sprite);
-            //playerData.itemId.Add(item.id);
-            //playerData.itemIndex.Add();
+        }
+        else if (other.CompareTag("Npc"))
+        {
+            nearObject = other.gameObject;
         }
     }
 
@@ -622,6 +652,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Item"))
             nearObject = null;
+        else if (other.CompareTag("Npc"))
+        {
+            nearObject = null;
+        }
     }
 
     //private void StopToWall()

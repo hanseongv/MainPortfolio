@@ -29,7 +29,7 @@ public class PlayerData : MonoBehaviour
     public int curentMaxMp = 50;
     public int[] maxExp;
     public int curentExp = 0;
-    public int playerGold = 0;
+
     //public List<int> playerPortion;
 
     public int skill1Level = 1;//테스트때만1
@@ -178,6 +178,28 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    private int num;
+    public int sellID;
+    public int sellCount;
+    public bool questB;
+
+    public void SellItem(int id)
+    {
+        for (int i = 0; i < otherItemId.Count; i++)
+        {
+            if (otherItemId[i] == id)
+            {
+                Debug.Log("셀아이템");
+                otherItemId[i] = 0;
+                otherItemIntText[i] = 0;
+                otherItemSprite[i] = null;
+                num = i;
+                inventoryUI.SellItemInven(num);
+                i = otherItemId.Count;
+            }
+        }
+    }
+
     public void SwapItem()
     {
         changeId = equipmentItemId[changeNum[0]];
@@ -280,6 +302,8 @@ public class PlayerData : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F5))
             curentExp += 500;
+        if (Input.GetKeyDown(KeyCode.F6))
+            playerCoin += 500;
     }
 
     private float temp;
@@ -370,7 +394,7 @@ public class PlayerData : MonoBehaviour
                 break;
 
             case ItemData.ItemType.Consumable:
-                itemCCount++;
+                itemCCount += count;
                 Debug.Log("일반");
                 //if (id == 101)
                 //{
@@ -413,7 +437,7 @@ public class PlayerData : MonoBehaviour
                 break;
 
             case ItemData.ItemType.Other:
-                itemOCount++;
+                itemOCount += count;
 
                 for (int i = 0; i < otherItemId.Count; i++)
                 {

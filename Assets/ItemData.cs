@@ -7,7 +7,7 @@ public class ItemData : MonoBehaviour
     public enum ItemType { Equipment, Consumable, Other, Coin };
 
     public ItemType type;
-    public string name;
+    public new string name;
     public int id;
 
     private void ItemList()

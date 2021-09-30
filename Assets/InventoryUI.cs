@@ -245,6 +245,13 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void SellItemInven(int num)
+    {
+        otherItemImageList[num].sprite = nullSprite;
+        otherItemTextList[num].text = "0";
+        Debug.Log("셀인벤");
+    }
+
     public void ChangeItemPos()
     {
         changeSprite[0] = equipmenItemImageList[playerData.changeNum[0]].sprite;
