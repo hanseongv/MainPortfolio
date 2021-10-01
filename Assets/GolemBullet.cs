@@ -18,7 +18,7 @@ public class GolemBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("온트리거엔터 발생");
+        //Debug.Log("온트리거엔터 발생");
         if (other.CompareTag("Player"))
         {
             playerController = other.GetComponent<PlayerController>();

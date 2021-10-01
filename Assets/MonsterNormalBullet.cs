@@ -22,12 +22,11 @@ public class MonsterNormalBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("온트리거엔터 발생");
         if (other.CompareTag("Player"))
         {
             playerController = other.GetComponent<PlayerController>();
             playerController.GetHit(monsterNormal.monsterDamage, gameObject.transform);
-            Debug.Log("플레이어한테 온트리거엔터 발생");
+            //Debug.Log("플레이어한테 온트리거엔터 발생");
 
             Rigidbody rigid = other.GetComponent<Rigidbody>();
 

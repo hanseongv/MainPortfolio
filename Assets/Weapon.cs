@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public BoxCollider boxCollider;
     private MonsterNormal monsterNormal;
     private Golem golem;
+    private Boss boss;
     private StoneSkill stoneSkill;
     public PlayerController playerController;
 
@@ -41,6 +42,15 @@ public class Weapon : MonoBehaviour
             golem = other.GetComponent<Golem>();
             int damage = weaponDamage + playerData.playerPhyDamage;
             golem.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
+            Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
+        }
+        if (other.CompareTag("Boss"))
+        {
+            boxCollider.enabled = false;
+
+            boss = other.GetComponent<Boss>();
+            int damage = weaponDamage + playerData.playerPhyDamage;
+            boss.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
             Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
         }
         if (other.CompareTag("Stone"))

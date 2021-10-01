@@ -122,7 +122,7 @@ public class Golem : MonoBehaviour
 
         yield return new WaitForSeconds(offSkillTime);
 
-        Instantiate(skillBulletStone, skillBulletPos.position, skillBulletPos.transform.rotation, transform);
+        Instantiate(skillBulletStone, skillBulletPos.position, skillBulletPos.transform.rotation/*, transform*/);
 
         skillHandStone.SetActive(false);
 

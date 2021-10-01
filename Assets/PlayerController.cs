@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         if (isSkill || talkToNpc || isStun)
         {
             anim.SetBool("isRun", false);
-            Debug.Log("토크중");
+            //Debug.Log("토크중");
             return;
         }
         GetInput();
@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour
         Shake();
         playerData.curentHp -= hitDamage;
 
-        Debug.Log("데미지 입음" + hitDamage);
+        //Debug.Log("데미지 입음" + hitDamage);
         if (!isSkill)
         {
             anim.Play("GetHit");
