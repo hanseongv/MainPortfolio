@@ -65,7 +65,6 @@ MonoBehaviour:
   curentMaxMp: 50
   maxExp: 
   curentExp: 2
-  playerGold: 0
   skill1Level: 1
   hasWeapon:
   - {fileID: 0}
@@ -136,10 +135,14 @@ MonoBehaviour:
   skill3On: 0
   uiScript: {fileID: 0}
   hpCount: 0
+  sellID: 0
+  sellCount: 0
+  questB: 0
   inventoryAddNum: 0
   inventoryMNum: 0
   consumableOnlyAddNum: 0
   otherOnlyAddNum: 0
+  playerCoin: 0
 --- !u!114 &2471157157530645764
 MonoBehaviour:
   m_ObjectHideFlags: 0

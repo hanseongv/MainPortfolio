@@ -27,8 +27,12 @@ public class Npc : MonoBehaviour
         playerPos = transform.GetChild(1).transform;
     }
 
+    public bool offNpc;
+
     public void onUI(GameObject player)
     {
+        if (offNpc)
+            return;
         if (npcType == NpcType.Quest && playerData.questB)
         {
             Debug.Log("온유0");
@@ -44,8 +48,37 @@ public class Npc : MonoBehaviour
         }
     }
 
+    public GameObject helpImage;
+    public GameObject clearImage;
+    public bool helpB = true;
+    public bool clearB = false;
+
     // Update is called once per frame
     private void Update()
     {
+        if (npcType == NpcType.Quest)
+        {
+            if (!helpB)
+            {
+                helpImage.SetActive(true);
+            }
+            else if (helpB)
+            {
+                helpImage.SetActive(false);
+            }
+            if (playerData.questBClear)
+            {
+                helpImage.SetActive(false);
+                clearImage.SetActive(true);
+            }
+            else
+            {
+                clearImage.SetActive(false);
+            }
+            //if (clearB)
+            //{
+            //    clearImage.SetActive(true);
+            //}
+        }
     }
 }

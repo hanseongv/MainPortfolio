@@ -18,7 +18,7 @@ public class Skill1FlyingSlash : MonoBehaviour
 
     private IEnumerator OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Monster") || other.CompareTag("Golem"))
         {
             monsterNormal = other.GetComponent<MonsterNormal>();
             int i;

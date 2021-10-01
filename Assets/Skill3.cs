@@ -21,7 +21,7 @@ public class Skill3 : MonoBehaviour
     {
         if (on)
         {
-            if (other.CompareTag("Monster"))
+            if (other.CompareTag("Monster") || other.CompareTag("Golem"))
             {
                 //playerController.skill3Pos = other.transform.forward * -1;
                 //player.transform.position = new Vector3(other.transform.position.x, player.transform.position.y, other.transform.position.z);

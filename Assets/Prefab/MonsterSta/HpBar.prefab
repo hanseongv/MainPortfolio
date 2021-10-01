@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2819267652088082046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   target: {fileID: 0}
   hitBarTime: 0
   hitBarTimeOn: 0
-  hitBarImage: {fileID: 0}
+  hitBarImage: {fileID: 5620266015584625679}
 --- !u!1 &5620266014316282169
 GameObject:
   m_ObjectHideFlags: 0

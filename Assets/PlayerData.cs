@@ -286,6 +286,14 @@ public class PlayerData : MonoBehaviour
         equipWeapon = hasWeapon[0];
     }
 
+    public bool questBClear;
+
+    public void QuestClear(int coin, int exp)
+    {
+        playerCoin += coin;
+        curentExp += exp;
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -349,6 +357,7 @@ public class PlayerData : MonoBehaviour
         equipWeaponBoxColl = equipWeapon.GetComponent<BoxCollider>();
     }
 
+    public int slimeKillCount;
     //private void PlayerStata()
     //{
     //    //playerPhyDamage = playerStr * 2;

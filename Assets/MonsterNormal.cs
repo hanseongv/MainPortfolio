@@ -276,6 +276,7 @@ public class MonsterNormal : MonoBehaviour
     {
         if (monsterHp <= 0)
         {
+            playerData.slimeKillCount++;
             isDie = true;
             hitDamageScript.hitBarTime = 0;
             hpBarImage.fillAmount = (float)monsterHp / (float)monsterMaxHp;

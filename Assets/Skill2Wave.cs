@@ -40,7 +40,7 @@ public class Skill2Wave : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Monster") || other.CompareTag("Golem"))
         {
             Skill2Hit = Resources.Load<GameObject>("Skill2Hit");
             Instantiate(Skill2Hit, other.transform.position, Quaternion.identity);

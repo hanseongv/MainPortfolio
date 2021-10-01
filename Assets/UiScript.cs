@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UiScript : MonoBehaviour
 {
     private PlayerData playerData;
+    public GameObject questUI;
     private Text expText;
     private Text levelText;
     private Text nameText;
@@ -99,9 +100,21 @@ public class UiScript : MonoBehaviour
 
     public GameObject optionUI;
     public GameObject reQuestions;
+    public GameObject inventoryObj;
+    public GameObject skillBook;
 
     private void Start()
     {
+        inventoryObj = transform.Find("InventoryUI").gameObject;
+        skillBook = transform.Find("CharacterSkill").gameObject;
+        transform.Find("OtherUI/Button (1)").GetComponent<Button>().onClick.AddListener(
+() => skillBook.SetActive(true));
+        transform.Find("OtherUI/Button (2)").GetComponent<Button>().onClick.AddListener(
+() => inventoryObj.SetActive(true));
+
+        questUI = transform.Find("QuestUI").gameObject;
+        questCountText = questUI.transform.Find("QuestCountText").GetComponent<Text>();
+        questUI.SetActive(false);
         optionUI = GameObject.Find("UI/OptionUI");
         reQuestions = GameObject.Find("UI/ReQuestions");
         skill1LockImage = GameObject.Find("UI/ControlUI/RightControl/Skill1/Image/SkillImage/SkillImageLock");
@@ -157,7 +170,7 @@ public class UiScript : MonoBehaviour
 
         for (; a >= b; a -= 0.01f)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
             hpHideBar.fillAmount = a;
         }
         hpHideBar.fillAmount = (float)playerData.curentHp / (float)playerData.maxHp;
@@ -183,8 +196,28 @@ public class UiScript : MonoBehaviour
         SkillCoolImage();
         UIState();
         SkillUI();
+        QuestUI();
+
         //Coin();
         //이름
+    }
+
+    public Text questCountText;
+
+    private void QuestUI()
+    {
+        if (playerData.questB)
+        {
+            questUI.SetActive(true);
+            questCountText.text = $"{5 - playerData.slimeKillCount}";
+            if (playerData.slimeKillCount >= 5)
+            {
+                questUI.SetActive(false);
+                playerData.questB = false;
+                playerData.questBClear = true;
+                Debug.Log("완료");
+            }
+        }
     }
 
     //private void Coin()

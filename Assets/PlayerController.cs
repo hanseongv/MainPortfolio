@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     private UiScript uiScript;
     public GameObject skill3Range;
     public Vector3 skill3Pos;
+    public bool isStun;
 
     private void Awake()
     {
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //timed += Time.deltaTime;
-        if (isSkill || talkToNpc)
+        if (isSkill || talkToNpc || isStun)
         {
             anim.SetBool("isRun", false);
             Debug.Log("토크중");
@@ -116,10 +117,24 @@ public class PlayerController : MonoBehaviour
         Skill3();
         AutoSwap();
         Portion();
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    Instantiate(testListObj[0], transform.position, transform.rotation);
-        //}
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            StartCoroutine(Stun(1));
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            StartCoroutine(Stun(4));
+        }
+    }
+
+    public IEnumerator Stun(float time)
+    {
+        anim.SetBool("isStun", true);
+        isStun = true;
+        anim.Play("Stun");
+        yield return new WaitForSeconds(time);
+        anim.SetBool("isStun", false);
+        isStun = false;
     }
 
     private void Skill3()

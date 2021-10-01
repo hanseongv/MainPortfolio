@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class QuestNpcUI : MonoBehaviour
 {
     public GameObject talkUI;
+
     public Text talkText;
     public PlayerData playerData;
     public List<string> talkString;
+    public List<string> clearTalkString;
     public int talkInt;
     public GameObject questions;
     public GameObject cam;
@@ -37,6 +39,7 @@ public class QuestNpcUI : MonoBehaviour
         talkString.Add("이 길을 쭉 가면 외눈 슬라임이 있을 걸세");
         talkString.Add("5마리만 잡고 오게나");
         talkString.Add("왕으로써 명하노라");
+        clearTalkString.Add("고생했네");
 
         gameObject.SetActive(false);
     }
@@ -47,18 +50,33 @@ public class QuestNpcUI : MonoBehaviour
         {
             case BtnType.Next:
                 npc.animator.Play("Talk");
-                if (talkInt >= talkString.Count - 1)
+                if (playerData.questBClear)
                 {
+                    playerData.QuestClear(1000, 1000);
+                    //npc.clearImage.SetActive(false);
+                    playerData.questBClear = false;
+                    npc.offNpc = true;
+                    playerController.talkToNpc = false;
                     questions.SetActive(false);
-                    questions.SetActive(true);
+                    gameObject.SetActive(false);
                 }
                 else
-                    talkInt++;
+                {
+                    if (talkInt >= talkString.Count - 1)
+                    {
+                        questions.SetActive(false);
+                        questions.SetActive(true);
+                    }
+                    else
+                        talkInt++;
+                }
                 break;
 
             case BtnType.Yes:
+                //helpImage.SetActive(false);
                 playerController.talkToNpc = false;
                 playerData.questB = true;
+                npc.helpB = true;
                 questions.SetActive(false);
                 gameObject.SetActive(false);
 
@@ -82,7 +100,7 @@ public class QuestNpcUI : MonoBehaviour
         {
             npc.animator.Play("Talk");
         }
-        else
+        else if (!(playerData.questB))
         {
             talkUI.SetActive(true);
             cam.SetActive(true);
@@ -92,6 +110,11 @@ public class QuestNpcUI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        talkText.text = talkString[talkInt];
+        if (playerData.questBClear)
+        {
+            talkText.text = clearTalkString[0];
+        }
+        else
+            talkText.text = talkString[talkInt];
     }
 }

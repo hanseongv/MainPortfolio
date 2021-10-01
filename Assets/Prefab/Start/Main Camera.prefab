@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 59.41, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!20 &6647015218760651829
 Camera:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bba0eb1b0b13b41843de9ae828f99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camVec: {x: 0, y: 13, z: -6.5}
+  camVec: {x: 0, y: 8.02, z: -10.6}
   playerData: {fileID: 0}
   target: {fileID: 0}
   camSpeed: 4
