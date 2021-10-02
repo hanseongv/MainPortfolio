@@ -51,7 +51,7 @@ public class Weapon : MonoBehaviour
             boss = other.GetComponent<Boss>();
             int damage = weaponDamage + playerData.playerPhyDamage;
             boss.GetHit(weaponDamage + playerData.playerPhyDamage, transform);
-            Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
+            //Debug.Log($"무기 공격력 {weaponDamage}, 플레이어 데미지{playerData.playerPhyDamage}");
         }
         if (other.CompareTag("Stone"))
         {

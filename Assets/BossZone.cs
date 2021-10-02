@@ -11,7 +11,7 @@ public class BossZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             boss.anim.SetBool("isOn", true);
-            Debug.Log("잠깸");
+            //Debug.Log("잠깸");
             boss.bossSleepOff = true;
         }
     }

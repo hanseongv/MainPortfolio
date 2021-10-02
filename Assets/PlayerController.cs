@@ -127,6 +127,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private IEnumerator StunCo;
+
+    public void GoStun(float time)
+    {
+        Debug.Log("스턴");
+        StunCo = Stun(time);
+        StopCoroutine(StunCo);
+        StartCoroutine(StunCo);
+        //StartCoroutine(Stun(time));
+    }
+
     public IEnumerator Stun(float time)
     {
         anim.SetBool("isStun", true);

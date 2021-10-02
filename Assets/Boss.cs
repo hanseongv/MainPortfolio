@@ -103,6 +103,9 @@ public class Boss : MonoBehaviour
 
     private void NavMove()
     {
+        if (nav.enabled == false)
+            return;
+
         nav.isStopped = !isChase;//펄스면 스탑
         nav.SetDestination(target.transform.position);
 
@@ -122,7 +125,7 @@ public class Boss : MonoBehaviour
                     //StartCoroutine(attackCo);
                     attackCo = Attack();
                     StartCoroutine(attackCo);
-                    Debug.Log("z");
+                    //Debug.Log("z");
                 }
             }
             else if (fireRate <= fireDelay && dis >= attackShortRange)//공격 범위 밖 : 움직임
@@ -133,9 +136,12 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public GameObject bossBar;
+
     private IEnumerator OnBoss()
     {
         yield return new WaitForSeconds(3f);
+        bossBar.SetActive(true);
         bossOn = true;
         bossSleepOff = false;
     }
@@ -156,21 +162,111 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(skill1Time2);
         Instantiate(skill1FireObj, skill1Pos.position, Quaternion.identity);
         yield return new WaitForSeconds(skill1Time2);
-        Instantiate(skill1FireObj, skill1Pos.position, Quaternion.LookRotation(transform.forward));
+        //Instantiate(skill1FireObj, skill1Pos.position, Quaternion.LookRotation(transform.forward));
+        Instantiate(skill1FireObj, skill1Pos.position, Quaternion.identity);
+        isSkill = false;
+    }
+
+    public float posY;
+
+    //public float posYTime;
+    private float speed;
+
+    private Vector3 targetMVec;
+    public bool flyAttackBullet;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Ground"))
+        {
+            if (flyAttackBullet)
+            {
+                anim.SetBool("FlyOff", true);
+
+                Debug.Log("땅바닥");
+
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                flyAttackEnd = false;
+                flyAttackBullet = false;
+                StartCoroutine(Skill2FlyDown());
+            }
+        }
+    }
+
+    public GameObject skill2Explosion2;
+    public GameObject skill2Bullet2;
+
+    private IEnumerator Skill2FlyDown()
+    {
+        nav.enabled = true;
+        yield return null;
+        nav.enabled = false;
+        Instantiate(skill2Bullet2, transform.position, Quaternion.identity);
+        Instantiate(skill2Explosion2, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.04f);
+        Instantiate(skill2Explosion2, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.05f);
+        Instantiate(skill2Explosion2, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.06f);
+        Instantiate(skill2Explosion2, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(4f);
+        nav.enabled = true;
+
+        anim.SetBool("FlyOff", false);
         isSkill = false;
     }
 
     private void Update()
+
     {
         //if (Input.GetKeyDown(KeyCode.F7))
         //{
         //    anim.Play("Skill1");
         //    StartCoroutine(Skill1());
         //}
-        if (Input.GetKeyDown(KeyCode.F6))
+
+        if (flyAttackEnd /*&& isSkill*/)
         {
-            anim.Play("Skill2On");
+            if (posY < 2)
+            {
+                posY += 0.05f;
+                transform.position = new Vector3(transform.position.x, transform.position.y + posY, transform.position.z);
+                Debug.Log("업");
+            }
+            else
+            {
+                flyAttackBullet = true;
+                //if (posYTime < 1)
+                //{
+                //posYTime += 0.05f;
+                Debug.Log("돌진");
+
+                //transform.position = Vector3.LerpUnclamped(transform.position, targetMVec, Time.deltaTime);
+                transform.Translate(transform.forward * Time.deltaTime * 20, Space.World);
+                Vector3 directionVec = targetMVec - transform.position;
+                Quaternion qua = Quaternion.LookRotation(directionVec);
+                transform.rotation = Quaternion.Slerp(transform.rotation, qua, Time.deltaTime * 2f);
+                //}
+                //else
+                //{
+                //    transform.Translate(transform.forward * speed, Space.World);
+                //}
+            }
+            return;
         }
+
+        //if (Input.GetKeyDown(KeyCode.F7))
+        //{
+        //    Debug.Log(testTime);
+        //}
+        //if (testTimeB)
+        //{
+        //    testTime += Time.deltaTime;
+        //}
+        //if (Input.GetKeyDown(KeyCode.F6))
+        //{
+        //    StartCoroutine(Skill2());
+        //}
         if (bossSleepOff)
         {
             StartCoroutine(OnBoss());
@@ -186,10 +282,76 @@ public class Boss : MonoBehaviour
         FireDelay();//임시
         Dying();
         Skill1On();
-        //if (hpBar)
-        //{
-        //    Debug.Log("에치비바");
-        //}
+        Skill2On();
+    }
+
+    public float on2CollTime;
+    public float on2CollTime2;
+    public GameObject skill2EffectObj;
+    public GameObject skill2ExplosionObj;
+    public GameObject skill2Bullet;
+
+    //private Vector3 skill2Vec;
+    public float testTime;
+
+    public bool testTimeB;
+    public bool flyAttackEnd;
+
+    private IEnumerator Skill2()
+    {
+        posY = 0;
+        isSkill = true;
+        isAttack = false;
+        isHit = false;
+        isChase = false;
+        anim.Play("Skill2On");
+        testTimeB = true;
+
+        //skill2Vec = bossSkill2Pos.transform.position;
+        //skill2Vec.x += Random.Range(0, 17);
+        //skill2Vec.z += Random.Range(0, 17);
+        //Instantiate(testObj, skill2Vec, Quaternion.identity);
+        yield return new WaitForSeconds(on2CollTime);
+
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(on2CollTime2);
+        StartCoroutine(Test());
+        yield return new WaitForSeconds(0.2f);
+        anim.Play("FlyAttack");
+        targetMVec = target.transform.position;
+        nav.enabled = false;
+        flyAttackEnd = true;
+
+        //isSkill = false;
+    }
+
+    private IEnumerator Test()
+    {
+        Vector3 skill2Vec = bossSkill2Pos.transform.position;
+        skill2Vec.x += Random.Range(-17, 17);
+        skill2Vec.z += Random.Range(-17, 17);
+        Instantiate(skill2EffectObj, skill2Vec, Quaternion.identity);
+        yield return new WaitForSeconds(2.5f);
+        Instantiate(skill2ExplosionObj, skill2Vec, Quaternion.identity);
+        Instantiate(skill2Bullet, skill2Vec, Quaternion.identity);
     }
 
     private void Skill1On()
@@ -206,8 +368,24 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void Skill2On()
+    {
+        if (monsterMp > monsterMaxMp)
+        {
+            monsterMp = 0;
+            //isSkill = true;
+            //isAttack = false;
+            //isHit = false;
+            //isChase = false;
+            //anim.Play("Skill1");
+            StartCoroutine(Skill2());
+        }
+    }
+
     private void FireDelay()
     {
+        if (isSkill) return;
+
         if (fireDelay < 10)
             fireDelay += Time.deltaTime;
 
@@ -245,63 +423,6 @@ public class Boss : MonoBehaviour
         isSkill = false;
     }
 
-    private void Anim()
-    {
-        if (!isBattle)
-        {
-            isChase = false;
-            if (dis > hissingRange) //시야 밖에 있음
-            {
-                anim.SetBool("isHissing", false);
-                anim.SetBool("isBattle", false);
-                anim.SetBool("isBattleIdle", false);
-                isHissing = false;
-            }
-            else if (dis <= hissingRange && !isHissing) // 시야 안에 들어와서 하악질함. 한 번 실행
-            {
-                anim.SetBool("isHissing", true);
-                anim.SetBool("isBattle", false);
-                anim.SetBool("isBattleIdle", false);
-                isHissing = true;
-                Instantiate(ExclamationMark, hitDamageNumPos.position, ExclamationMark.transform.rotation);
-            }
-            //else if (dis <= attackSkillArea && dis > attackShortArea && skillDelay > skillRate)//스킬 실행
-            //{
-            //    transform.LookAt(target.transform);
-            //    StartCoroutine(Skill());
-            //    anim.SetBool("isBattle", false);
-            //    anim.SetBool("isBattleIdle", false);
-            //}
-            else if (dis <= attackSkillArea && dis > attackShortArea)//스킬 실행
-            {
-                if (skill1Delay > skillRate)
-                {
-                    StartCoroutine(Skill());
-                }
-                transform.LookAt(target.transform);
-
-                anim.SetBool("isBattle", false);
-                anim.SetBool("isBattleIdle", false);
-            }
-            //else if (dis > attackShortArea && dis <= hissingRange)//dis > 7 전투시작전 하악질 상태
-            //{
-            //    transform.LookAt(target.transform);
-
-            //    anim.SetBool("isBattle", false);
-            //    anim.SetBool("isBattleIdle", false);
-            //}
-            else if (dis <= attackShortArea)// 공격 범위 안에 들어옴 배틀 시작
-            {
-                anim.SetBool("isHissing", false);
-                isHissing = false;
-                isChase = true;
-                isBattle = true;
-
-                anim.SetBool("isBattle", true);
-            }
-        }
-    }
-
     private Camera cam;
     private Vector3 camPos;
     private float shakeRange = 0.05f;
@@ -336,7 +457,7 @@ public class Boss : MonoBehaviour
 
     public void GetHit(int hitDamage, Transform hitPos)
     {
-        if (isDie)
+        if (isDie || isSkill)
             return;
         //attackCo = Attack();
         if (attackCo != null)
@@ -415,7 +536,7 @@ public class Boss : MonoBehaviour
             isDie = true;
             hitDamageScript.hitBarTime = 0;
             hpBarImage.fillAmount = (float)monsterHp / (float)monsterMaxHp;
-            Destroy(hpBar);
+            Destroy(bossBar);
             nav.enabled = false;
             anim.Play("Die");
             //StopCoroutine(attackCo);
@@ -426,34 +547,16 @@ public class Boss : MonoBehaviour
     public List<GameObject> dieDropItemList;
     public GameObject coin;
 
-    private void DieDropItem()
-    {
-        float randomVecX = transform.position.x + Random.Range(0.5f, 2.5f);
-        float randomVecZ = transform.position.z + Random.Range(0.5f, 2.5f);
-        Vector3 randomVec = new Vector3(randomVecX, transform.position.y, randomVecZ);
-        int randomNum = Random.Range(0, dieDropItemList.Count);
-        Instantiate(dieDropItemList[randomNum], randomVec, Quaternion.identity);
-    }
-
-    private void DieDropCoin()
-    {
-        float randomVecX = transform.position.x + Random.Range(0.5f, 2.5f);
-        float randomVecZ = transform.position.z + Random.Range(0.5f, 2.5f);
-        Vector3 randomVec = new Vector3(randomVecX, transform.position.y, randomVecZ);
-        coin = Resources.Load<GameObject>("Coin");
-        Instantiate(coin, randomVec, Quaternion.identity);
-    }
-
     private void Die()
     {
-        float randomDropCount = Random.Range(0.05f, 0.15f);
-        InvokeRepeating("DieDropItem", 0f, 0.05f);
-        Invoke("DieDropItemStop", randomDropCount);
-        float randomDropCount2 = Random.Range(0.05f, 0.2f);
-        InvokeRepeating("DieDropCoin", 0f, 0.05f);
-        Invoke("DieDropCoinStop", randomDropCount2);
+        //float randomDropCount = Random.Range(0.05f, 0.15f);
+        //InvokeRepeating("DieDropItem", 0f, 0.05f);
+        //Invoke("DieDropItemStop", randomDropCount);
+        //float randomDropCount2 = Random.Range(0.05f, 0.2f);
+        //InvokeRepeating("DieDropCoin", 0f, 0.05f);
+        //Invoke("DieDropCoinStop", randomDropCount2);
 
-        Debug.Log(randomDropCount);
+        //Debug.Log(randomDropCount);
         for (int i = 0; i < renderers.Length; i++)
             renderers[i].material.color = Color.black;
         rigid.constraints = RigidbodyConstraints.None;

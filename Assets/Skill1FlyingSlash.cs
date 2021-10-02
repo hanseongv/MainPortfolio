@@ -63,7 +63,7 @@ public class Skill1FlyingSlash : MonoBehaviour
                 //yield return null;
                 yield return new WaitForSeconds(0.009f);
             }
-            Debug.Log(other + "횟수 : " + i);
+            //Debug.Log(other + "횟수 : " + i);
         }
     }
 

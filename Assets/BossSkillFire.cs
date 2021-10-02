@@ -31,7 +31,7 @@ public class BossSkillFire : MonoBehaviour
         {
             playerController = other.GetComponent<PlayerController>();
             playerController.GetHit(fireDamage, gameObject.transform);
-            Debug.Log("플레이어한테 온트리거엔터 발생");
+            //Debug.Log("플레이어한테 온트리거엔터 발생");
 
             Rigidbody rigid = other.GetComponent<Rigidbody>();
 
